@@ -36,6 +36,9 @@ const Navbar = () => {
             <Link to="/locations" className="font-sweet-sans text-tamtam-black hover:text-tamtam-orange transition">
               Locations
             </Link>
+            <Link to="/catering" className="font-sweet-sans text-tamtam-black hover:text-tamtam-orange transition">
+              Catering
+            </Link>
           </div>
 
           {/* Order Button */}
@@ -69,6 +72,9 @@ const Navbar = () => {
               </Link>
               <Link to="/locations" className="font-sweet-sans text-tamtam-black hover:text-tamtam-orange transition py-2 px-4" onClick={toggleMenu}>
                 Locations
+              </Link>
+              <Link to="/catering" className="font-sweet-sans text-tamtam-black hover:text-tamtam-orange transition py-2 px-4" onClick={toggleMenu}>
+                Catering
               </Link>
               <Button className="bg-tamtam-green hover:bg-tamtam-green/90 text-white flex items-center space-x-2 mx-4">
                 <span>Order Now</span>
