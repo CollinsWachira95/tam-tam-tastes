@@ -9,28 +9,57 @@ import Menu from "./pages/Menu";
 import About from "./pages/About";
 import Locations from "./pages/Locations";
 import Catering from "./pages/Catering";
+import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
+import { useEffect } from "react";
+import { toast } from "@/hooks/use-toast";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/locations" element={<Locations />} />
-          <Route path="/catering" element={<Catering />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  // Show cookie consent toast when the app loads
+  useEffect(() => {
+    const hasAcceptedCookies = localStorage.getItem("cookiesAccepted") === "true";
+    
+    if (!hasAcceptedCookies) {
+      toast({
+        title: "Cookie Notice",
+        description: "We use cookies to enhance your experience on our website.",
+        action: (
+          <button 
+            onClick={() => {
+              localStorage.setItem("cookiesAccepted", "true");
+            }}
+            className="bg-tamtam-orange text-white px-4 py-2 rounded-md text-xs font-medium"
+          >
+            Accept
+          </button>
+        ),
+        duration: 10000, // 10 seconds
+      });
+    }
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/locations" element={<Locations />} />
+            <Route path="/catering" element={<Catering />} />
+            <Route path="/privacy" element={<Privacy />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
