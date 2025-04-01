@@ -53,6 +53,19 @@
   font-display: swap;
 }
 
+/* Add a more distinctive Kenyan pattern */
+.kenyan-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f97316' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.kenyan-dots {
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2322c55e' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.kenyan-texture {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f97316' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 20.83l2.83-2.83 1.41 1.41L1.41 22H0v-1.17zM0 3.07l2.83-2.83 1.41 1.41L1.41 4.24H0V3.07zm33.66-1.41l2.83 2.83L39.07 0H38.4l-4.74 4.74L32 3.07l4.24-4.24-2.58-2.58L38.4 0h.67v1.41zM40 18.66l-2.83 2.83-1.41-1.41L38.59 20H40v-1.34zm0 17.75l-2.83 2.83-1.41-1.41L38.59 38H40v-1.59zM20 0v1.41l2.83 2.83 1.41-1.41L21.41 0h-1.17zm0 18.66v1.32l1.41 1.41 1.41-1.41-1.41-1.32h-1.41zm19.07-9.74l-2.83 2.83-1.41-1.41 2.83-2.83L38.59 10l-2.83 2.83-1.41-1.41 2.83-2.83-1.41-1.41-2.83 2.82L31.09 8.59l2.83-2.83L32.5 4.34 29.67 7.17 27.84 5.34 30.67 2.5l-1.41-1.41L26.43 4.24l-1.41-1.41L27.85 0h.67l-.67.67 3.74 3.74L36.33 0z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -67,18 +80,55 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f97316' fill-opacity='0.03'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-greneette;
   }
   
-  /* Improve accessibility */
+  /* Enhance typography with a light text shadow for depth */
+  h1, h2 {
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Custom underline for headings */
+  .heading-underline {
+    @apply relative inline-block;
+  }
+  
+  .heading-underline::after {
+    content: '';
+    @apply absolute h-1 bg-tamtam-orange bottom-0 left-0 w-12 rounded-full;
+    transform: translateY(5px);
+  }
+  
+  /* Custom dividers */
+  .kenyan-divider {
+    height: 5px;
+    background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.7), transparent);
+    position: relative;
+    border: none;
+    margin: 2rem 0;
+  }
+  
+  .kenyan-divider::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: rgba(249, 115, 22, 0.7);
+    border-radius: 50%;
+    top: -2.5px;
+    left: calc(50% - 5px);
+  }
+  
+  /* Improved accessibility */
   :focus-visible {
     @apply outline-2 outline-tamtam-orange outline-offset-2;
   }
   
-  /* Image lazy loading fade in */
+  /* Enhanced image lazy loading fade in */
   img.lazy-load {
     @apply opacity-0 transition-opacity duration-500;
   }
@@ -89,14 +139,14 @@
 }
 
 .section {
-  @apply py-12 px-4 md:py-16 md:px-8 lg:py-20 lg:px-12;
+  @apply py-12 px-4 md:py-16 md:px-8 lg:py-20 lg:px-12 relative overflow-hidden;
 }
 
 .container-custom {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10;
 }
 
-/* Add animation for footer links */
+/* Enhanced hover effects for links */
 .link-hover {
   @apply relative;
 }
@@ -110,14 +160,24 @@
   @apply scale-x-100 origin-left;
 }
 
-/* Add some animations */
+/* Custom hover effects for cards */
+.card-hover {
+  @apply transition-all duration-300;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
+  animation: fadeIn 0.7s ease-out forwards;
 }
 
 @keyframes scaleIn {
@@ -129,7 +189,36 @@
   animation: scaleIn 0.5s ease-out forwards;
 }
 
-/* Improve image loading */
+/* Add staggered animation delay */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+
+/* Custom button styles */
+.btn-kenyan {
+  @apply relative overflow-hidden transition-all duration-300;
+  z-index: 1;
+}
+
+.btn-kenyan::before {
+  content: '';
+  @apply absolute top-0 left-0 w-full h-full bg-gradient-to-r from-tamtam-orange to-tamtam-orange/90 -z-10;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.5s ease-out;
+}
+
+.btn-kenyan:hover::before {
+  transform: scaleX(1);
+}
+
+/* Custom border styles */
+.border-kenyan {
+  @apply border-2 border-dashed border-tamtam-orange/20 rounded-lg p-4;
+}
+
+/* Improved image loading */
 .progressive-img-container {
   @apply relative overflow-hidden;
 }
@@ -162,4 +251,29 @@
 @keyframes shimmer {
   from { transform: translateX(-100%); }
   to { transform: translateX(100%); }
+}
+
+/* Add authentic Kenyan pattern overlays */
+.pattern-overlay::before {
+  content: '';
+  @apply absolute inset-0 opacity-5 pointer-events-none;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f97316' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Add custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #F97316;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e76710;
 }

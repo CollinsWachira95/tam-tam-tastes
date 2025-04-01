@@ -21,10 +21,20 @@ const Index = () => {
         <LocationSection />
         
         {/* Contact Section */}
-        <section className="section bg-tamtam-light">
-          <div className="container-custom">
+        <section className="section bg-tamtam-light relative">
+          {/* Decorative background pattern */}
+          <div className="absolute inset-0 kenyan-texture opacity-50"></div>
+          
+          <div className="container-custom relative z-10">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-greneette font-bold mb-4">Get In Touch</h2>
+              <span className="inline-block px-4 py-1 bg-tamtam-orange/10 text-tamtam-orange rounded-full text-sm font-medium mb-4">
+                Get In Touch
+              </span>
+              <h2 className="text-3xl md:text-4xl font-greneette font-bold mb-2 relative inline-block">
+                Contact Us
+                <span className="absolute -right-6 top-0 text-tamtam-orange">•</span>
+              </h2>
+              <div className="mx-auto w-24 h-1 bg-tamtam-green/50 rounded-full my-6"></div>
               <p className="text-tamtam-gray max-w-2xl mx-auto">
                 Have questions or want to make a reservation? Reach out to us and we'll get back to you as soon as possible.
               </p>
@@ -34,7 +44,7 @@ const Index = () => {
               {/* Info Cards */}
               <div className="lg:col-span-1 space-y-6">
                 {/* Phone Card */}
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow group">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 group hover:translate-y-[-5px] border border-tamtam-orange/5">
                   <div className="flex items-start">
                     <div className="mr-4 bg-tamtam-orange/10 p-3 rounded-full group-hover:bg-tamtam-orange/20 transition-colors">
                       <Phone className="h-6 w-6 text-tamtam-orange" />
@@ -47,7 +57,7 @@ const Index = () => {
                 </div>
                 
                 {/* Email Card */}
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow group">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 group hover:translate-y-[-5px] border border-tamtam-orange/5">
                   <div className="flex items-start">
                     <div className="mr-4 bg-tamtam-orange/10 p-3 rounded-full group-hover:bg-tamtam-orange/20 transition-colors">
                       <Mail className="h-6 w-6 text-tamtam-orange" />
@@ -60,7 +70,7 @@ const Index = () => {
                 </div>
                 
                 {/* Hours Card */}
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow group">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 group hover:translate-y-[-5px] border border-tamtam-orange/5">
                   <div className="flex items-start">
                     <div className="mr-4 bg-tamtam-orange/10 p-3 rounded-full group-hover:bg-tamtam-orange/20 transition-colors">
                       <Clock className="h-6 w-6 text-tamtam-orange" />
@@ -70,6 +80,14 @@ const Index = () => {
                       <p className="text-tamtam-gray">Mon-Fri: 11:00 AM - 10:00 PM</p>
                       <p className="text-tamtam-gray">Sat-Sun: 10:00 AM - 11:00 PM</p>
                     </div>
+                  </div>
+                </div>
+
+                {/* Kenyan decorative element */}
+                <div className="relative hidden md:block">
+                  <div className="kenyan-pattern p-8 rounded-lg bg-white opacity-30"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-4xl font-greneette text-tamtam-orange/70">Karibu!</span>
                   </div>
                 </div>
               </div>
