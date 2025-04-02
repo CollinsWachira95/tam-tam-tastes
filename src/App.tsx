@@ -15,6 +15,9 @@ import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import { toast } from "@/hooks/use-toast";
 
+// Add this to ensure font is loaded
+import { Helmet } from "react-helmet";
+
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -43,6 +46,9 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <Helmet>
+        <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/neutra-text-alt" />
+      </Helmet>
       <TooltipProvider>
         <Toaster />
         <Sonner />

@@ -14,7 +14,14 @@ import {
 } from "@/components/ui/carousel";
 import { useToast } from "@/hooks/use-toast";
 
-const cateringSlides = [
+interface CateringSlide {
+  type: "image" | "video";
+  src: string;
+  alt?: string;
+  poster?: string;
+}
+
+const cateringSlides: CateringSlide[] = [
   {
     type: "image",
     src: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9",
@@ -102,18 +109,19 @@ const Catering = () => {
                       <img 
                         src={slide.src} 
                         alt={slide.alt || "Catering service"} 
-                        className="w-full h-full object-cover opacity-70"
+                        className="w-full h-full object-cover opacity-80"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                     </div>
                   ) : (
                     <div className="relative h-full w-full">
                       <video 
-                        className="w-full h-full object-cover opacity-70"
+                        className="w-full h-full object-cover opacity-80"
                         autoPlay
                         muted
                         loop
                         poster={slide.poster}
+                        preload="auto"
                       >
                         <source src={slide.src} type="video/mp4" />
                         Your browser does not support the video tag.
@@ -123,16 +131,13 @@ const Catering = () => {
                   )}
                   
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center text-white">
+                    <div className="text-center text-white backdrop-blur-sm bg-black/30 p-8 rounded-lg max-w-3xl">
                       <h1 className="text-4xl md:text-5xl lg:text-6xl font-neutra font-bold mb-4">
                         Catering Services
                       </h1>
                       <p className="text-xl font-neutra max-w-2xl mx-auto">
                         Authentic Kenyan cuisine for your special events, corporate gatherings, and celebrations
                       </p>
-                      <Button className="mt-8 bg-tamtam-orange hover:bg-tamtam-orange/90 text-white text-lg px-8 font-neutra">
-                        Request a Quote
-                      </Button>
                     </div>
                   </div>
                 </CarouselItem>

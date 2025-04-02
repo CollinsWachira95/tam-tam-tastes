@@ -68,7 +68,7 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				'neutra': ['Neutra', 'san-serif'],
+				'neutra': ['Neutra Extra', 'Neutra', 'sans-serif'],
 			},
 			keyframes: {
 				'accordion-down': {
