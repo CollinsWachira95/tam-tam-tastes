@@ -10,6 +10,7 @@ import About from "./pages/About";
 import Locations from "./pages/Locations";
 import Catering from "./pages/Catering";
 import Privacy from "./pages/Privacy";
+import Butchery from "./pages/Butchery";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import { toast } from "@/hooks/use-toast";
@@ -53,6 +54,7 @@ const App = () => {
             <Route path="/locations" element={<Locations />} />
             <Route path="/catering" element={<Catering />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/butchery" element={<Butchery />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

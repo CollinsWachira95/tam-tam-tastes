@@ -92,6 +92,23 @@ const Navbar = () => {
               )}></span>
             </Link>
             <Link 
+              to="/butchery" 
+              className={cn(
+                "font-sweet-sans transition-colors duration-300 relative group",
+                isActive("/butchery") 
+                  ? "text-tamtam-orange" 
+                  : "text-tamtam-black hover:text-tamtam-orange"
+              )}
+            >
+              <span>Butchery</span>
+              <span className={cn(
+                "absolute bottom-[-5px] left-0 w-full h-0.5 bg-tamtam-orange transform transition-transform duration-300",
+                isActive("/butchery") 
+                  ? "scale-x-100" 
+                  : "scale-x-0 group-hover:scale-x-100"
+              )}></span>
+            </Link>
+            <Link 
               to="/about" 
               className={cn(
                 "font-sweet-sans transition-colors duration-300 relative group",
@@ -191,6 +208,18 @@ const Navbar = () => {
               >
                 <span className="text-tamtam-orange/70 mr-2">•</span>
                 Menu
+              </Link>
+              <Link 
+                to="/butchery" 
+                className={cn(
+                  "font-sweet-sans py-3 px-4 rounded-md transition-all duration-300 flex items-center",
+                  isActive("/butchery") 
+                    ? "bg-tamtam-orange/10 text-tamtam-orange" 
+                    : "text-tamtam-black hover:bg-tamtam-orange/5 hover:text-tamtam-orange"
+                )}
+              >
+                <span className="text-tamtam-orange/70 mr-2">•</span>
+                Butchery
               </Link>
               <Link 
                 to="/about" 
