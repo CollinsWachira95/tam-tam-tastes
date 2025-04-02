@@ -31,7 +31,7 @@ const App = () => {
             onClick={() => {
               localStorage.setItem("cookiesAccepted", "true");
             }}
-            className="bg-tamtam-orange text-white px-4 py-2 rounded-md text-xs font-medium"
+            className="bg-tamtam-orange text-white px-4 py-2 rounded-md text-xs font-medium font-neutra"
           >
             Accept
           </button>

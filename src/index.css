@@ -38,17 +38,17 @@
 }
 
 @font-face {
-  font-family: 'Sweet Sans';
-  src: url('https://fonts.cdnfonts.com/css/sweet-sans') format('woff2');
+  font-family: 'Neutra';
+  src: url('https://fonts.cdnfonts.com/css/neutra-text-alt') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Greneette';
-  src: url('https://fonts.cdnfonts.com/css/greneette') format('woff2');
-  font-weight: 400;
+  font-family: 'Neutra';
+  src: url('https://fonts.cdnfonts.com/css/neutra-text-alt') format('woff2');
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -76,7 +76,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sweet-sans;
+    @apply bg-background text-foreground font-neutra;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -84,7 +84,7 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-greneette;
+    @apply font-neutra font-bold;
   }
   
   /* Enhance typography with a light text shadow for depth */

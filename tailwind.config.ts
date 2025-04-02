@@ -68,8 +68,7 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				'sweet-sans': ['Sweet Sans', 'san-serif'],
-				'greneette': ['Greneette', 'serif'],
+				'neutra': ['Neutra', 'san-serif'],
 			},
 			keyframes: {
 				'accordion-down': {
