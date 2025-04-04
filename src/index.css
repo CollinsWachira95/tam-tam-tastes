@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,32 +6,32 @@
 @layer base {
   :root {
     --background: 36 30% 98%;
-    --foreground: 24 15% 12%;
+    --foreground: 20 10% 20%; /* Darker text for better readability */
 
     --card: 0 0% 100%;
-    --card-foreground: 24 10% 10%;
+    --card-foreground: 20 10% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 24 10% 10%;
+    --popover-foreground: 20 10% 20%;
 
-    --primary: 24 80% 52%;
+    --primary: 28 100% 50%; /* Updated orange shade */
     --primary-foreground: 60 9.1% 97.8%;
 
     --secondary: 142 60% 42%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 24 5% 93%;
-    --muted-foreground: 24 8% 46%;
+    --muted: 20 5% 93%;
+    --muted-foreground: 20 8% 46%;
 
-    --accent: 24 70% 95%;
-    --accent-foreground: 24 10% 10%;
+    --accent: 28 95% 85%;
+    --accent-foreground: 20 10% 20%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 60 9.1% 97.8%;
 
-    --border: 24 10% 90%;
-    --input: 24 5.9% 90%;
-    --ring: 24 70% 50%;
+    --border: 20 10% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 28 83% 45%;
 
     --radius: 0.75rem;
   }
@@ -75,6 +76,11 @@
   background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.184 20c.357-.13.72-.264.888-.14.56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0' fill='%23b7713c' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 
+/* Added African pattern */
+.african-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23795548' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -87,17 +93,17 @@
   }
 
   body {
-    @apply bg-background text-foreground font-neutra;
+    @apply bg-tamtam-light text-tamtam-gray-700 font-opensans;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-image: url("data:image/svg+xml,%3Csvg width='64' height='32' viewBox='0 0 64 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e67e22' fill-opacity='0.02'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    line-height: 1.75;
+    line-height: 1.8;
     letter-spacing: -0.01em;
   }
   
-  h1, h2, h3, h4, h5, h5, h6 {
-    @apply font-neutra font-bold tracking-tight;
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair font-bold tracking-tight text-tamtam-black;
     letter-spacing: -0.025em;
   }
   
@@ -119,7 +125,7 @@
   }
   
   p {
-    @apply text-base md:text-lg leading-relaxed;
+    @apply text-base md:text-lg leading-relaxed text-left;
   }
   
   /* Refined underline for headings */
@@ -129,7 +135,7 @@
   
   .heading-underline::after {
     content: '';
-    @apply absolute h-0.5 bg-tamtam-orange bottom-0 left-0 w-16 rounded-full;
+    @apply absolute h-0.5 bg-tamtam-orange-600 bottom-0 left-0 w-16 rounded-full;
     transform: translateY(6px);
   }
   
@@ -140,14 +146,14 @@
   
   .kenyan-accent::before {
     content: '';
-    @apply absolute w-3 h-3 rounded-full bg-tamtam-orange/70 -left-5 top-1/2;
+    @apply absolute w-3 h-3 rounded-full bg-tamtam-orange-600/70 -left-5 top-1/2;
     transform: translateY(-50%);
   }
   
   /* Enhanced custom dividers */
   .kenyan-divider {
     height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(231, 126, 34, 0.6), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 111, 0, 0.6), transparent);
     position: relative;
     border: none;
     margin: 2.5rem 0;
@@ -158,7 +164,7 @@
     position: absolute;
     width: 8px;
     height: 8px;
-    background-color: rgba(231, 126, 34, 0.7);
+    background-color: rgba(255, 111, 0, 0.7);
     border-radius: 50%;
     top: -3px;
     left: calc(50% - 4px);
@@ -166,7 +172,7 @@
   
   /* Improved accessibility */
   :focus-visible {
-    @apply outline-2 outline-tamtam-orange outline-offset-2;
+    @apply outline-2 outline-tamtam-orange-600 outline-offset-2;
   }
   
   /* Enhanced image loading */
@@ -177,12 +183,27 @@
   img.lazy-loaded {
     @apply opacity-100;
   }
+
+  /* Image overlays for better text contrast */
+  .img-overlay {
+    @apply relative overflow-hidden;
+  }
+  
+  .img-overlay::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-t from-black/30 via-black/20 to-transparent;
+  }
+  
+  .img-overlay-heavy::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-t from-black/50 via-black/30 to-black/10;
+  }
 }
 
 @layer components {
   /* Extended utility classes */
   .section {
-    @apply py-20 px-4 md:py-24 md:px-8 lg:py-28 lg:px-12 relative overflow-hidden;
+    @apply py-24 px-4 md:py-28 md:px-8 lg:py-32 lg:px-12 relative overflow-hidden; /* Increased spacing */
   }
 
   .section-light {
@@ -203,19 +224,19 @@
 
   /* Added spacing classes */
   .spacing-y-sm {
-    @apply py-6 md:py-8;
+    @apply py-8 md:py-10; /* Increased */
   }
 
   .spacing-y-md {
-    @apply py-10 md:py-12;
+    @apply py-12 md:py-16; /* Increased */
   }
 
   .spacing-y-lg {
-    @apply py-16 md:py-20;
+    @apply py-20 md:py-24; /* Increased */
   }
 
   .spacing-y-xl {
-    @apply py-20 md:py-28;
+    @apply py-24 md:py-32; /* Increased */
   }
 
   /* Premium and elegant card styles */
@@ -224,7 +245,7 @@
   }
 
   .card-elegant {
-    @apply bg-white rounded-xl shadow-elegant p-6 backdrop-blur-sm bg-white/95 border border-tamtam-orange/5 hover:shadow-hover transition-all duration-500;
+    @apply bg-white rounded-xl shadow-elegant p-6 backdrop-blur-sm bg-white/95 border border-tamtam-orange-100 hover:shadow-hover transition-all duration-500;
   }
 
   .card-featured {
@@ -234,16 +255,16 @@
 
   .card-featured:hover {
     @apply shadow-intense;
-    transform: perspective(1000px) rotateX(2deg) rotateY(0deg) scale3d(1.01, 1.01, 1.01);
+    transform: perspective(1000px) rotateX(2deg) rotateY(0deg) scale3d(1.02, 1.02, 1.02); /* Enhanced hover effect */
   }
 
   /* Enhanced buttons */
   .btn-premium {
-    @apply relative overflow-hidden rounded-full bg-gradient-to-r from-tamtam-orange-400 to-tamtam-orange-600 text-white px-6 py-3 font-neutra font-medium text-sm transform transition-all duration-300 shadow-button;
+    @apply relative overflow-hidden rounded-full bg-gradient-to-r from-tamtam-orange-600 to-tamtam-orange-700 text-white px-6 py-3 font-opensans font-medium text-sm transform transition-all duration-300 shadow-button;
   }
 
   .btn-premium:hover {
-    @apply shadow-hover -translate-y-0.5;
+    @apply shadow-hover -translate-y-0.5 from-tamtam-orange-500 to-tamtam-orange-600; /* Enhanced hover effect */
   }
 
   .btn-premium::after {
@@ -256,11 +277,30 @@
   }
 
   .btn-outline-premium {
-    @apply relative overflow-hidden rounded-full bg-transparent text-tamtam-orange-500 px-6 py-3 font-neutra font-medium text-sm transform transition-all duration-300 border border-tamtam-orange-500;
+    @apply relative overflow-hidden rounded-full bg-transparent text-tamtam-orange-600 px-6 py-3 font-opensans font-medium text-sm transform transition-all duration-300 border border-tamtam-orange-600;
   }
 
   .btn-outline-premium:hover {
-    @apply bg-tamtam-orange-500 text-white border-transparent;
+    @apply bg-tamtam-orange-600 text-white border-transparent;
+  }
+
+  /* CTA button - more prominent */
+  .btn-cta {
+    @apply relative overflow-hidden rounded-full bg-gradient-to-r from-tamtam-orange-600 to-tamtam-brown-600 text-white px-8 py-4 font-opensans font-bold text-base transform transition-all duration-500 shadow-button;
+  }
+
+  .btn-cta:hover {
+    @apply shadow-hover -translate-y-1 from-tamtam-orange-500 to-tamtam-brown-500;
+  }
+
+  .btn-cta::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-1000;
+    background-size: 200% 100%;
+  }
+
+  .btn-cta:hover::before {
+    @apply opacity-100 animate-shine;
   }
 
   /* Animated highlights for text */
@@ -270,32 +310,20 @@
 
   .highlight-premium::after {
     content: '';
-    @apply absolute bottom-0 left-0 w-full h-2 bg-tamtam-orange-500/20 -z-10 rounded-sm transform origin-bottom transition-all duration-300;
+    @apply absolute bottom-0 left-0 w-full h-2 bg-tamtam-orange-600/20 -z-10 rounded-sm transform origin-bottom transition-all duration-300;
   }
 
   .highlight-premium:hover::after {
     @apply h-full;
   }
 
-  /* New animations */
-  @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-  }
-
+  /* Enhanced animations */
   .animate-float {
     animation: float 5s ease-in-out infinite;
   }
 
-  @keyframes softPulse {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.05); opacity: 0.9; }
-    100% { transform: scale(1); opacity: 1; }
-  }
-
   .animate-soft-pulse {
-    animation: softPulse 5s ease-in-out infinite;
+    animation: pulse-soft 4s ease-in-out infinite;
   }
 
   /* New premium image styling */
@@ -305,7 +333,7 @@
 
   .img-premium::after {
     content: '';
-    @apply absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition-opacity duration-300;
+    @apply absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity duration-300; /* Enhanced gradient */
   }
 
   .img-premium:hover::after {
@@ -335,16 +363,16 @@
 
   /* Elegant hover links */
   .link-elegant {
-    @apply relative inline-block text-tamtam-orange-500 transition-colors duration-300;
+    @apply relative inline-block text-tamtam-orange-600 transition-colors duration-300;
   }
 
   .link-elegant::after {
     content: '';
-    @apply absolute left-0 bottom-0 w-full h-0.5 bg-tamtam-orange-500 scale-x-0 origin-right transition-transform duration-500;
+    @apply absolute left-0 bottom-0 w-full h-0.5 bg-tamtam-orange-600 scale-x-0 origin-right transition-transform duration-500;
   }
 
   .link-elegant:hover {
-    @apply text-tamtam-orange-600;
+    @apply text-tamtam-orange-700;
   }
 
   .link-elegant:hover::after {
@@ -353,11 +381,11 @@
 
   /* Decorative quote styles */
   .quote-elegant {
-    @apply relative italic text-lg md:text-xl text-tamtam-gray-500 pl-4 border-l-2 border-tamtam-orange-400;
+    @apply relative italic text-lg md:text-xl text-tamtam-gray-600 pl-4 border-l-2 border-tamtam-orange-500;
   }
 
   .quote-elegant::before, .quote-elegant::after {
-    @apply text-tamtam-orange-300 text-4xl absolute opacity-20;
+    @apply text-tamtam-orange-400 text-4xl absolute opacity-20;
   }
 
   .quote-elegant::before {
@@ -372,80 +400,79 @@
     right: -0.5rem;
   }
 
-  /* New fancy box decorations */
+  /* Enhanced fancy box decorations */
   .fancy-box {
     @apply relative p-8 overflow-hidden;
   }
 
   .fancy-box::before {
     content: '';
-    @apply absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-tamtam-orange-400 rounded-tl-lg;
+    @apply absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-tamtam-orange-500 rounded-tl-lg;
   }
 
   .fancy-box::after {
     content: '';
-    @apply absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-tamtam-orange-400 rounded-br-lg;
+    @apply absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-tamtam-orange-500 rounded-br-lg;
   }
 
   /* Enhanced glass morphism effect */
   .glass-morphism {
-    @apply backdrop-blur-md bg-white/75 border border-white/20 shadow-elegant;
+    @apply backdrop-blur-md bg-white/80 border border-white/30 shadow-elegant;
   }
 
   .glass-dark {
-    @apply backdrop-blur-md bg-tamtam-black/75 border border-white/10 shadow-elegant text-white;
+    @apply backdrop-blur-md bg-tamtam-black/80 border border-white/10 shadow-elegant text-white;
   }
 
-  /* Rest of existing animations and utilities */
   /* Enhanced scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #f5f5f5;
+    background: #F5F5F5;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #E67E22;
+    background: #FF6F00;
     border-radius: 5px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #D35400;
+    background: #E65100;
   }
 
   /* Typography scale improvements */
   .text-display {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-playfair font-bold tracking-tight;
     letter-spacing: -0.03em;
     line-height: 1.1;
   }
 
   .text-heading {
-    @apply text-3xl md:text-4xl font-bold tracking-tight;
+    @apply text-3xl md:text-4xl font-playfair font-bold tracking-tight;
     letter-spacing: -0.02em;
     line-height: 1.2;
   }
 
   .text-subheading {
-    @apply text-xl md:text-2xl font-semibold;
+    @apply text-xl md:text-2xl font-playfair font-semibold;
     letter-spacing: -0.01em;
     line-height: 1.3;
   }
 
   .text-body {
-    @apply text-base leading-relaxed;
+    @apply text-base leading-relaxed font-opensans;
     letter-spacing: -0.01em;
   }
 
   .text-caption {
-    @apply text-sm text-tamtam-muted;
+    @apply text-sm text-tamtam-muted font-opensans;
   }
 
   /* Enhanced section spacing */
   .section-spacing {
-    @apply py-20 md:py-28;
+    @apply py-24 md:py-32; /* Increased */
   }
 
   /* Subtle text highlight effect */
@@ -454,12 +481,114 @@
   }
 
   .text-highlight::after {
-    @apply absolute -bottom-1 left-0 right-0 h-3 bg-tamtam-orange/10 -z-10;
+    @apply absolute -bottom-1 left-0 right-0 h-3 bg-tamtam-orange-600/10 -z-10;
+  }
+  
+  /* New card hover effects */
+  .hover-lift {
+    @apply transition-all duration-300;
+  }
+  
+  .hover-lift:hover {
+    @apply -translate-y-1 shadow-hover;
+  }
+  
+  /* Nutrition info toggle */
+  .nutrition-toggle {
+    @apply relative overflow-hidden transition-all duration-300 max-h-0 opacity-0;
+  }
+  
+  .nutrition-toggle.open {
+    @apply max-h-36 opacity-100;
+  }
+  
+  /* Floating CTA */
+  .floating-cta {
+    @apply fixed bottom-8 right-8 z-50 shadow-intense rounded-full transition-all duration-300 opacity-0 translate-y-10;
+  }
+  
+  .floating-cta.visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* Image aspect ratios */
+  .aspect-16-9 {
+    aspect-ratio: 16/9;
+  }
+  
+  .aspect-4-3 {
+    aspect-ratio: 4/3;
+  }
+  
+  .aspect-1-1 {
+    aspect-ratio: 1/1;
+  }
+  
+  /* Semi-transparent overlay with gradient */
+  .overlay-gradient {
+    @apply absolute inset-0 bg-gradient-to-t from-black/50 via-black/25 to-transparent;
+  }
+
+  /* Search bar styling */
+  .search-bar {
+    @apply flex items-center px-4 py-2 rounded-full bg-white/90 border border-tamtam-orange-100 shadow-sm focus-within:shadow-md transition-all duration-300;
+  }
+  
+  .search-bar input {
+    @apply bg-transparent border-none focus:outline-none w-full font-opensans;
+  }
+  
+  /* Responsive menu for mobile */
+  .mobile-menu {
+    @apply fixed inset-0 bg-white z-50 transform transition-transform duration-300 ease-in-out;
+  }
+  
+  .mobile-menu.hidden {
+    @apply -translate-x-full;
+  }
+  
+  /* Timeline for About page */
+  .timeline {
+    @apply relative pl-8 border-l-2 border-tamtam-orange-400;
+  }
+  
+  .timeline-item {
+    @apply relative mb-8;
+  }
+  
+  .timeline-item::before {
+    content: '';
+    @apply absolute -left-10 w-4 h-4 rounded-full bg-tamtam-orange-600;
+    top: 6px;
   }
 }
 
 @layer utilities {
   .kenyan-texture {
     background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e67e22' fill-opacity='0.04' fill-rule='evenodd'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 20.83l2.83-2.83 1.41 1.41L1.41 22H0v-1.17zM0 3.07l2.83-2.83 1.41 1.41L1.41 4.24H0V3.07zm33.66-1.41l2.83 2.83L39.07 0H38.4l-4.74 4.74L32 3.07l4.24-4.24-2.58-2.58L38.4 0h.67v1.41zM40 18.66l-2.83 2.83-1.41-1.41L38.59 20H40v-1.34zm0 17.75l-2.83 2.83-1.41-1.41L38.59 38H40v-1.59zM20 0v1.41l2.83 2.83 1.41-1.41L21.41 0h-1.17zm0 18.66v1.32l1.41 1.41 1.41-1.41-1.41-1.32h-1.41zm19.07-9.74l-2.83 2.83-1.41-1.41 2.83-2.83L38.59 10l-2.83 2.83-1.41-1.41 2.83-2.83-1.41-1.41-2.83 2.82L31.09 8.59l2.83-2.83L32.5 4.34 29.67 7.17 27.84 5.34 30.67 2.5l-1.41-1.41L26.43 4.24l-1.41-1.41L27.85 0h.67l-.67.67 3.74 3.74L36.33 0z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  
+  /* Utility for consistent transitions */
+  .transition-standard {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  /* Image crop utilities */
+  .object-center-top {
+    object-position: center top;
+  }
+  
+  .object-center-bottom {
+    object-position: center bottom;
+  }
+  
+  /* Accessibility utilities */
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+  }
+  
+  /* Text emphasize utility */
+  .text-emphasize {
+    @apply font-bold text-tamtam-orange-700;
   }
 }

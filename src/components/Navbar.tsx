@@ -1,271 +1,316 @@
 
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { 
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import { Search, ShoppingCart, Menu, X } from "lucide-react";
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const location = useLocation();
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  // Track scroll position to change navbar style on scroll
   useEffect(() => {
     const handleScroll = () => {
-      setScrollPosition(window.scrollY);
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
   useEffect(() => {
-    setIsMenuOpen(false);
-  }, [location]);
-
-  // Check if the link is active
-  const isActive = (path: string) => {
-    return location.pathname === path;
-  };
+    // Close mobile menu when route changes
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
 
   return (
-    <nav className={cn(
-      "sticky top-0 z-50 transition-all duration-500",
-      scrollPosition > 50 
-        ? "bg-white/90 backdrop-blur-sm shadow-premium py-3 border-b border-tamtam-orange/5" 
-        : "bg-tamtam-light py-5"
-    )}>
+    <header
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        isScrolled
+          ? "bg-white/95 backdrop-blur-md shadow-sm py-2"
+          : "bg-transparent py-4"
+      )}
+    >
       <div className="container-custom">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center group">
-            <div className="relative">
-              <span className="absolute -inset-1 -skew-y-3 bg-gradient-to-r from-tamtam-orange-400 to-tamtam-orange-600 rounded opacity-0 group-hover:opacity-20 transition-opacity duration-500"></span>
-              <span className="text-2xl font-greneette font-bold text-tamtam-orange-500 relative group-hover:scale-105 transition-transform duration-500">
-                TAM TAM
-              </span>
-            </div>
+          <Link to="/" className="flex items-center">
+            <span
+              className={cn(
+                "font-playfair font-bold text-2xl transition-colors duration-300",
+                isScrolled ? "text-tamtam-orange-600" : "text-white"
+              )}
+            >
+              TAM TAM
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-10">
-            <Link 
-              to="/" 
-              className={cn(
-                "font-neutra transition-colors duration-300 relative group text-base",
-                isActive("/") 
-                  ? "text-tamtam-orange-500" 
-                  : "text-tamtam-black hover:text-tamtam-orange-500"
-              )}
-            >
-              <span>Home</span>
-              <span className={cn(
-                "absolute bottom-[-5px] left-0 w-full h-0.5 bg-tamtam-orange-500 transform transition-transform duration-300",
-                isActive("/") 
-                  ? "scale-x-100" 
-                  : "scale-x-0 group-hover:scale-x-100"
-              )}></span>
-            </Link>
-            <Link 
-              to="/menu" 
-              className={cn(
-                "font-neutra transition-colors duration-300 relative group text-base",
-                isActive("/menu") 
-                  ? "text-tamtam-orange-500" 
-                  : "text-tamtam-black hover:text-tamtam-orange-500"
-              )}
-            >
-              <span>Menu</span>
-              <span className={cn(
-                "absolute bottom-[-5px] left-0 w-full h-0.5 bg-tamtam-orange-500 transform transition-transform duration-300",
-                isActive("/menu") 
-                  ? "scale-x-100" 
-                  : "scale-x-0 group-hover:scale-x-100"
-              )}></span>
-            </Link>
-            <Link 
-              to="/butchery" 
-              className={cn(
-                "font-neutra transition-colors duration-300 relative group text-base",
-                isActive("/butchery") 
-                  ? "text-tamtam-orange-500" 
-                  : "text-tamtam-black hover:text-tamtam-orange-500"
-              )}
-            >
-              <span>Butchery</span>
-              <span className={cn(
-                "absolute bottom-[-5px] left-0 w-full h-0.5 bg-tamtam-orange-500 transform transition-transform duration-300",
-                isActive("/butchery") 
-                  ? "scale-x-100" 
-                  : "scale-x-0 group-hover:scale-x-100"
-              )}></span>
-            </Link>
-            <Link 
-              to="/about" 
-              className={cn(
-                "font-neutra transition-colors duration-300 relative group text-base",
-                isActive("/about") 
-                  ? "text-tamtam-orange-500" 
-                  : "text-tamtam-black hover:text-tamtam-orange-500"
-              )}
-            >
-              <span>Our Story</span>
-              <span className={cn(
-                "absolute bottom-[-5px] left-0 w-full h-0.5 bg-tamtam-orange-500 transform transition-transform duration-300",
-                isActive("/about") 
-                  ? "scale-x-100" 
-                  : "scale-x-0 group-hover:scale-x-100"
-              )}></span>
-            </Link>
-            <Link 
-              to="/locations" 
-              className={cn(
-                "font-neutra transition-colors duration-300 relative group text-base",
-                isActive("/locations") 
-                  ? "text-tamtam-orange-500" 
-                  : "text-tamtam-black hover:text-tamtam-orange-500"
-              )}
-            >
-              <span>Locations</span>
-              <span className={cn(
-                "absolute bottom-[-5px] left-0 w-full h-0.5 bg-tamtam-orange-500 transform transition-transform duration-300",
-                isActive("/locations") 
-                  ? "scale-x-100" 
-                  : "scale-x-0 group-hover:scale-x-100"
-              )}></span>
-            </Link>
-            <Link 
-              to="/catering" 
-              className={cn(
-                "font-neutra transition-colors duration-300 relative group text-base",
-                isActive("/catering") 
-                  ? "text-tamtam-orange-500" 
-                  : "text-tamtam-black hover:text-tamtam-orange-500"
-              )}
-            >
-              <span>Catering</span>
-              <span className={cn(
-                "absolute bottom-[-5px] left-0 w-full h-0.5 bg-tamtam-orange-500 transform transition-transform duration-300",
-                isActive("/catering") 
-                  ? "scale-x-100" 
-                  : "scale-x-0 group-hover:scale-x-100"
-              )}></span>
-            </Link>
+          <div className="hidden md:flex items-center space-x-1">
+            <NavigationMenu className="hidden md:block">
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <Link 
+                    to="/" 
+                    className={cn(
+                      "px-4 py-2 text-sm font-medium hover:text-tamtam-orange-600 transition-colors",
+                      isScrolled ? "text-tamtam-gray-700" : "text-white",
+                      location.pathname === "/" && "text-tamtam-orange-600"
+                    )}
+                  >
+                    Home
+                  </Link>
+                </NavigationMenuItem>
+                
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger
+                    className={cn(
+                      "px-4 py-2 text-sm font-medium bg-transparent hover:text-tamtam-orange-600 hover:bg-transparent transition-colors",
+                      isScrolled ? "text-tamtam-gray-700" : "text-white",
+                      location.pathname.includes("/menu") && "text-tamtam-orange-600"
+                    )}
+                  >
+                    Menu
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid gap-3 p-6 w-[400px] grid-cols-2">
+                      <li className="col-span-2">
+                        <NavigationMenuLink asChild>
+                          <Link
+                            to="/menu"
+                            className="flex flex-col gap-1 p-4 rounded-lg bg-tamtam-cream hover:bg-tamtam-orange-50 transition-colors"
+                          >
+                            <div className="font-playfair font-medium">Full Menu</div>
+                            <p className="text-sm text-tamtam-gray-600">
+                              Browse our complete authentic Kenyan menu
+                            </p>
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <Link
+                            to="/menu/main-courses"
+                            className="block p-3 rounded-lg hover:bg-accent"
+                          >
+                            Main Courses
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <Link
+                            to="/menu/appetizers"
+                            className="block p-3 rounded-lg hover:bg-accent"
+                          >
+                            Appetizers
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <Link
+                            to="/menu/sides"
+                            className="block p-3 rounded-lg hover:bg-accent"
+                          >
+                            Sides
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <Link
+                            to="/menu/desserts"
+                            className="block p-3 rounded-lg hover:bg-accent"
+                          >
+                            Desserts
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                
+                <NavigationMenuItem>
+                  <Link 
+                    to="/butchery" 
+                    className={cn(
+                      "px-4 py-2 text-sm font-medium hover:text-tamtam-orange-600 transition-colors",
+                      isScrolled ? "text-tamtam-gray-700" : "text-white",
+                      location.pathname === "/butchery" && "text-tamtam-orange-600"
+                    )}
+                  >
+                    Butchery
+                  </Link>
+                </NavigationMenuItem>
+                
+                <NavigationMenuItem>
+                  <Link 
+                    to="/about" 
+                    className={cn(
+                      "px-4 py-2 text-sm font-medium hover:text-tamtam-orange-600 transition-colors",
+                      isScrolled ? "text-tamtam-gray-700" : "text-white",
+                      location.pathname === "/about" && "text-tamtam-orange-600"
+                    )}
+                  >
+                    About
+                  </Link>
+                </NavigationMenuItem>
+                
+                <NavigationMenuItem>
+                  <Link 
+                    to="/catering" 
+                    className={cn(
+                      "px-4 py-2 text-sm font-medium hover:text-tamtam-orange-600 transition-colors",
+                      isScrolled ? "text-tamtam-gray-700" : "text-white",
+                      location.pathname === "/catering" && "text-tamtam-orange-600"
+                    )}
+                  >
+                    Catering
+                  </Link>
+                </NavigationMenuItem>
+                
+                <NavigationMenuItem>
+                  <Link 
+                    to="/locations" 
+                    className={cn(
+                      "px-4 py-2 text-sm font-medium hover:text-tamtam-orange-600 transition-colors",
+                      isScrolled ? "text-tamtam-gray-700" : "text-white",
+                      location.pathname === "/locations" && "text-tamtam-orange-600"
+                    )}
+                  >
+                    Locations
+                  </Link>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
           </div>
 
-          {/* Order Button */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Button className="btn-premium flex items-center space-x-2 hover:scale-105 transition-transform duration-300 group">
-              <span>Order Now</span>
-              <ShoppingBag size={16} className="group-hover:scale-110 transition-transform" />
-            </Button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          {/* Right side actions */}
+          <div className="flex items-center space-x-4">
+            {/* Search Bar */}
+            <div className={`${isSearchOpen ? 'flex' : 'hidden md:flex'} items-center transition-all duration-300`}>
+              <div className={`search-bar ${isScrolled ? 'bg-white/90' : 'bg-white/20 backdrop-blur-sm'}`}>
+                <Search className={`h-4 w-4 mr-2 ${isScrolled ? 'text-tamtam-gray-700' : 'text-white'}`} />
+                <input 
+                  type="text" 
+                  placeholder="Search for dishes..." 
+                  className={`${isScrolled ? 'text-tamtam-gray-700 placeholder:text-tamtam-gray-400' : 'text-white placeholder:text-white/70'}`}
+                />
+              </div>
+            </div>
+            
+            {/* Search Icon (Mobile) */}
             <button 
-              onClick={toggleMenu} 
-              className="text-tamtam-black p-2 hover:bg-tamtam-orange-100/30 rounded-full transition-colors"
-              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              className="md:hidden"
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+              aria-label="Toggle search"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              <Search className={`h-5 w-5 ${isScrolled ? 'text-tamtam-gray-700' : 'text-white'}`} />
+            </button>
+            
+            {/* Cart */}
+            <Link to="/cart">
+              <button className="relative" aria-label="View cart">
+                <ShoppingCart className={`h-5 w-5 ${isScrolled ? 'text-tamtam-gray-700' : 'text-white'}`} />
+                <span className="absolute -top-1 -right-1 bg-tamtam-orange-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                  2
+                </span>
+              </button>
+            </Link>
+            
+            {/* Order Now Button */}
+            <Link to="/menu" className="hidden md:block">
+              <Button 
+                className={`btn-premium ${isScrolled ? 'bg-tamtam-orange-600 hover:bg-tamtam-orange-700' : 'bg-white/90 text-tamtam-orange-600 hover:bg-white'}`}
+              >
+                Order Now
+              </Button>
+            </Link>
+            
+            {/* Mobile Menu Toggle */}
+            <button
+              className="md:hidden"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className={`h-6 w-6 ${isScrolled ? 'text-tamtam-gray-700' : 'text-white'}`} />
+              ) : (
+                <Menu className={`h-6 w-6 ${isScrolled ? 'text-tamtam-gray-700' : 'text-white'}`} />
+              )}
             </button>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 animate-fade-in">
-            <div className="flex flex-col space-y-2">
-              <Link 
-                to="/" 
-                className={cn(
-                  "font-neutra py-3 px-4 rounded-md transition-all duration-300 flex items-center",
-                  isActive("/") 
-                    ? "bg-tamtam-orange-50 text-tamtam-orange-500 shadow-sm" 
-                    : "text-tamtam-black hover:bg-tamtam-orange-50/70 hover:text-tamtam-orange-500"
-                )}
-              >
-                <span className="text-tamtam-orange-400 mr-3 opacity-70">•</span>
-                Home
-              </Link>
-              <Link 
-                to="/menu" 
-                className={cn(
-                  "font-neutra py-3 px-4 rounded-md transition-all duration-300 flex items-center",
-                  isActive("/menu") 
-                    ? "bg-tamtam-orange-50 text-tamtam-orange-500 shadow-sm" 
-                    : "text-tamtam-black hover:bg-tamtam-orange-50/70 hover:text-tamtam-orange-500"
-                )}
-              >
-                <span className="text-tamtam-orange-400 mr-3 opacity-70">•</span>
-                Menu
-              </Link>
-              <Link 
-                to="/butchery" 
-                className={cn(
-                  "font-neutra py-3 px-4 rounded-md transition-all duration-300 flex items-center",
-                  isActive("/butchery") 
-                    ? "bg-tamtam-orange-50 text-tamtam-orange-500 shadow-sm" 
-                    : "text-tamtam-black hover:bg-tamtam-orange-50/70 hover:text-tamtam-orange-500"
-                )}
-              >
-                <span className="text-tamtam-orange-400 mr-3 opacity-70">•</span>
-                Butchery
-              </Link>
-              <Link 
-                to="/about" 
-                className={cn(
-                  "font-neutra py-3 px-4 rounded-md transition-all duration-300 flex items-center",
-                  isActive("/about") 
-                    ? "bg-tamtam-orange-50 text-tamtam-orange-500 shadow-sm" 
-                    : "text-tamtam-black hover:bg-tamtam-orange-50/70 hover:text-tamtam-orange-500"
-                )}
-              >
-                <span className="text-tamtam-orange-400 mr-3 opacity-70">•</span>
-                Our Story
-              </Link>
-              <Link 
-                to="/locations" 
-                className={cn(
-                  "font-neutra py-3 px-4 rounded-md transition-all duration-300 flex items-center",
-                  isActive("/locations") 
-                    ? "bg-tamtam-orange-50 text-tamtam-orange-500 shadow-sm" 
-                    : "text-tamtam-black hover:bg-tamtam-orange-50/70 hover:text-tamtam-orange-500"
-                )}
-              >
-                <span className="text-tamtam-orange-400 mr-3 opacity-70">•</span>
-                Locations
-              </Link>
-              <Link 
-                to="/catering" 
-                className={cn(
-                  "font-neutra py-3 px-4 rounded-md transition-all duration-300 flex items-center",
-                  isActive("/catering") 
-                    ? "bg-tamtam-orange-50 text-tamtam-orange-500 shadow-sm" 
-                    : "text-tamtam-black hover:bg-tamtam-orange-50/70 hover:text-tamtam-orange-500"
-                )}
-              >
-                <span className="text-tamtam-orange-400 mr-3 opacity-70">•</span>
-                Catering
-              </Link>
-              <Button className="btn-premium flex items-center justify-center space-x-2 mx-4 mt-2">
-                <span>Order Now</span>
-                <ShoppingBag size={16} />
-              </Button>
-            </div>
-          </div>
-        )}
       </div>
-    </nav>
+
+      {/* Mobile Menu */}
+      <div
+        className={`fixed inset-0 bg-white z-40 transition-transform duration-300 pt-20 ${
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="container p-4">
+          <nav className="flex flex-col space-y-4">
+            <Link
+              to="/"
+              className="text-xl font-playfair font-medium p-3 border-b border-gray-100"
+            >
+              Home
+            </Link>
+            <Link
+              to="/menu"
+              className="text-xl font-playfair font-medium p-3 border-b border-gray-100"
+            >
+              Menu
+            </Link>
+            <Link
+              to="/butchery"
+              className="text-xl font-playfair font-medium p-3 border-b border-gray-100"
+            >
+              Butchery
+            </Link>
+            <Link
+              to="/about"
+              className="text-xl font-playfair font-medium p-3 border-b border-gray-100"
+            >
+              About
+            </Link>
+            <Link
+              to="/catering"
+              className="text-xl font-playfair font-medium p-3 border-b border-gray-100"
+            >
+              Catering
+            </Link>
+            <Link
+              to="/locations"
+              className="text-xl font-playfair font-medium p-3 border-b border-gray-100"
+            >
+              Locations
+            </Link>
+            <Link
+              to="/menu"
+              className="mt-4"
+            >
+              <Button className="w-full bg-tamtam-orange-600 hover:bg-tamtam-orange-700 text-white text-lg py-6">
+                Order Now
+              </Button>
+            </Link>
+          </nav>
+        </div>
+      </div>
+    </header>
   );
 };
 

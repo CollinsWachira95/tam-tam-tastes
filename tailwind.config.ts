@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -55,17 +56,43 @@ export default {
 				// Enhanced color palette with more sophisticated tones and depths
 				tamtam: {
 					orange: {
-						DEFAULT: '#E67E22',
-						50: '#FDEBD0',
-						100: '#FBDBA7',
-						200: '#F8C579',
-						300: '#F5AE4B',
-						400: '#F2971E',
-						500: '#E67E22', // Base
-						600: '#C76A17',
-						700: '#A25511',
-						800: '#7E420D',
-						900: '#5A3008',
+						DEFAULT: '#FF6F00', // Darker orange as recommended for higher contrast
+						50: '#FFF3E0',
+						100: '#FFE0B2',
+						200: '#FFCC80',
+						300: '#FFB74D',
+						400: '#FFA726',
+						500: '#FF9800',
+						600: '#FF6F00', // Base
+						700: '#F57C00',
+						800: '#EF6C00',
+						900: '#E65100',
+					},
+					brown: { // Added complementary color
+						DEFAULT: '#795548',
+						50: '#EFEBE9',
+						100: '#D7CCC8',
+						200: '#BCAAA4',
+						300: '#A1887F',
+						400: '#8D6E63',
+						500: '#795548', // Base
+						600: '#6D4C41',
+						700: '#5D4037',
+						800: '#4E342E',
+						900: '#3E2723',
+					},
+					gold: { // Added complementary color
+						DEFAULT: '#FFC107',
+						50: '#FFF8E1',
+						100: '#FFECB3',
+						200: '#FFE082',
+						300: '#FFD54F',
+						400: '#FFCA28',
+						500: '#FFC107', // Base
+						600: '#FFB300',
+						700: '#FFA000',
+						800: '#FF8F00',
+						900: '#FF6F00',
 					},
 					green: {
 						DEFAULT: '#27AE60',
@@ -80,29 +107,29 @@ export default {
 						800: '#13502C',
 						900: '#0C311A',
 					},
-					black: '#1A1A1A',
+					black: '#333333', // Darker gray for better readability
 					gray: {
-						DEFAULT: '#4A4A4A',
-						50: '#F0F0F0',
+						DEFAULT: '#424242', // Darker for body text
+						50: '#F5F5F5', // Off-white for backgrounds
 						100: '#E0E0E0',
 						200: '#C2C2C2',
 						300: '#A3A3A3',
 						400: '#858585',
 						500: '#666666',
-						600: '#4A4A4A', // Base
+						600: '#4A4A4A',
 						700: '#333333',
 						800: '#1F1F1F',
 						900: '#0A0A0A',
 					},
-					light: '#F9F7F3',
-					cream: '#F5EFE6',
-					accent: '#D35400',
-					muted: '#8D8D8D',
-					earth: '#8B4513', // New earthy tone
-					clay: '#B7713C', // New clay color for earthy feel
-					sand: '#E2C9A1', // New sand color for contrast
-					ivory: '#FFFFF0', // New ivory tone for elegance
-					spice: '#A52A2A', // New spice color for accent
+					light: '#F5F5F5', // Off-white for backgrounds
+					cream: '#FFF8E1', // Warmer cream color
+					accent: '#FF6F00', // Darker orange for accent
+					muted: '#757575', // Slightly darker muted text
+					earth: '#8B4513', // Earthy tone
+					clay: '#B7713C', // Clay color for earthy feel
+					sand: '#E2C9A1', // Sand color for contrast
+					ivory: '#FFFFF0', // Ivory tone
+					spice: '#A52A2A', // Spice color for accent
 				}
 			},
 			borderRadius: {
@@ -114,15 +141,19 @@ export default {
 			},
 			fontFamily: {
 				'neutra': ['Neutra Text', 'sans-serif'],
+				'playfair': ['Playfair Display', 'serif'], // Added serif font for headings
+				'opensans': ['Open Sans', 'sans-serif'], // Added sans-serif for body text
 			},
 			boxShadow: {
 				'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
 				'elegant': '0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.01)',
-				'button': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+				'button': '0 4px 6px -1px rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.08)', // Enhanced button shadow
 				'premium': '0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.02)',
-				'card': '0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02)',
+				'card': '0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.03)', // Enhanced card shadow
 				'hover': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-				'intense': '0 25px 50px -12px rgba(231, 126, 34, 0.15)',
+				'intense': '0 25px 50px -12px rgba(255, 111, 0, 0.18)', // Using new orange for intense shadow
+				'overlay': '0 8px 30px rgba(0, 0, 0, 0.12)', // Added for overlays
+				'subtle': '0 3px 6px rgba(0, 0, 0, 0.05)', // Subtle shadow for small elements
 			},
 			keyframes: {
 				'accordion-down': {
@@ -181,6 +212,39 @@ export default {
 						transform: 'translateX(0)'
 					}
 				},
+				'float': {
+					'0%': { 
+						transform: 'translateY(0)' 
+					},
+					'50%': { 
+						transform: 'translateY(-8px)' 
+					},
+					'100%': { 
+						transform: 'translateY(0)' 
+					}
+				},
+				'pulse-soft': {
+					'0%': { 
+						transform: 'scale(1)',
+						opacity: '1' 
+					},
+					'50%': { 
+						transform: 'scale(1.03)',
+						opacity: '0.95' 
+					},
+					'100%': { 
+						transform: 'scale(1)',
+						opacity: '1' 
+					}
+				},
+				'shine': {
+					'0%': { 
+						'background-position': '200% 0' 
+					},
+					'100%': { 
+						'background-position': '-200% 0' 
+					}
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -189,50 +253,54 @@ export default {
 				'slide-up': 'slide-up 0.7s ease-out',
 				'scale-in': 'scale-in 0.6s ease-out',
 				'reveal': 'reveal 0.6s ease-out',
+				'float': 'float 5s ease-in-out infinite',
+				'pulse-soft': 'pulse-soft 4s ease-in-out infinite',
+				'shine': 'shine 3s linear infinite',
 			},
 			typography: {
 				DEFAULT: {
 					css: {
 						maxWidth: '65ch',
 						color: 'var(--tw-prose-body)',
-						lineHeight: '1.75',
+						lineHeight: '1.8', // Increased line height for readability
 						'> *': {
-							marginTop: '1.25em',
-							marginBottom: '1.25em',
+							marginTop: '1.5em', // Increased spacing
+							marginBottom: '1.5em',
 						},
 						p: {
-							marginTop: '1.25em',
-							marginBottom: '1.25em',
-							lineHeight: '1.75',
+							marginTop: '1.5em',
+							marginBottom: '1.5em',
+							lineHeight: '1.8',
 						},
 						h1: {
-							fontSize: '2.5em',
+							fontSize: '3rem', // 48px
 							marginTop: '0',
-							marginBottom: '0.5em',
+							marginBottom: '0.8em',
 							lineHeight: '1.15',
+							fontWeight: '700',
 						},
 						h2: {
-							fontSize: '1.75em',
+							fontSize: '2.25rem', // 36px
 							marginTop: '1.75em',
-							marginBottom: '0.5em',
+							marginBottom: '0.8em',
 							lineHeight: '1.25',
+							fontWeight: '700',
 						},
 						h3: {
-							fontSize: '1.5em',
+							fontSize: '1.75rem', // 28px
 							marginTop: '1.5em',
-							marginBottom: '0.5em',
+							marginBottom: '0.8em',
 							lineHeight: '1.375',
+							fontWeight: '600',
 						},
 					}
 				}
 			},
-			boxShadow: {
-				'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
-				'elegant': '0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.01)',
-				'button': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-        'hover': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-        'premium': '0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.02)',
-        'intense': '0 25px 50px -12px rgba(231, 126, 34, 0.15)',
+			spacing: {
+				'section': '60px', // Consistent section spacing
+				'component': '30px', // For component spacing
+				'card': '24px', // For card padding
+				'element': '16px', // Standard padding for smaller elements
 			}
 		}
 	},
