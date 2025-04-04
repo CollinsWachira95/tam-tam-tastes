@@ -14,46 +14,46 @@ const NutritionInfo = ({ calories, protein, carbs, fat, sugar, co2e }: Nutrition
   }
 
   return (
-    <div className="flex flex-wrap gap-4 mt-4 text-sm text-gray-600">
+    <div className="flex flex-wrap gap-4 mt-2 text-sm text-tamtam-gray-500 border-t border-gray-100 pt-3">
       {calories && (
-        <div>
-          <div className="font-bold">{calories}</div>
-          <div className="uppercase text-xs tracking-wider">Calories</div>
+        <div className="flex flex-col items-center">
+          <div className="font-bold text-tamtam-gray-700">{calories}</div>
+          <div className="uppercase text-xs tracking-wider">CAL</div>
         </div>
       )}
       
       {protein && (
-        <div>
-          <div className="font-bold">{protein}g</div>
-          <div className="uppercase text-xs tracking-wider">Protein</div>
-        </div>
-      )}
-      
-      {sugar && (
-        <div>
-          <div className="font-bold">{sugar}g</div>
-          <div className="uppercase text-xs tracking-wider">Sugar</div>
+        <div className="flex flex-col items-center">
+          <div className="font-bold text-tamtam-gray-700">{protein}g</div>
+          <div className="uppercase text-xs tracking-wider">PROTEIN</div>
         </div>
       )}
       
       {carbs && (
-        <div>
-          <div className="font-bold">{carbs}g</div>
-          <div className="uppercase text-xs tracking-wider">Carbs</div>
+        <div className="flex flex-col items-center">
+          <div className="font-bold text-tamtam-gray-700">{carbs}g</div>
+          <div className="uppercase text-xs tracking-wider">CARBS</div>
         </div>
       )}
       
       {fat && (
-        <div>
-          <div className="font-bold">{fat}g</div>
-          <div className="uppercase text-xs tracking-wider">Fat</div>
+        <div className="flex flex-col items-center">
+          <div className="font-bold text-tamtam-gray-700">{fat}g</div>
+          <div className="uppercase text-xs tracking-wider">FAT</div>
+        </div>
+      )}
+      
+      {sugar && (
+        <div className="flex flex-col items-center">
+          <div className="font-bold text-tamtam-gray-700">{sugar}g</div>
+          <div className="uppercase text-xs tracking-wider">SUGAR</div>
         </div>
       )}
       
       {co2e && (
-        <div>
-          <div className="font-bold">{co2e}</div>
-          <div className="uppercase text-xs tracking-wider">CO2e</div>
+        <div className="flex flex-col items-center ml-auto">
+          <div className="font-bold text-tamtam-green-600">{co2e}</div>
+          <div className="uppercase text-xs tracking-wider text-tamtam-green-600">CO2e</div>
         </div>
       )}
     </div>

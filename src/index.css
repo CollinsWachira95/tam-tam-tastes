@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -347,11 +348,56 @@
     background-size: 200% 100%;
   }
 
-  /* Adding missing animations for btn-cta */
+  /* Adding hover effect for btn-cta::before */
   .btn-cta:hover::before {
     @apply opacity-100;
-    animation: shimmer 2s infinite;
+    animation: shimmer 2s infinite linear;
+  }
+
+  /* Menu-specific styles */
+  .menu-category-tab {
+    @apply uppercase tracking-wide font-opensans font-semibold px-6 py-3 border-b-2 border-transparent hover:text-tamtam-orange-600 transition-colors;
+  }
+
+  .menu-category-tab.active {
+    @apply border-tamtam-orange-600 text-tamtam-orange-600;
+  }
+  
+  /* Dish card hover effect */
+  .dish-card {
+    @apply transition-all duration-300 hover:translate-y-[-4px];
   }
 
   /* Fancy badge styling */
   .fancy-badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium;
+    background: linear-gradient(to right, rgba(255, 111, 0, 0.1), rgba(255, 111, 0, 0.2));
+    border: 1px solid rgba(255, 111, 0, 0.2);
+  }
+  
+  /* Menu item badge */
+  .menu-badge {
+    @apply inline-block px-2 py-0.5 bg-white/90 text-xs font-medium rounded-full shadow-sm;
+  }
+}
+
+@layer utilities {
+  .kenyan-texture {
+    background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e67e22' fill-opacity='0.04' fill-rule='evenodd'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 20.83l2.83-2.83 1.41 1.41L1.41 22H0v-1.17zM0 3.07l2.83-2.83 1.41 1.41L1.41 4.24H0V3.07zm33.66-1.41l2.83 2.83L39.07 0H38.4l-4.74 4.74L32 3.07l4.24-4.24-2.58-2.58L38.4 0h.67v1.41zM40 18.66l-2.83 2.83-1.41-1.41L38.59 20H40v-1.34zm0 17.75l-2.83 2.83-1.41-1.41L38.59 38H40v-1.59zM20 0v1.41l2.83 2.83 1.41-1.41L21.41 0h-1.17zm0 18.66v1.32l1.41 1.41 1.41-1.41-1.41-1.32h-1.41zm19.07-9.74l-2.83 2.83-1.41-1.41 2.83-2.83L38.59 10l-2.83 2.83-1.41-1.41 2.83-2.83-1.41-1.41-2.83 2.82L31.09 8.59l2.83-2.83L32.5 4.34 29.67 7.17 27.84 5.34 30.67 2.5l-1.41-1.41L26.43 4.24l-1.41-1.41L27.85 0h.67l-.67.67 3.74 3.74L36.33 0z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  
+  /* Image hover effect */
+  .img-zoom-hover {
+    @apply overflow-hidden;
+  }
+  
+  .img-zoom-hover img {
+    @apply transition-transform duration-500 hover:scale-105;
+  }
+  
+  /* Animations */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+}
