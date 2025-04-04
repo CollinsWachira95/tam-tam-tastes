@@ -147,14 +147,14 @@ export default {
 			boxShadow: {
 				'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
 				'elegant': '0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.01)',
-				'button': '0 4px 6px -1px rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.08)', // Enhanced button shadow
+				'button': '0 4px 6px -1px rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.08)',
 				'premium': '0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.02)',
-				'card': '0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.03)', // Enhanced card shadow
-				'hover': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', // This was missing
-				'intense': '0 25px 50px -12px rgba(255, 111, 0, 0.18)', // This was missing
+				'card': '0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.03)',
+				'hover': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+				'intense': '0 25px 50px -12px rgba(255, 111, 0, 0.18)',
 				'premium-hover': '0 15px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-				'overlay': '0 8px 30px rgba(0, 0, 0, 0.12)', // Added for overlays
-				'subtle': '0 3px 6px rgba(0, 0, 0, 0.05)', // Subtle shadow for small elements
+				'overlay': '0 8px 30px rgba(0, 0, 0, 0.12)',
+				'subtle': '0 3px 6px rgba(0, 0, 0, 0.05)',
 			},
 			keyframes: {
 				'accordion-down': {
