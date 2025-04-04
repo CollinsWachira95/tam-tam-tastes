@@ -113,7 +113,7 @@ const HeroCarousel = () => {
                       <div 
                         className={`max-w-2xl pl-6 md:pl-12 bg-black/40 backdrop-blur-[3px] p-8 rounded-lg border border-white/20 shadow-elegant fade-in-element ${isVisible ? 'visible' : ''}`}
                       >
-                        <span className="inline-block bg-tamtam-orange-600/90 text-white px-4 py-1.5 rounded-full text-sm font-medium mb-4 tracking-wide">
+                        <span className="inline-block bg-tamtam-orange-600/90 text-white px-4 py-1.5 rounded-full text-sm font-medium mb-4 tracking-wide fancy-badge">
                           Authentic Kenyan Experience
                         </span>
                         
@@ -137,7 +137,7 @@ const HeroCarousel = () => {
                         
                         {/* Enhanced CTA button */}
                         <Button 
-                          className="mt-4 bg-tamtam-orange-600 hover:bg-tamtam-orange-700 text-white group transition-all duration-300 font-opensans"
+                          className="mt-4 bg-tamtam-orange-600 hover:bg-tamtam-orange-700 text-white group transition-all duration-300 font-opensans shadow-premium-hover"
                         >
                           Explore Now
                           <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />

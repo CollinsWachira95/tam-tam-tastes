@@ -45,7 +45,7 @@ const Hero = () => {
                 <span className="mr-2">✦</span>
                 Authentic Kenyan Experience
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-neutra font-bold text-tamtam-black mb-4 leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-tamtam-black mb-4 leading-tight">
                 Taste The Soul of{" "}
                 <span className="relative text-tamtam-orange-500">
                   Kenya
@@ -53,16 +53,14 @@ const Hero = () => {
                 </span>
               </h1>
               <div className="h-1 w-24 bg-gradient-to-r from-tamtam-green-400 to-tamtam-green-600 my-6 rounded-full"></div>
-              <p className="text-lg md:text-xl text-tamtam-gray-600 mb-8 font-neutra max-w-xl">
+              <p className="text-lg md:text-xl text-tamtam-gray-600 mb-8 font-opensans max-w-xl">
                 Fresh ingredients, bold spices, and traditional recipes served with a modern twist. Experience the vibrant flavors that celebrate our heritage and transport you to the heart of Kenya.
               </p>
               <div className="flex flex-wrap gap-6">
                 <Link to="/menu">
-                  <Button className="btn-premium group">
+                  <Button className="btn-premium group shadow-premium-hover">
                     View Our Menu
-                    <svg className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                    </svg>
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                   </Button>
                 </Link>
                 <Link to="/locations">
@@ -91,12 +89,12 @@ const Hero = () => {
                   <div className="inline-block relative mb-4">
                     <span className="absolute -inset-1 bg-tamtam-orange-500/10 rounded-lg blur"></span>
                     <div className="relative px-8 py-4 backdrop-blur-sm bg-white/40 rounded-xl">
-                      <div className="text-5xl md:text-6xl font-neutra font-bold text-tamtam-black mb-2 tracking-wide">TAM TAM</div>
+                      <div className="text-5xl md:text-6xl font-playfair font-bold text-tamtam-black mb-2 tracking-wide">TAM TAM</div>
                       <div className="h-1 w-1/2 mx-auto bg-tamtam-green-500/40 rounded-full my-2"></div>
                     </div>
                   </div>
                   
-                  <div className="text-xl text-tamtam-black/90 relative font-neutra mt-6">
+                  <div className="text-xl text-tamtam-black/90 relative font-opensans mt-6">
                     <span className="relative inline-block after:content-[''] after:absolute after:h-1 after:w-full after:bottom-0 after:left-0 after:bg-tamtam-green-500/40 after:rounded-full">
                       Authentic Kenyan Cuisine
                     </span>

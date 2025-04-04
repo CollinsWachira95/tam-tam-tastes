@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import PremiumCta from "@/components/PremiumCta";
 
 const Index = () => {
   return (
@@ -29,6 +30,15 @@ const Index = () => {
         />
         
         <TestimonialsSection />
+        
+        {/* Premium CTA */}
+        <PremiumCta 
+          title="Experience Authentic Kenyan Fine Dining"
+          description="Join us for an unforgettable culinary journey through Kenya's rich food traditions. Our expert chefs blend time-honored recipes with contemporary techniques to create dishes that delight all senses."
+          buttonText="Reserve Your Table"
+          buttonLink="/reservations"
+          accentColor="gold"
+        />
         
         {/* Catering Section with Video */}
         <VideoSection 
@@ -52,25 +62,25 @@ const Index = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               {/* Text Content */}
               <div className="animate-fade-in">
-                <span className="inline-block px-4 py-1 bg-tamtam-orange/10 text-tamtam-orange rounded-full text-sm font-medium mb-4 font-neutra">
+                <span className="inline-block px-4 py-1 bg-tamtam-orange/10 text-tamtam-orange rounded-full text-sm font-medium mb-4 font-neutra fancy-badge">
                   Premium Meats
                 </span>
-                <h2 className="text-3xl md:text-4xl font-neutra font-bold mb-6">
+                <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-6">
                   Visit Our Butchery
                 </h2>
                 <div className="h-1 w-24 bg-tamtam-green rounded-full mb-6"></div>
-                <p className="text-tamtam-gray mb-8 font-neutra">
+                <p className="text-tamtam-gray mb-8 font-opensans">
                   At Tam Tam Butchery, we offer premium cuts of meat sourced from local farmers and prepared by expert butchers. Our selection includes beef, goat, lamb, chicken, and other specialty meats prepared in traditional Kenyan styles. Visit one of our five butchery locations across Kenya for the freshest meats and personalized service.
                 </p>
                 <Link to="/butchery">
-                  <Button className="bg-tamtam-green hover:bg-tamtam-green/90 text-white group font-neutra">
+                  <Button className="bg-tamtam-green hover:bg-tamtam-green/90 text-white group font-opensans shadow-premium-hover">
                     Explore Our Butchery
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </Button>
                 </Link>
               </div>
               
-              {/* Butchery Image */}
+              {/* Butchery Image with enhanced styling */}
               <div className="relative rounded-lg overflow-hidden shadow-2xl group animate-fade-in">
                 {/* Decorative elements */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-tamtam-orange/20 rounded-full blur-xl"></div>
@@ -83,10 +93,10 @@ const Index = () => {
                     className="w-full rounded-lg shadow-lg"
                   />
                   
-                  {/* Overlay */}
+                  {/* Enhanced overlay with gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
                     <div className="p-6">
-                      <span className="bg-white/80 text-tamtam-black px-3 py-1 rounded-full text-sm font-neutra">
+                      <span className="bg-white/80 text-tamtam-black px-3 py-1 rounded-full text-sm font-opensans">
                         5 locations across Kenya
                       </span>
                     </div>
@@ -103,24 +113,35 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Order Online CTA Section */}
-        <section className="bg-tamtam-orange py-16">
-          <div className="container-custom text-center">
-            <h2 className="text-3xl md:text-4xl font-neutra font-bold text-white mb-6">
+        {/* Order Online CTA Section with improved design */}
+        <section className="bg-gradient-to-r from-tamtam-orange-600 to-tamtam-orange-700 py-16 relative overflow-hidden">
+          {/* Overlay pattern */}
+          <div className="absolute inset-0 tribal-pattern opacity-10"></div>
+          
+          {/* Decorative elements */}
+          <div className="absolute top-0 left-0 w-64 h-64 bg-tamtam-orange-400/30 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-tamtam-orange-800/20 rounded-full blur-3xl"></div>
+          
+          <div className="container-custom text-center relative z-10">
+            <h2 className="text-3xl md:text-4xl font-playfair font-bold text-white mb-6">
               Ready to Order?
             </h2>
-            <p className="text-white/90 max-w-2xl mx-auto mb-8 font-neutra">
+            <p className="text-white/90 max-w-2xl mx-auto mb-8 font-opensans">
               Skip the wait! Order online for pickup or delivery and enjoy authentic Kenyan cuisine from the comfort of your home.
             </p>
             <Link to="/menu">
-              <Button className="bg-white text-tamtam-orange hover:bg-white/90 text-lg px-8 py-6 shadow-lg group font-neutra">
+              <Button className="bg-white text-tamtam-orange-600 hover:bg-white/90 text-lg px-8 py-6 shadow-lg group font-opensans shadow-premium-hover">
                 Order Now
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
             </Link>
           </div>
+          
+          {/* Decorative corner accents */}
+          <div className="absolute top-6 left-6 w-16 h-16 border-t-2 border-l-2 border-white/20 rounded-tl-lg hidden md:block"></div>
+          <div className="absolute top-6 right-6 w-16 h-16 border-t-2 border-r-2 border-white/20 rounded-tr-lg hidden md:block"></div>
+          <div className="absolute bottom-6 left-6 w-16 h-16 border-b-2 border-l-2 border-white/20 rounded-bl-lg hidden md:block"></div>
+          <div className="absolute bottom-6 right-6 w-16 h-16 border-b-2 border-r-2 border-white/20 rounded-br-lg hidden md:block"></div>
         </section>
       </main>
       <Footer />
