@@ -48,8 +48,23 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <Helmet>
         <link rel="stylesheet" href="https://use.typekit.net/ajf8ggy.css" />
+        <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/neutra-text-alt" />
         <style>{`
-          @import url('https://fonts.cdnfonts.com/css/neutra-text-alt');
+          @font-face {
+            font-family: 'Neutra Text';
+            src: url('https://fonts.cdnfonts.com/css/neutra-text-alt') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+          }
+          
+          @font-face {
+            font-family: 'Neutra Text';
+            src: url('https://fonts.cdnfonts.com/css/neutra-text-alt') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+          }
           
           body {
             font-family: 'Neutra Text', sans-serif;

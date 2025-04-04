@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -33,10 +32,11 @@
     --input: 24 5.9% 90%;
     --ring: 24 70% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 }
 
+/* Proper font declarations */
 @font-face {
   font-family: 'Neutra Text';
   src: url('https://fonts.cdnfonts.com/css/neutra-text-alt') format('woff2');
@@ -53,7 +53,7 @@
   font-display: swap;
 }
 
-/* Refined Kenyan patterns with more sophisticated styling */
+/* Enhanced Kenyan patterns with more refined styling */
 .kenyan-pattern {
   background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e67e22' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
@@ -64,6 +64,15 @@
 
 .kenyan-texture {
   background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e67e22' fill-opacity='0.04' fill-rule='evenodd'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 20.83l2.83-2.83 1.41 1.41L1.41 22H0v-1.17zM0 3.07l2.83-2.83 1.41 1.41L1.41 4.24H0V3.07zm33.66-1.41l2.83 2.83L39.07 0H38.4l-4.74 4.74L32 3.07l4.24-4.24-2.58-2.58L38.4 0h.67v1.41zM40 18.66l-2.83 2.83-1.41-1.41L38.59 20H40v-1.34zm0 17.75l-2.83 2.83-1.41-1.41L38.59 38H40v-1.59zM20 0v1.41l2.83 2.83 1.41-1.41L21.41 0h-1.17zm0 18.66v1.32l1.41 1.41 1.41-1.41-1.41-1.32h-1.41zm19.07-9.74l-2.83 2.83-1.41-1.41 2.83-2.83L38.59 10l-2.83 2.83-1.41-1.41 2.83-2.83-1.41-1.41-2.83 2.82L31.09 8.59l2.83-2.83L32.5 4.34 29.67 7.17 27.84 5.34 30.67 2.5l-1.41-1.41L26.43 4.24l-1.41-1.41L27.85 0h.67l-.67.67 3.74 3.74L36.33 0z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* New tribal pattern for richer cultural elements */
+.tribal-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a52a2a' fill-opacity='0.07'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.savanna-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.184 20c.357-.13.72-.264.888-.14.56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0' fill='%23b7713c' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 
 @layer base {
@@ -83,18 +92,34 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-image: url("data:image/svg+xml,%3Csvg width='64' height='32' viewBox='0 0 64 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e67e22' fill-opacity='0.02'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    line-height: 1.65;
+    line-height: 1.75;
     letter-spacing: -0.01em;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-neutra font-bold tracking-tight;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
   }
   
-  /* Enhanced typography with a refined text shadow for elegance */
+  /* Enhanced typography with refined text shadow for elegance */
   h1, h2 {
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.03);
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl leading-tight;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl leading-snug;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl leading-snug;
+  }
+  
+  p {
+    @apply text-base md:text-lg leading-relaxed;
   }
   
   /* Refined underline for headings */
@@ -106,6 +131,17 @@
     content: '';
     @apply absolute h-0.5 bg-tamtam-orange bottom-0 left-0 w-16 rounded-full;
     transform: translateY(6px);
+  }
+  
+  /* New decorative element */
+  .kenyan-accent {
+    @apply relative;
+  }
+  
+  .kenyan-accent::before {
+    content: '';
+    @apply absolute w-3 h-3 rounded-full bg-tamtam-orange/70 -left-5 top-1/2;
+    transform: translateY(-50%);
   }
   
   /* Enhanced custom dividers */
@@ -145,133 +181,222 @@
 
 /* Extended utility classes */
 .section {
-  @apply py-16 px-4 md:py-20 md:px-8 lg:py-24 lg:px-12 relative overflow-hidden;
+  @apply py-20 px-4 md:py-24 md:px-8 lg:py-28 lg:px-12 relative overflow-hidden;
+}
+
+.section-light {
+  @apply bg-tamtam-light section;
+}
+
+.section-cream {
+  @apply bg-tamtam-cream section;
+}
+
+.section-white {
+  @apply bg-white section;
 }
 
 .container-custom {
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10;
 }
 
-/* Refined hover effects for links */
-.link-hover {
-  @apply relative transition-colors duration-300;
+/* Added spacing classes */
+.spacing-y-sm {
+  @apply py-6 md:py-8;
 }
 
-.link-hover::after {
+.spacing-y-md {
+  @apply py-10 md:py-12;
+}
+
+.spacing-y-lg {
+  @apply py-16 md:py-20;
+}
+
+.spacing-y-xl {
+  @apply py-20 md:py-28;
+}
+
+/* Premium and elegant card styles */
+.card-premium {
+  @apply bg-white rounded-xl shadow-premium p-6 border border-gray-100/50 hover:shadow-hover transition-all duration-500;
+}
+
+.card-elegant {
+  @apply bg-white rounded-xl shadow-elegant p-6 backdrop-blur-sm bg-white/95 border border-tamtam
+  -orange/5 hover:shadow-hover transition-all duration-500;
+}
+
+.card-featured {
+  @apply rounded-2xl shadow-elegant overflow-hidden transition-all duration-500;
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
+}
+
+.card-featured:hover {
+  @apply shadow-intense;
+  transform: perspective(1000px) rotateX(2deg) rotateY(0deg) scale3d(1.01, 1.01, 1.01);
+}
+
+/* Enhanced buttons */
+.btn-premium {
+  @apply relative overflow-hidden rounded-full bg-gradient-to-r from-tamtam-orange-400 to-tamtam-orange-600 text-white px-6 py-3 font-neutra font-medium text-sm transform transition-all duration-300 shadow-button;
+}
+
+.btn-premium:hover {
+  @apply shadow-hover -translate-y-0.5;
+}
+
+.btn-premium::after {
   content: '';
-  @apply absolute left-0 bottom-0 w-full h-0.5 bg-tamtam-orange scale-x-0 origin-right transition-transform duration-500;
+  @apply absolute inset-0 bg-white rounded-full opacity-0 transition-opacity duration-300;
 }
 
-.link-hover:hover::after {
+.btn-premium:hover::after {
+  @apply opacity-10;
+}
+
+.btn-outline-premium {
+  @apply relative overflow-hidden rounded-full bg-transparent text-tamtam-orange-500 px-6 py-3 font-neutra font-medium text-sm transform transition-all duration-300 border border-tamtam-orange-500;
+}
+
+.btn-outline-premium:hover {
+  @apply bg-tamtam-orange-500 text-white border-transparent;
+}
+
+/* Animated highlights for text */
+.highlight-premium {
+  @apply relative inline-block;
+}
+
+.highlight-premium::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-full h-2 bg-tamtam-orange-500/20 -z-10 rounded-sm transform origin-bottom transition-all duration-300;
+}
+
+.highlight-premium:hover::after {
+  @apply h-full;
+}
+
+/* New animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes softPulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-soft-pulse {
+  animation: softPulse 5s ease-in-out infinite;
+}
+
+/* New premium image styling */
+.img-premium {
+  @apply rounded-xl overflow-hidden relative;
+}
+
+.img-premium::after {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition-opacity duration-300;
+}
+
+.img-premium:hover::after {
+  @apply opacity-100;
+}
+
+/* Refined fade animations */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Enhanced section dividers */
+.section-divider {
+  @apply relative h-24 overflow-hidden;
+}
+
+.section-divider svg {
+  @apply absolute bottom-0 left-0 w-full h-full text-white;
+}
+
+/* Elegant hover links */
+.link-elegant {
+  @apply relative inline-block text-tamtam-orange-500 transition-colors duration-300;
+}
+
+.link-elegant::after {
+  content: '';
+  @apply absolute left-0 bottom-0 w-full h-0.5 bg-tamtam-orange-500 scale-x-0 origin-right transition-transform duration-500;
+}
+
+.link-elegant:hover {
+  @apply text-tamtam-orange-600;
+}
+
+.link-elegant:hover::after {
   @apply scale-x-100 origin-left;
 }
 
-/* Enhanced hover effects for cards */
-.card-hover {
-  @apply transition-all duration-500 hover:shadow-soft;
+/* Decorative quote styles */
+.quote-elegant {
+  @apply relative italic text-lg md:text-xl text-tamtam-gray-500 pl-4 border-l-2 border-tamtam-orange-400;
 }
 
-.card-hover:hover {
-  transform: translateY(-5px);
+.quote-elegant::before, .quote-elegant::after {
+  @apply text-tamtam-orange-300 text-4xl absolute opacity-20;
 }
 
-/* Enhanced animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.quote-elegant::before {
+  content: '"';
+  top: -0.5rem;
+  left: -0.5rem;
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.quote-elegant::after {
+  content: '"';
+  bottom: -1.5rem;
+  right: -0.5rem;
 }
 
-@keyframes scaleIn {
-  from { transform: scale(0.98); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+/* New fancy box decorations */
+.fancy-box {
+  @apply relative p-8 overflow-hidden;
 }
 
-.animate-scale-in {
-  animation: scaleIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* Add staggered animation delay */
-.stagger-1 { animation-delay: 0.1s; }
-.stagger-2 { animation-delay: 0.2s; }
-.stagger-3 { animation-delay: 0.3s; }
-.stagger-4 { animation-delay: 0.4s; }
-
-/* Enhanced button styles */
-.btn-kenyan {
-  @apply relative overflow-hidden transition-all duration-500 shadow-button;
-  z-index: 1;
-}
-
-.btn-kenyan::before {
+.fancy-box::before {
   content: '';
-  @apply absolute top-0 left-0 w-full h-full bg-gradient-to-r from-tamtam-orange to-tamtam-accent -z-10;
-  transform: scaleX(0);
-  transform-origin: 0 50%;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  @apply absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-tamtam-orange-400 rounded-tl-lg;
 }
 
-.btn-kenyan:hover::before {
-  transform: scaleX(1);
-}
-
-.btn-kenyan:hover {
-  @apply shadow-lg;
-}
-
-/* Refined border styles */
-.border-kenyan {
-  @apply border border-tamtam-orange/15 rounded-lg p-5 backdrop-blur-sm;
-}
-
-/* Enhanced image loading */
-.progressive-img-container {
-  @apply relative overflow-hidden rounded-lg;
-}
-
-.progressive-img-placeholder {
-  @apply absolute top-0 left-0 w-full h-full filter blur-md transition-opacity duration-700;
-}
-
-.progressive-img {
-  @apply transition-opacity duration-700;
-}
-
-/* Enhanced shimmer effect for loading states */
-.shimmer {
-  @apply relative overflow-hidden bg-gray-100;
-}
-
-.shimmer::after {
+.fancy-box::after {
   content: '';
-  @apply absolute top-0 left-0 w-full h-full;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.4) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  animation: shimmer 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  @apply absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-tamtam-orange-400 rounded-br-lg;
 }
 
-@keyframes shimmer {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(100%); }
+/* Enhanced glass morphism effect */
+.glass-morphism {
+  @apply backdrop-blur-md bg-white/75 border border-white/20 shadow-elegant;
 }
 
-/* Enhanced overlay styling */
-.overlay-gradient {
-  @apply absolute inset-0 bg-gradient-to-t from-tamtam-black/80 via-tamtam-black/30 to-transparent;
+.glass-dark {
+  @apply backdrop-blur-md bg-tamtam-black/75 border border-white/10 shadow-elegant text-white;
 }
 
-/* Enhanced glass effect */
-.glass-effect {
-  @apply backdrop-blur-md bg-white/10 border border-white/20;
-}
-
+/* Rest of existing animations and utilities */
 /* Enhanced scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -329,6 +454,22 @@
 }
 
 .text-highlight::after {
-  content: '';
   @apply absolute -bottom-1 left-0 right-0 h-3 bg-tamtam-orange/10 -z-10;
 }
+
+/* Refined Kenyan patterns with more sophisticated styling */
+.kenyan-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e67e22' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.kenyan-dots {
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2327ae60' fill-opacity='0.08' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.kenyan-texture {
+  background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e67e22' fill-opacity='0.04' fill-rule='evenodd'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 20.83l2.83-2.83 1.41 1.41L1.41 22H0v-1.17zM0 3.07l2.83-2.83 1.41 1.41L1.41 4.24H0V3.07zm33.66-1.41l2.83 2.83L39.07 0H38.4l-4.74 4.74L32 3.07l4.24-4.24-2.58-2.58L38.4 0h.67v1.41zM40 18.66l-2.83 2.83-1.41-1.41L38.59 20H40v-1.34zm0 17.75l-2.83 2.83-1.41-1.41L38.59 38H40v-1.59zM20 0v1.41l2.83 2.83 1.41-1.41L21.41 0h-1.17zm0 18.66v1.32l1.41 1.41 1.41-1.41-1.41-1.32h-1.41zm19.07-9.74l-2.83 2.83-1.41-1.41 2.83-2.83L38.59 10l-2.83 2.83-1.41-1.41 2.83-2.83-1.41-1.41-2.83 2.82L31.09 8.59l2.83-2.83L32.5 4.34 29.67 7.17 27.84 5.34 30.67 2.5l-1.41-1.41L26.43 4.24l-1.41-1.41L27.85 0h.67l-.67.67 3.74 3.74L36.33 0z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+@layer utilities {
+  .kenyan-texture {
+    background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e67e22' fill-opacity='0.04' fill-rule='evenodd'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 20.83l2.83-2.83 1.41 1.41L1.41 22H0v-1.17zM0 3.07l2.83-2.83 1.41 1.41L1.41 4.24H0V3.07zm33.66-1.41l2.83 2.83L39.07 0H38.4l-4.74 4.74L32 3.07l4.24-4.24-2.58-2.58L38.4 0h.67v1.41zM40 18.66l-2.83 2.83-1.41-1.41L38.59 20H40v-1.34zm0 17.75l-2.83 2.83-1.41-1.41L38.59 38H40v-1.59zM20 0v1.41l2.83 2.83 1.41-1.41L21.41 0h-1.17zm0 18.66v1.32l1.41 1.41 1.41-1.41-1.41-1.32h-1.41zm19.07-9.74l-2.83 2.83-1.41-1.41 2.83-2.83L38.

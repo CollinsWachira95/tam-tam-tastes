@@ -40,35 +40,35 @@ const Navbar = () => {
     <nav className={cn(
       "sticky top-0 z-50 transition-all duration-500",
       scrollPosition > 50 
-        ? "bg-white/95 backdrop-blur-sm shadow-md py-2 border-b border-tamtam-orange/10" 
-        : "bg-tamtam-light py-4"
+        ? "bg-white/90 backdrop-blur-sm shadow-premium py-3 border-b border-tamtam-orange/5" 
+        : "bg-tamtam-light py-5"
     )}>
       <div className="container-custom">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center group">
             <div className="relative">
-              <span className="absolute -inset-1 -skew-y-3 bg-tamtam-orange rounded opacity-0 group-hover:opacity-20 transition-opacity duration-500"></span>
-              <span className="text-2xl font-greneette font-bold text-tamtam-orange relative group-hover:scale-105 transition-transform duration-500">
+              <span className="absolute -inset-1 -skew-y-3 bg-gradient-to-r from-tamtam-orange-400 to-tamtam-orange-600 rounded opacity-0 group-hover:opacity-20 transition-opacity duration-500"></span>
+              <span className="text-2xl font-greneette font-bold text-tamtam-orange-500 relative group-hover:scale-105 transition-transform duration-500">
                 TAM TAM
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex space-x-10">
             <Link 
               to="/" 
               className={cn(
-                "font-sweet-sans transition-colors duration-300 relative group",
+                "font-neutra transition-colors duration-300 relative group text-base",
                 isActive("/") 
-                  ? "text-tamtam-orange" 
-                  : "text-tamtam-black hover:text-tamtam-orange"
+                  ? "text-tamtam-orange-500" 
+                  : "text-tamtam-black hover:text-tamtam-orange-500"
               )}
             >
               <span>Home</span>
               <span className={cn(
-                "absolute bottom-[-5px] left-0 w-full h-0.5 bg-tamtam-orange transform transition-transform duration-300",
+                "absolute bottom-[-5px] left-0 w-full h-0.5 bg-tamtam-orange-500 transform transition-transform duration-300",
                 isActive("/") 
                   ? "scale-x-100" 
                   : "scale-x-0 group-hover:scale-x-100"
@@ -77,15 +77,15 @@ const Navbar = () => {
             <Link 
               to="/menu" 
               className={cn(
-                "font-sweet-sans transition-colors duration-300 relative group",
+                "font-neutra transition-colors duration-300 relative group text-base",
                 isActive("/menu") 
-                  ? "text-tamtam-orange" 
-                  : "text-tamtam-black hover:text-tamtam-orange"
+                  ? "text-tamtam-orange-500" 
+                  : "text-tamtam-black hover:text-tamtam-orange-500"
               )}
             >
               <span>Menu</span>
               <span className={cn(
-                "absolute bottom-[-5px] left-0 w-full h-0.5 bg-tamtam-orange transform transition-transform duration-300",
+                "absolute bottom-[-5px] left-0 w-full h-0.5 bg-tamtam-orange-500 transform transition-transform duration-300",
                 isActive("/menu") 
                   ? "scale-x-100" 
                   : "scale-x-0 group-hover:scale-x-100"
@@ -94,15 +94,15 @@ const Navbar = () => {
             <Link 
               to="/butchery" 
               className={cn(
-                "font-sweet-sans transition-colors duration-300 relative group",
+                "font-neutra transition-colors duration-300 relative group text-base",
                 isActive("/butchery") 
-                  ? "text-tamtam-orange" 
-                  : "text-tamtam-black hover:text-tamtam-orange"
+                  ? "text-tamtam-orange-500" 
+                  : "text-tamtam-black hover:text-tamtam-orange-500"
               )}
             >
               <span>Butchery</span>
               <span className={cn(
-                "absolute bottom-[-5px] left-0 w-full h-0.5 bg-tamtam-orange transform transition-transform duration-300",
+                "absolute bottom-[-5px] left-0 w-full h-0.5 bg-tamtam-orange-500 transform transition-transform duration-300",
                 isActive("/butchery") 
                   ? "scale-x-100" 
                   : "scale-x-0 group-hover:scale-x-100"
@@ -111,15 +111,15 @@ const Navbar = () => {
             <Link 
               to="/about" 
               className={cn(
-                "font-sweet-sans transition-colors duration-300 relative group",
+                "font-neutra transition-colors duration-300 relative group text-base",
                 isActive("/about") 
-                  ? "text-tamtam-orange" 
-                  : "text-tamtam-black hover:text-tamtam-orange"
+                  ? "text-tamtam-orange-500" 
+                  : "text-tamtam-black hover:text-tamtam-orange-500"
               )}
             >
               <span>Our Story</span>
               <span className={cn(
-                "absolute bottom-[-5px] left-0 w-full h-0.5 bg-tamtam-orange transform transition-transform duration-300",
+                "absolute bottom-[-5px] left-0 w-full h-0.5 bg-tamtam-orange-500 transform transition-transform duration-300",
                 isActive("/about") 
                   ? "scale-x-100" 
                   : "scale-x-0 group-hover:scale-x-100"
@@ -128,15 +128,15 @@ const Navbar = () => {
             <Link 
               to="/locations" 
               className={cn(
-                "font-sweet-sans transition-colors duration-300 relative group",
+                "font-neutra transition-colors duration-300 relative group text-base",
                 isActive("/locations") 
-                  ? "text-tamtam-orange" 
-                  : "text-tamtam-black hover:text-tamtam-orange"
+                  ? "text-tamtam-orange-500" 
+                  : "text-tamtam-black hover:text-tamtam-orange-500"
               )}
             >
               <span>Locations</span>
               <span className={cn(
-                "absolute bottom-[-5px] left-0 w-full h-0.5 bg-tamtam-orange transform transition-transform duration-300",
+                "absolute bottom-[-5px] left-0 w-full h-0.5 bg-tamtam-orange-500 transform transition-transform duration-300",
                 isActive("/locations") 
                   ? "scale-x-100" 
                   : "scale-x-0 group-hover:scale-x-100"
@@ -145,15 +145,15 @@ const Navbar = () => {
             <Link 
               to="/catering" 
               className={cn(
-                "font-sweet-sans transition-colors duration-300 relative group",
+                "font-neutra transition-colors duration-300 relative group text-base",
                 isActive("/catering") 
-                  ? "text-tamtam-orange" 
-                  : "text-tamtam-black hover:text-tamtam-orange"
+                  ? "text-tamtam-orange-500" 
+                  : "text-tamtam-black hover:text-tamtam-orange-500"
               )}
             >
               <span>Catering</span>
               <span className={cn(
-                "absolute bottom-[-5px] left-0 w-full h-0.5 bg-tamtam-orange transform transition-transform duration-300",
+                "absolute bottom-[-5px] left-0 w-full h-0.5 bg-tamtam-orange-500 transform transition-transform duration-300",
                 isActive("/catering") 
                   ? "scale-x-100" 
                   : "scale-x-0 group-hover:scale-x-100"
@@ -163,7 +163,7 @@ const Navbar = () => {
 
           {/* Order Button */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button className="bg-gradient-to-r from-tamtam-green to-tamtam-green/90 hover:from-tamtam-green/90 hover:to-tamtam-green text-white flex items-center space-x-2 hover:scale-105 transition-transform duration-300 shadow-md hover:shadow-lg group">
+            <Button className="btn-premium flex items-center space-x-2 hover:scale-105 transition-transform duration-300 group">
               <span>Order Now</span>
               <ShoppingBag size={16} className="group-hover:scale-110 transition-transform" />
             </Button>
@@ -173,7 +173,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button 
               onClick={toggleMenu} 
-              className="text-tamtam-black p-2 hover:bg-tamtam-orange/10 rounded-full transition-colors"
+              className="text-tamtam-black p-2 hover:bg-tamtam-orange-100/30 rounded-full transition-colors"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -188,76 +188,76 @@ const Navbar = () => {
               <Link 
                 to="/" 
                 className={cn(
-                  "font-sweet-sans py-3 px-4 rounded-md transition-all duration-300 flex items-center",
+                  "font-neutra py-3 px-4 rounded-md transition-all duration-300 flex items-center",
                   isActive("/") 
-                    ? "bg-tamtam-orange/10 text-tamtam-orange" 
-                    : "text-tamtam-black hover:bg-tamtam-orange/5 hover:text-tamtam-orange"
+                    ? "bg-tamtam-orange-50 text-tamtam-orange-500 shadow-sm" 
+                    : "text-tamtam-black hover:bg-tamtam-orange-50/70 hover:text-tamtam-orange-500"
                 )}
               >
-                <span className="text-tamtam-orange/70 mr-2">•</span>
+                <span className="text-tamtam-orange-400 mr-3 opacity-70">•</span>
                 Home
               </Link>
               <Link 
                 to="/menu" 
                 className={cn(
-                  "font-sweet-sans py-3 px-4 rounded-md transition-all duration-300 flex items-center",
+                  "font-neutra py-3 px-4 rounded-md transition-all duration-300 flex items-center",
                   isActive("/menu") 
-                    ? "bg-tamtam-orange/10 text-tamtam-orange" 
-                    : "text-tamtam-black hover:bg-tamtam-orange/5 hover:text-tamtam-orange"
+                    ? "bg-tamtam-orange-50 text-tamtam-orange-500 shadow-sm" 
+                    : "text-tamtam-black hover:bg-tamtam-orange-50/70 hover:text-tamtam-orange-500"
                 )}
               >
-                <span className="text-tamtam-orange/70 mr-2">•</span>
+                <span className="text-tamtam-orange-400 mr-3 opacity-70">•</span>
                 Menu
               </Link>
               <Link 
                 to="/butchery" 
                 className={cn(
-                  "font-sweet-sans py-3 px-4 rounded-md transition-all duration-300 flex items-center",
+                  "font-neutra py-3 px-4 rounded-md transition-all duration-300 flex items-center",
                   isActive("/butchery") 
-                    ? "bg-tamtam-orange/10 text-tamtam-orange" 
-                    : "text-tamtam-black hover:bg-tamtam-orange/5 hover:text-tamtam-orange"
+                    ? "bg-tamtam-orange-50 text-tamtam-orange-500 shadow-sm" 
+                    : "text-tamtam-black hover:bg-tamtam-orange-50/70 hover:text-tamtam-orange-500"
                 )}
               >
-                <span className="text-tamtam-orange/70 mr-2">•</span>
+                <span className="text-tamtam-orange-400 mr-3 opacity-70">•</span>
                 Butchery
               </Link>
               <Link 
                 to="/about" 
                 className={cn(
-                  "font-sweet-sans py-3 px-4 rounded-md transition-all duration-300 flex items-center",
+                  "font-neutra py-3 px-4 rounded-md transition-all duration-300 flex items-center",
                   isActive("/about") 
-                    ? "bg-tamtam-orange/10 text-tamtam-orange" 
-                    : "text-tamtam-black hover:bg-tamtam-orange/5 hover:text-tamtam-orange"
+                    ? "bg-tamtam-orange-50 text-tamtam-orange-500 shadow-sm" 
+                    : "text-tamtam-black hover:bg-tamtam-orange-50/70 hover:text-tamtam-orange-500"
                 )}
               >
-                <span className="text-tamtam-orange/70 mr-2">•</span>
+                <span className="text-tamtam-orange-400 mr-3 opacity-70">•</span>
                 Our Story
               </Link>
               <Link 
                 to="/locations" 
                 className={cn(
-                  "font-sweet-sans py-3 px-4 rounded-md transition-all duration-300 flex items-center",
+                  "font-neutra py-3 px-4 rounded-md transition-all duration-300 flex items-center",
                   isActive("/locations") 
-                    ? "bg-tamtam-orange/10 text-tamtam-orange" 
-                    : "text-tamtam-black hover:bg-tamtam-orange/5 hover:text-tamtam-orange"
+                    ? "bg-tamtam-orange-50 text-tamtam-orange-500 shadow-sm" 
+                    : "text-tamtam-black hover:bg-tamtam-orange-50/70 hover:text-tamtam-orange-500"
                 )}
               >
-                <span className="text-tamtam-orange/70 mr-2">•</span>
+                <span className="text-tamtam-orange-400 mr-3 opacity-70">•</span>
                 Locations
               </Link>
               <Link 
                 to="/catering" 
                 className={cn(
-                  "font-sweet-sans py-3 px-4 rounded-md transition-all duration-300 flex items-center",
+                  "font-neutra py-3 px-4 rounded-md transition-all duration-300 flex items-center",
                   isActive("/catering") 
-                    ? "bg-tamtam-orange/10 text-tamtam-orange" 
-                    : "text-tamtam-black hover:bg-tamtam-orange/5 hover:text-tamtam-orange"
+                    ? "bg-tamtam-orange-50 text-tamtam-orange-500 shadow-sm" 
+                    : "text-tamtam-black hover:bg-tamtam-orange-50/70 hover:text-tamtam-orange-500"
                 )}
               >
-                <span className="text-tamtam-orange/70 mr-2">•</span>
+                <span className="text-tamtam-orange-400 mr-3 opacity-70">•</span>
                 Catering
               </Link>
-              <Button className="bg-gradient-to-r from-tamtam-green to-tamtam-green/90 text-white flex items-center justify-center space-x-2 mx-4 mt-2 shadow-md">
+              <Button className="btn-premium flex items-center justify-center space-x-2 mx-4 mt-2">
                 <span>Order Now</span>
                 <ShoppingBag size={16} />
               </Button>
