@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -345,3 +346,29 @@
     content: '';
     @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-1000;
     background-size: 200% 100%;
+  }
+
+  /* Adding missing animations for btn-cta */
+  .btn-cta:hover::before {
+    @apply opacity-100;
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* Fancy badge styling */
+  .fancy-badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium;
+    background: linear-gradient(to right, rgba(255, 111, 0, 0.1), rgba(255, 111, 0, 0.2));
+    border: 1px solid rgba(255, 111, 0, 0.2);
+  }
+}
+
+@layer utilities {
+  .kenyan-texture {
+    background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e67e22' fill-opacity='0.04' fill-rule='evenodd'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 20.83l2.83-2.83 1.41 1.41L1.41 22H0v-1.17zM0 3.07l2.83-2.83 1.41 1.41L1.41 4.24H0V3.07zm33.66-1.41l2.83 2.83L39.07 0H38.4l-4.74 4.74L32 3.07l4.24-4.24-2.58-2.58L38.4 0h.67v1.41zM40 18.66l-2.83 2.83-1.41-1.41L38.59 20H40v-1.34zm0 17.75l-2.83 2.83-1.41-1.41L38.59 38H40v-1.59zM20 0v1.41l2.83 2.83 1.41-1.41L21.41 0h-1.17zm0 18.66v1.32l1.41 1.41 1.41-1.41-1.41-1.32h-1.41zm19.07-9.74l-2.83 2.83-1.41-1.41 2.83-2.83L38.59 10l-2.83 2.83-1.41-1.41 2.83-2.83-1.41-1.41-2.83 2.82L31.09 8.59l2.83-2.83L32.5 4.34 29.67 7.17 27.84 5.34 30.67 2.5l-1.41-1.41L26.43 4.24l-1.41-1.41L27.85 0h.67l-.67.67 3.74 3.74L36.33 0z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+}

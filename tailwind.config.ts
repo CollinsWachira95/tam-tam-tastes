@@ -150,8 +150,9 @@ export default {
 				'button': '0 4px 6px -1px rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.08)', // Enhanced button shadow
 				'premium': '0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.02)',
 				'card': '0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.03)', // Enhanced card shadow
-				'hover': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-				'intense': '0 25px 50px -12px rgba(255, 111, 0, 0.18)', // Using new orange for intense shadow
+				'hover': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', // This was missing
+				'intense': '0 25px 50px -12px rgba(255, 111, 0, 0.18)', // This was missing
+				'premium-hover': '0 15px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
 				'overlay': '0 8px 30px rgba(0, 0, 0, 0.12)', // Added for overlays
 				'subtle': '0 3px 6px rgba(0, 0, 0, 0.05)', // Subtle shadow for small elements
 			},
@@ -245,6 +246,14 @@ export default {
 						'background-position': '-200% 0' 
 					}
 				},
+				'shimmer': {
+					'0%': { 
+						'background-position': '-200% 0' 
+					},
+					'100%': { 
+						'background-position': '200% 0' 
+					}
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -256,6 +265,7 @@ export default {
 				'float': 'float 5s ease-in-out infinite',
 				'pulse-soft': 'pulse-soft 4s ease-in-out infinite',
 				'shine': 'shine 3s linear infinite',
+				'shimmer': 'shimmer 2s infinite linear',
 			},
 			typography: {
 				DEFAULT: {
