@@ -55,33 +55,35 @@ const HeroCarousel = () => {
   }, []);
 
   return (
-    <div className="relative bg-tamtam-light overflow-hidden h-[600px]">
+    <div className="relative bg-tamtam-light overflow-hidden h-[650px]">
       {/* Add Kenyan-inspired background pattern */}
-      <div className="absolute inset-0 kenyan-texture opacity-70"></div>
+      <div className="absolute inset-0 kenyan-texture opacity-40"></div>
       
       <Carousel className="h-full">
         <CarouselContent className="h-full">
           {heroSlides.map((slide, index) => (
             <CarouselItem key={index} className="h-full">
-              <div className="relative h-full w-full">
+              <div className="relative h-full w-full overflow-hidden">
                 <img 
                   src={slide.image} 
                   alt={slide.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transform scale-[1.01] hover:scale-105 transition-transform duration-7000"
                 />
+                
+                <div className="absolute inset-0 bg-gradient-to-t from-tamtam-black/70 via-tamtam-black/30 to-transparent"></div>
                 
                 <div className="absolute inset-0 flex items-center justify-start">
                   <div className="container-custom">
                     <Link to={slide.link}>
-                      <div className="max-w-xl animate-fade-in pl-6 md:pl-12 backdrop-blur-sm bg-black/30 p-8 rounded-lg">
-                        <span className="inline-block bg-tamtam-orange/10 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                      <div className="max-w-xl animate-fade-in pl-6 md:pl-12 bg-black/30 backdrop-blur-[2px] p-8 rounded-lg border border-white/10 shadow-elegant">
+                        <span className="inline-block bg-tamtam-orange/90 text-white px-4 py-1.5 rounded-full text-sm font-medium mb-4 tracking-wide">
                           Authentic Kenyan Experience
                         </span>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-neutra font-bold text-white mb-4 leading-tight">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-neutra font-bold text-white mb-4 leading-tight tracking-tight">
                           {slide.title}
                         </h1>
-                        <div className="h-1 w-24 bg-tamtam-green my-6 rounded-full"></div>
-                        <p className="text-lg md:text-xl text-white mb-8 font-neutra">
+                        <div className="h-0.5 w-28 bg-tamtam-green my-6 rounded-full"></div>
+                        <p className="text-lg md:text-xl text-white/90 mb-8 font-neutra tracking-tight">
                           {slide.description}
                         </p>
                       </div>
@@ -92,8 +94,8 @@ const HeroCarousel = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="left-4 text-white" />
-        <CarouselNext className="right-4 text-white" />
+        <CarouselPrevious className="left-4 text-white bg-tamtam-black/30 hover:bg-tamtam-black/50 transition-colors duration-300 border-white/10" />
+        <CarouselNext className="right-4 text-white bg-tamtam-black/30 hover:bg-tamtam-black/50 transition-colors duration-300 border-white/10" />
       </Carousel>
     </div>
   );

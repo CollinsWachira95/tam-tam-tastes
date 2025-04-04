@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import NutritionInfo from "./NutritionInfo";
 
@@ -13,6 +13,7 @@ interface Dish {
   price: string;
   category: string;
   imagePath: string;
+  featured?: boolean;
   nutritionInfo?: {
     calories?: number;
     protein?: number;
@@ -151,32 +152,32 @@ const FeaturedDishes = () => {
   return (
     <section className="bg-white section relative">
       {/* Decorative texture */}
-      <div className="absolute inset-0 kenyan-dots opacity-70"></div>
+      <div className="absolute inset-0 kenyan-dots opacity-40"></div>
       
       <div className="container-custom">
-        <div className="text-center mb-12">
-          <span className="inline-block px-4 py-1 bg-tamtam-green/10 text-tamtam-green rounded-full text-sm font-medium mb-4 font-neutra">
+        <div className="text-center mb-16">
+          <span className="inline-block px-4 py-1.5 bg-tamtam-green/10 text-tamtam-green rounded-full text-sm font-medium mb-4 font-neutra tracking-wide">
             Our Specialties
           </span>
-          <h2 className="text-3xl md:text-4xl font-neutra font-bold mb-2 heading-underline relative inline-block">
+          <h2 className="text-3xl md:text-4xl font-neutra font-bold mb-3 heading-underline relative inline-block tracking-tight">
             Signature Dishes
             <span className="absolute -right-6 top-0 text-tamtam-orange">•</span>
           </h2>
-          <div className="mx-auto w-24 h-1 bg-tamtam-orange/30 rounded-full my-6"></div>
-          <p className="text-tamtam-gray max-w-2xl mx-auto font-neutra">
+          <div className="mx-auto w-28 h-0.5 bg-tamtam-orange/40 rounded-full my-8"></div>
+          <p className="text-tamtam-gray max-w-2xl mx-auto font-neutra text-lg leading-relaxed">
             Discover the vibrant flavors of Kenya through our carefully crafted dishes, 
             made with authentic spices and fresh ingredients.
           </p>
           
-          <div className="flex flex-wrap justify-center gap-2 mt-8">
+          <div className="flex flex-wrap justify-center gap-3 mt-10">
             {categories.map((category) => (
               <Button
                 key={category}
                 variant={selectedCategory === category ? "default" : "outline"}
-                className={`font-neutra ${
+                className={`font-neutra font-medium tracking-wide ${
                   selectedCategory === category 
                     ? "bg-tamtam-orange hover:bg-tamtam-orange/90 text-white"
-                    : "border-tamtam-orange text-tamtam-orange hover:bg-tamtam-orange hover:text-white"
+                    : "border-tamtam-orange/60 text-tamtam-orange hover:bg-tamtam-orange hover:text-white"
                 }`}
                 onClick={() => setSelectedCategory(category)}
               >
@@ -186,39 +187,46 @@ const FeaturedDishes = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {filteredDishes.map((dish) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {filteredDishes.map((dish, index) => (
             <Card 
               key={dish.id} 
-              className="overflow-hidden hover:shadow-lg transition-shadow duration-300 card-hover bg-white border-0 shadow-md"
+              className="overflow-hidden hover:shadow-elegant transition-all duration-500 card-hover border-0 shadow-soft group bg-white rounded-lg"
             >
-              <div className="h-48 relative overflow-hidden">
+              <div className="h-60 relative overflow-hidden">
                 <img 
                   src={dish.imagePath} 
                   alt={dish.name}
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-tamtam-black/70 via-tamtam-black/20 to-transparent"></div>
                 <div className="absolute bottom-4 left-4">
-                  <span className="bg-tamtam-orange text-white text-xs px-3 py-1 rounded-full">
+                  <span className="bg-tamtam-orange text-white text-xs px-3 py-1.5 rounded-full font-medium tracking-wide">
                     {dish.category}
                   </span>
                 </div>
+                {index === 0 && (
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-tamtam-green/90 text-white text-xs px-3 py-1.5 rounded-full font-medium tracking-wide flex items-center">
+                      <Star className="h-3 w-3 mr-1 fill-white" /> Bestseller
+                    </div>
+                  </div>
+                )}
               </div>
               <CardContent className="p-6 relative">
-                <div className="absolute -top-6 right-4 bg-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center">
+                <div className="absolute -top-6 right-4 bg-white shadow-elegant rounded-full w-12 h-12 flex items-center justify-center transform transition-transform duration-500 group-hover:scale-110">
                   <span className="font-neutra text-tamtam-orange font-bold">{dish.price}</span>
                 </div>
-                <h3 className="font-neutra text-xl text-tamtam-black mb-2 font-bold">{dish.name}</h3>
-                <p className="text-tamtam-gray mb-4 text-sm font-neutra">{dish.description}</p>
+                <h3 className="font-neutra text-xl text-tamtam-black mb-2 font-bold tracking-tight">{dish.name}</h3>
+                <p className="text-tamtam-gray mb-5 text-sm font-neutra leading-relaxed">{dish.description}</p>
                 
                 {dish.nutritionInfo && (
                   <NutritionInfo {...dish.nutritionInfo} />
                 )}
                 
-                <div className="flex justify-between items-center mt-4">
-                  <Button variant="ghost" size="sm" className="text-tamtam-green hover:text-tamtam-green/90 p-0 group font-neutra">
-                    Order
+                <div className="flex justify-between items-center mt-5 pt-3 border-t border-tamtam-light">
+                  <Button variant="ghost" size="sm" className="text-tamtam-green hover:text-tamtam-green/90 p-0 group font-neutra flex items-center">
+                    Order Now
                     <ChevronRight className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Button>
                 </div>
@@ -227,9 +235,9 @@ const FeaturedDishes = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-16">
           <Link to="/menu">
-            <Button className="bg-tamtam-orange hover:bg-tamtam-orange/90 text-white px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 btn-kenyan font-neutra">
+            <Button className="bg-tamtam-orange hover:bg-tamtam-orange/90 text-white px-8 py-6 rounded-full shadow-elegant hover:shadow-lg transition-all duration-500 btn-kenyan font-neutra h-auto">
               View Full Menu
               <ChevronRight className="ml-1 h-5 w-5" />
             </Button>

@@ -47,7 +47,16 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <Helmet>
-        <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/neutra-text-alt" />
+        <link rel="stylesheet" href="https://use.typekit.net/ajf8ggy.css" />
+        <style>{`
+          @import url('https://fonts.cdnfonts.com/css/neutra-text-alt');
+          
+          body {
+            font-family: 'Neutra Text', sans-serif;
+            font-feature-settings: "liga", "kern";
+            text-rendering: optimizeLegibility;
+          }
+        `}</style>
       </Helmet>
       <TooltipProvider>
         <Toaster />

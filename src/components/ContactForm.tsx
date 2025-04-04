@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Check, Loader2 } from "lucide-react";
+import { Check, Loader2, MessageSquare, User, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
@@ -48,26 +48,26 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="bg-white p-6 md:p-8 rounded-lg shadow-lg animate-fade-in relative overflow-hidden">
+    <div className="bg-white p-7 md:p-9 rounded-xl shadow-elegant animate-scale-in relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-24 h-24 bg-tamtam-orange/5 rounded-full blur-xl"></div>
-      <div className="absolute bottom-0 left-0 w-24 h-24 bg-tamtam-green/5 rounded-full blur-xl"></div>
+      <div className="absolute top-0 right-0 w-32 h-32 bg-tamtam-orange/5 rounded-full blur-2xl"></div>
+      <div className="absolute bottom-0 left-0 w-32 h-32 bg-tamtam-green/5 rounded-full blur-2xl"></div>
       
       {/* African pattern overlay */}
       <div className="absolute inset-0 kenyan-dots opacity-10"></div>
       
       <div className="relative z-10">
-        <div className="flex items-center mb-4">
+        <div className="flex items-center mb-5">
           <div className="h-10 w-1 bg-gradient-to-b from-tamtam-orange to-tamtam-green rounded-full mr-4"></div>
-          <h3 className="text-2xl font-greneette text-tamtam-black">Contact Us</h3>
+          <h3 className="text-2xl font-neutra text-tamtam-black font-bold tracking-tight">Contact Us</h3>
         </div>
-        <p className="text-tamtam-gray mb-6 border-b border-dashed border-tamtam-orange/20 pb-4">
+        <p className="text-tamtam-gray mb-7 border-b border-dashed border-tamtam-orange/20 pb-5 leading-relaxed">
           Have questions? Send us a message and we'll get back to you as soon as possible.
         </p>
         
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div className="group">
-            <label htmlFor="name" className="block text-sm font-medium text-tamtam-black mb-1 group-focus-within:text-tamtam-orange transition-colors">
+            <label htmlFor="name" className="block text-sm font-medium text-tamtam-black mb-1.5 group-focus-within:text-tamtam-orange transition-colors">
               Full Name
             </label>
             <div className="relative">
@@ -78,19 +78,17 @@ const ContactForm = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-tamtam-orange/30 focus:border-tamtam-orange transition pl-10"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tamtam-orange/30 focus:border-tamtam-orange transition-all pl-11 bg-gray-50/50"
                 placeholder="Your name"
               />
-              <div className="absolute left-3 top-1/2 -translate-y-1/2 text-tamtam-gray/50 group-focus-within:text-tamtam-orange">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                </svg>
+              <div className="absolute left-3 top-1/2 -translate-y-1/2 text-tamtam-gray/50 group-focus-within:text-tamtam-orange transition-colors">
+                <User className="h-5 w-5" />
               </div>
             </div>
           </div>
           
           <div className="group">
-            <label htmlFor="email" className="block text-sm font-medium text-tamtam-black mb-1 group-focus-within:text-tamtam-orange transition-colors">
+            <label htmlFor="email" className="block text-sm font-medium text-tamtam-black mb-1.5 group-focus-within:text-tamtam-orange transition-colors">
               Email Address
             </label>
             <div className="relative">
@@ -101,20 +99,17 @@ const ContactForm = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-tamtam-orange/30 focus:border-tamtam-orange transition pl-10"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tamtam-orange/30 focus:border-tamtam-orange transition-all pl-11 bg-gray-50/50"
                 placeholder="your.email@example.com"
               />
-              <div className="absolute left-3 top-1/2 -translate-y-1/2 text-tamtam-gray/50 group-focus-within:text-tamtam-orange">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                </svg>
+              <div className="absolute left-3 top-1/2 -translate-y-1/2 text-tamtam-gray/50 group-focus-within:text-tamtam-orange transition-colors">
+                <Mail className="h-5 w-5" />
               </div>
             </div>
           </div>
           
           <div className="group">
-            <label htmlFor="phone" className="block text-sm font-medium text-tamtam-black mb-1 group-focus-within:text-tamtam-orange transition-colors">
+            <label htmlFor="phone" className="block text-sm font-medium text-tamtam-black mb-1.5 group-focus-within:text-tamtam-orange transition-colors">
               Phone Number (Optional)
             </label>
             <div className="relative">
@@ -124,40 +119,43 @@ const ContactForm = () => {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-tamtam-orange/30 focus:border-tamtam-orange transition pl-10"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tamtam-orange/30 focus:border-tamtam-orange transition-all pl-11 bg-gray-50/50"
                 placeholder="+254 XXX XXX XXX"
               />
-              <div className="absolute left-3 top-1/2 -translate-y-1/2 text-tamtam-gray/50 group-focus-within:text-tamtam-orange">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                </svg>
+              <div className="absolute left-3 top-1/2 -translate-y-1/2 text-tamtam-gray/50 group-focus-within:text-tamtam-orange transition-colors">
+                <Phone className="h-5 w-5" />
               </div>
             </div>
           </div>
           
           <div className="group">
-            <label htmlFor="message" className="block text-sm font-medium text-tamtam-black mb-1 group-focus-within:text-tamtam-orange transition-colors">
+            <label htmlFor="message" className="block text-sm font-medium text-tamtam-black mb-1.5 group-focus-within:text-tamtam-orange transition-colors">
               Message
             </label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-              rows={4}
-              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-tamtam-orange/30 focus:border-tamtam-orange transition"
-              placeholder="How can we help you?"
-            ></textarea>
+            <div className="relative">
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows={4}
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tamtam-orange/30 focus:border-tamtam-orange transition-all pl-11 bg-gray-50/50"
+                placeholder="How can we help you?"
+              ></textarea>
+              <div className="absolute left-3 top-6 text-tamtam-gray/50 group-focus-within:text-tamtam-orange transition-colors">
+                <MessageSquare className="h-5 w-5" />
+              </div>
+            </div>
           </div>
           
           <div className="pt-3">
             <Button 
               type="submit" 
-              className="w-full bg-gradient-to-r from-tamtam-orange to-tamtam-orange/90 hover:from-tamtam-orange/90 hover:to-tamtam-orange text-white py-6 rounded-lg relative overflow-hidden group"
+              className="w-full bg-gradient-to-r from-tamtam-orange to-tamtam-accent hover:from-tamtam-accent hover:to-tamtam-orange text-white py-6 rounded-lg relative overflow-hidden group shadow-button hover:shadow-lg transition-all duration-500 h-auto"
               disabled={isSubmitting || isSuccess}
             >
-              <span className="relative z-10 flex items-center justify-center">
+              <span className="relative z-10 flex items-center justify-center font-neutra tracking-wide">
                 {isSubmitting ? (
                   <>
                     <Loader2 className="mr-2 h-5 w-5 animate-spin" />
