@@ -12,6 +12,17 @@ const CateringGallery = ({ galleryImages }: CateringGalleryProps) => {
     setLoadedImages(prev => ({ ...prev, [index]: true }));
   };
 
+  const imageCaptions = [
+    "Corporate Lunch Setup",
+    "Wedding Reception",
+    "Buffet Service",
+    "Private Event",
+    "Plated Service",
+    "Outdoor Catering",
+    "Breakfast Meeting",
+    "Special Occasion"
+  ];
+
   return (
     <section className="section bg-white">
       <div className="container-custom">
@@ -33,7 +44,7 @@ const CateringGallery = ({ galleryImages }: CateringGalleryProps) => {
           {galleryImages.map((image, index) => (
             <div 
               key={index}
-              className="relative group overflow-hidden rounded-lg bg-gray-100"
+              className="relative group overflow-hidden rounded-lg bg-gray-100 shadow-card hover:shadow-premium-hover transition-all duration-300"
               style={{ height: '240px' }}
             >
               {!loadedImages[index] && (
@@ -44,21 +55,14 @@ const CateringGallery = ({ galleryImages }: CateringGalleryProps) => {
               
               <img 
                 src={image} 
-                alt={`Gallery image ${index + 1}`}
+                alt={`${imageCaptions[index % imageCaptions.length]}`}
                 className={`w-full h-60 object-cover transition-transform duration-500 group-hover:scale-110 ${loadedImages[index] ? 'opacity-100' : 'opacity-0'}`}
                 loading="lazy"
                 onLoad={() => handleImageLoad(index)}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
                 <span className="text-white font-neutra capitalize">
-                  {index === 0 ? "Corporate Lunch Setup" :
-                   index === 1 ? "Wedding Reception" :
-                   index === 2 ? "Buffet Service" :
-                   index === 3 ? "Private Event" :
-                   index === 4 ? "Plated Service" :
-                   index === 5 ? "Outdoor Catering" :
-                   index === 6 ? "Breakfast Meeting" :
-                   "Special Occasion"}
+                  {imageCaptions[index % imageCaptions.length]}
                 </span>
               </div>
             </div>
