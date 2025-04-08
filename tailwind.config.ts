@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -140,9 +139,11 @@ export default {
 				'2xl': '1.5rem',
 			},
 			fontFamily: {
+				// Updated font family definitions
+				'playfair': ['Playfair Display', 'serif'],
+				'opensans': ['Open Sans', 'sans-serif'],
+				'montserrat': ['Montserrat', 'sans-serif'], // Added for CTAs and buttons
 				'neutra': ['Neutra Text', 'sans-serif'],
-				'playfair': ['Playfair Display', 'serif'], // Added serif font for headings
-				'opensans': ['Open Sans', 'sans-serif'], // Added sans-serif for body text
 			},
 			boxShadow: {
 				'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',

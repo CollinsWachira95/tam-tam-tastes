@@ -14,7 +14,7 @@ const AboutHero = () => {
       
       <div className="container-custom relative z-10">
         <div className="max-w-3xl">
-          <span className="inline-block px-4 py-1 bg-tamtam-orange/10 text-tamtam-orange rounded-full text-sm font-medium mb-5">
+          <span className="inline-block px-4 py-1 bg-tamtam-orange/10 text-tamtam-orange rounded-full text-sm font-montserrat font-medium mb-5">
             Our Purpose
           </span>
           <h1 className="text-4xl md:text-5xl font-playfair font-bold mb-6 text-tamtam-black leading-tight tracking-tight">
@@ -29,11 +29,11 @@ const AboutHero = () => {
           
           <div className="h-0.5 w-20 bg-tamtam-green rounded-full my-8"></div>
           
-          <p className="text-tamtam-gray mb-8 text-lg leading-relaxed">
+          <p className="text-tamtam-gray mb-8 text-lg leading-relaxed font-opensans">
             Our mission is to preserve and share Kenya's rich culinary heritage while supporting sustainable food systems and fostering community connections. We believe food should nourish not just the body, but also cultural understanding.
           </p>
           
-          <Button className="bg-tamtam-black hover:bg-tamtam-black/90 text-white rounded-full shadow-elegant group px-8 py-6 h-auto font-neutra">
+          <Button className="bg-tamtam-black hover:bg-tamtam-black/90 text-white rounded-full shadow-elegant group px-8 py-6 h-auto font-montserrat">
             Learn Our Story 
             <ChevronRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1 duration-300" />
           </Button>
