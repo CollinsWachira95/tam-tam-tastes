@@ -1,4 +1,5 @@
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -11,6 +12,7 @@ interface VideoSectionProps {
   buttonText: string;
   buttonLink: string;
   isReversed?: boolean;
+  posterUrl?: string;
 }
 
 const VideoSection = ({
@@ -20,8 +22,11 @@ const VideoSection = ({
   videoUrl,
   buttonText,
   buttonLink,
-  isReversed = false
+  isReversed = false,
+  posterUrl = "https://images.unsplash.com/photo-1504674900247-0877df9cc836"
 }: VideoSectionProps) => {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <section className="bg-white section relative overflow-hidden">
       {/* Decorative pattern */}
@@ -51,6 +56,13 @@ const VideoSection = ({
           
           {/* Video Player */}
           <div className="relative rounded-lg overflow-hidden shadow-2xl group animate-fade-in">
+            {/* Loading indicator */}
+            {isLoading && (
+              <div className="absolute inset-0 z-10 flex items-center justify-center bg-gray-100">
+                <div className="w-10 h-10 rounded-full border-4 border-tamtam-orange border-t-transparent animate-spin"></div>
+              </div>
+            )}
+            
             {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-tamtam-orange/20 rounded-full blur-xl"></div>
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-tamtam-green/20 rounded-full blur-xl"></div>
@@ -60,7 +72,9 @@ const VideoSection = ({
               <video
                 className="w-full h-full object-cover"
                 controls
-                poster="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                poster={posterUrl}
+                preload="metadata"
+                onLoadedData={() => setIsLoading(false)}
               >
                 <source src={videoUrl} type="video/mp4" />
                 Your browser does not support the video tag.

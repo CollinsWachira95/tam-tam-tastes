@@ -2,30 +2,37 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const [elementsVisible, setElementsVisible] = useState(false);
   
   // Animation effect on scroll
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    
-    const elements = document.querySelectorAll('.fade-up');
-    elements.forEach((el) => observer.observe(el));
-    
-    return () => {
-      elements.forEach((el) => observer.unobserve(el));
-    };
+    if (window.IntersectionObserver) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setElementsVisible(true);
+              entry.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      
+      const elements = document.querySelectorAll('.fade-up');
+      elements.forEach((el) => observer.observe(el));
+      
+      return () => {
+        elements.forEach((el) => observer.unobserve(el));
+      };
+    } else {
+      // Fallback for browsers that don't support IntersectionObserver
+      setElementsVisible(true);
+    }
   }, []);
 
   return (
@@ -40,7 +47,7 @@ const Hero = () => {
       <div className="container-custom py-16 md:py-24 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>
-            <div className="fade-up">
+            <div className={`fade-up ${elementsVisible ? 'visible' : ''}`}>
               <span className="inline-block bg-tamtam-orange-500/10 text-tamtam-orange-600 px-4 py-2 rounded-full text-sm font-semibold mb-6 fancy-badge">
                 <span className="mr-2">✦</span>
                 Authentic Kenyan Experience
@@ -73,7 +80,7 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className="fade-up delay-300">
+          <div className={`fade-up delay-300 ${elementsVisible ? 'visible' : ''}`}>
             <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-premium">
               {/* Decorative elements */}
               <div className="absolute -top-10 -right-10 w-40 h-40 bg-tamtam-green-500/20 rounded-full blur-2xl"></div>
