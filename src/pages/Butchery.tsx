@@ -1,9 +1,12 @@
 
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState } from "react";
-import NutritionInfo from "@/components/NutritionInfo";
+import DishCard from "@/components/DishCard";
+import MenuSection from "@/components/MenuSection";
+import { Button } from "@/components/ui/button";
+import { ShoppingBag } from "lucide-react";
 
 interface MeatProduct {
   id: number;
@@ -18,6 +21,7 @@ interface MeatProduct {
   origin?: string;
   preparation?: string;
   featured?: boolean;
+  badges?: string[];
 }
 
 const meatProducts: MeatProduct[] = [
@@ -34,7 +38,8 @@ const meatProducts: MeatProduct[] = [
     origin: "Central Kenya",
     preparation: "Marinate with salt, pepper, and Kenyan spices before grilling.",
     featured: true,
-    imagePath: "https://images.unsplash.com/photo-1607116667981-ff148a4a458b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80"
+    imagePath: "https://images.unsplash.com/photo-1607116667981-ff148a4a458b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80",
+    badges: ["Premium", "Grass-fed"]
   },
   {
     id: 2,
@@ -45,7 +50,8 @@ const meatProducts: MeatProduct[] = [
     calories: 250,
     protein: 24,
     fat: 16,
-    origin: "Western Kenya"
+    origin: "Western Kenya",
+    badges: ["Local"]
   },
   {
     id: 3,
@@ -55,7 +61,8 @@ const meatProducts: MeatProduct[] = [
     category: "beef",
     calories: 220,
     protein: 22,
-    fat: 14
+    fat: 14,
+    badges: ["Lean"]
   },
   {
     id: 4,
@@ -81,7 +88,8 @@ const meatProducts: MeatProduct[] = [
     origin: "Rift Valley",
     preparation: "Slow cook with onions, tomatoes, and traditional spices.",
     featured: true,
-    imagePath: "https://images.unsplash.com/photo-1666190053936-28af4c9f0273?ixlib=rb-4.0.3&auto=format&fit=crop&w=1392&q=80"
+    imagePath: "https://images.unsplash.com/photo-1666190053936-28af4c9f0273?ixlib=rb-4.0.3&auto=format&fit=crop&w=1392&q=80",
+    badges: ["Premium", "Lean"]
   },
   {
     id: 6,
@@ -91,7 +99,9 @@ const meatProducts: MeatProduct[] = [
     category: "goat",
     calories: 260,
     protein: 24,
-    fat: 16
+    fat: 16,
+    imagePath: "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
+    badges: ["BBQ Favorite"]
   },
   {
     id: 7,
@@ -101,7 +111,8 @@ const meatProducts: MeatProduct[] = [
     category: "goat",
     calories: 200,
     protein: 30,
-    fat: 8
+    fat: 8,
+    badges: ["Iron-rich", "Fresh Daily"]
   },
 
   // Chicken Products
@@ -117,7 +128,8 @@ const meatProducts: MeatProduct[] = [
     origin: "Eastern Kenya",
     preparation: "Perfect for Kenyan-style roasting or soup.",
     featured: true,
-    imagePath: "https://images.unsplash.com/photo-1587593810167-a84920ea0781?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+    imagePath: "https://images.unsplash.com/photo-1587593810167-a84920ea0781?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+    badges: ["Free-range"]
   },
   {
     id: 9,
@@ -127,7 +139,9 @@ const meatProducts: MeatProduct[] = [
     category: "chicken",
     calories: 230,
     protein: 24,
-    fat: 14
+    fat: 14,
+    imagePath: "https://images.unsplash.com/photo-1626082911517-8d7f7b2d563b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+    badges: ["Family Pack Available"]
   },
   {
     id: 10,
@@ -137,7 +151,8 @@ const meatProducts: MeatProduct[] = [
     category: "chicken",
     calories: 190,
     protein: 28,
-    fat: 8
+    fat: 8,
+    badges: ["Traditional"]
   },
 
   // Lamb Products
@@ -149,7 +164,9 @@ const meatProducts: MeatProduct[] = [
     category: "lamb",
     calories: 270,
     protein: 24,
-    fat: 18
+    fat: 18,
+    imagePath: "https://images.unsplash.com/photo-1608039790184-f1c9294d65c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80",
+    badges: ["Premium"]
   },
   {
     id: 12,
@@ -174,7 +191,8 @@ const meatProducts: MeatProduct[] = [
     fat: 6,
     origin: "Naivasha Region",
     featured: true,
-    imagePath: "https://images.unsplash.com/photo-1547050605-2f268cd5daf0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80"
+    imagePath: "https://images.unsplash.com/photo-1547050605-2f268cd5daf0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80",
+    badges: ["Specialty", "Low-fat"]
   },
   {
     id: 14,
@@ -184,7 +202,8 @@ const meatProducts: MeatProduct[] = [
     category: "game",
     calories: 180,
     protein: 32,
-    fat: 8
+    fat: 8,
+    badges: ["Exotic", "Limited Stock"]
   },
   {
     id: 15,
@@ -194,7 +213,9 @@ const meatProducts: MeatProduct[] = [
     category: "game",
     calories: 170,
     protein: 34,
-    fat: 4
+    fat: 4,
+    imagePath: "https://images.unsplash.com/photo-1562059839-28689cdb3394?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80",
+    badges: ["Premium", "Lean"]
   }
 ];
 
@@ -210,143 +231,72 @@ const Butchery = () => {
   return (
     <div className="min-h-screen flex flex-col bg-tamtam-light">
       <Navbar />
-      <main className="flex-grow">
-        <div className="py-16 mb-6 bg-tamtam-light">
-          <div className="container-custom text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-greneette font-bold mb-6">
-              Premium Kenyan Meats
-            </h1>
-            <p className="text-lg text-tamtam-gray max-w-3xl mx-auto">
-              Discover our selection of locally-sourced, ethically-raised meats, 
-              perfect for traditional Kenyan dishes.
-            </p>
-            <div className="h-1 w-24 bg-tamtam-orange mx-auto my-8"></div>
-          </div>
+      
+      {/* Hero Section */}
+      <section className="relative py-20 bg-gradient-to-b from-tamtam-orange-50 to-tamtam-light overflow-hidden">
+        <div className="absolute inset-0 kenyan-texture opacity-20"></div>
+        <div className="container-custom text-center max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6 tracking-tight text-tamtam-black">
+            Premium Kenyan Meats
+          </h1>
+          <div className="h-1 w-32 bg-tamtam-orange-600 mx-auto my-8 rounded-full"></div>
+          <p className="text-lg md:text-xl text-tamtam-gray-600 max-w-3xl mx-auto font-opensans">
+            Discover our selection of locally-sourced, ethically-raised meats, perfect for traditional Kenyan dishes.
+          </p>
         </div>
-
-        <section className="container-custom mb-16">
-          <h2 className="text-3xl font-greneette font-bold mb-8">Featured Meats</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {featuredProducts.map((product) => (
-              <div key={product.id} className="bg-gray-100 rounded-lg overflow-hidden shadow-sm">
-                <div className="relative h-64 overflow-hidden">
-                  {product.imagePath && (
-                    <img 
-                      src={product.imagePath} 
-                      alt={product.name}
-                      className="w-full h-full object-cover"
-                    />
-                  )}
-                </div>
-                <div className="p-6">
-                  <div className="flex justify-between mb-2">
-                    <h3 className="text-xl font-bold uppercase tracking-wide">{product.name}</h3>
-                    <span className="font-medium">{product.price}</span>
-                  </div>
-                  <p className="text-tamtam-gray mb-4">{product.description}</p>
-                  
-                  {product.origin && (
-                    <p className="text-sm text-tamtam-green mb-2">
-                      <span className="font-medium">Origin:</span> {product.origin}
-                    </p>
-                  )}
-                  
-                  {product.preparation && (
-                    <p className="text-sm text-tamtam-orange mb-4">
-                      <span className="font-medium">Preparation:</span> {product.preparation}
-                    </p>
-                  )}
-                  
-                  <NutritionInfo 
-                    calories={product.calories}
-                    protein={product.protein}
-                    fat={product.fat}
-                  />
-                </div>
-              </div>
+      </section>
+      
+      {/* Floating Order Button */}
+      <div className="fixed right-6 bottom-12 z-50">
+        <Button className="bg-gradient-to-r from-tamtam-orange-600 to-tamtam-orange-700 hover:from-tamtam-orange-700 hover:to-tamtam-orange-800 text-white font-opensans font-medium rounded-full shadow-premium-hover transform transition-all hover:scale-105">
+          <ShoppingBag className="mr-2 h-5 w-5" /> Order Now
+        </Button>
+      </div>
+      
+      <main className="flex-grow pb-20">
+        {/* Featured Section */}
+        <MenuSection title="Featured Meats" description="Our premium selection of locally-sourced, ethically-raised meats">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredProducts.map((item) => (
+              <DishCard key={item.id} item={item} />
             ))}
           </div>
-        </section>
+        </MenuSection>
 
-        <section className="container-custom mb-20">
-          <h2 className="text-3xl font-greneette font-bold mb-8">Our Butchery</h2>
+        {/* Menu Categories */}
+        <section className="container-custom my-16">
+          <h2 className="text-3xl font-playfair font-bold mb-8 tracking-tight">Our Butchery</h2>
 
           <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="mb-8 flex justify-start gap-2 bg-transparent">
-              <TabsTrigger 
-                value="all" 
-                className="data-[state=active]:border-b-2 data-[state=active]:border-tamtam-green data-[state=active]:bg-transparent data-[state=active]:text-tamtam-black rounded-none px-1 py-2 font-medium"
-              >
-                All
-              </TabsTrigger>
-              <TabsTrigger 
-                value="beef" 
-                className="data-[state=active]:border-b-2 data-[state=active]:border-tamtam-green data-[state=active]:bg-transparent data-[state=active]:text-tamtam-black rounded-none px-1 py-2 font-medium"
-              >
-                Beef
-              </TabsTrigger>
-              <TabsTrigger 
-                value="goat" 
-                className="data-[state=active]:border-b-2 data-[state=active]:border-tamtam-green data-[state=active]:bg-transparent data-[state=active]:text-tamtam-black rounded-none px-1 py-2 font-medium"
-              >
-                Goat
-              </TabsTrigger>
-              <TabsTrigger 
-                value="chicken" 
-                className="data-[state=active]:border-b-2 data-[state=active]:border-tamtam-green data-[state=active]:bg-transparent data-[state=active]:text-tamtam-black rounded-none px-1 py-2 font-medium"
-              >
-                Chicken
-              </TabsTrigger>
-              <TabsTrigger 
-                value="lamb" 
-                className="data-[state=active]:border-b-2 data-[state=active]:border-tamtam-green data-[state=active]:bg-transparent data-[state=active]:text-tamtam-black rounded-none px-1 py-2 font-medium"
-              >
-                Lamb
-              </TabsTrigger>
-              <TabsTrigger 
-                value="game" 
-                className="data-[state=active]:border-b-2 data-[state=active]:border-tamtam-green data-[state=active]:bg-transparent data-[state=active]:text-tamtam-black rounded-none px-1 py-2 font-medium"
-              >
-                Game
-              </TabsTrigger>
-            </TabsList>
+            <div className="border-b border-gray-200 mb-8">
+              <TabsList className="flex justify-start -mb-px bg-transparent overflow-x-auto">
+                {['all', 'beef', 'goat', 'chicken', 'lamb', 'game'].map((category) => (
+                  <TabsTrigger 
+                    key={category}
+                    value={category} 
+                    className="uppercase tracking-wide font-opensans font-semibold px-6 py-3 border-b-2 border-transparent data-[state=active]:border-tamtam-orange-600 data-[state=active]:bg-transparent data-[state=active]:text-tamtam-orange-600 text-tamtam-gray-500 rounded-none hover:text-tamtam-black transition-colors"
+                  >
+                    {category === 'all' ? 'All Meats' : 
+                     category === 'beef' ? 'Beef' :
+                     category === 'goat' ? 'Goat' :
+                     category === 'chicken' ? 'Chicken' :
+                     category === 'lamb' ? 'Lamb' : 'Game'}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </div>
 
             <TabsContent value={activeTab} className="mt-0">
-              <div className="grid grid-cols-1 gap-8">
-                {filteredProducts.map((product) => (
-                  <div key={product.id} className="border-b border-gray-200 pb-6 last:border-0">
-                    <div className="flex justify-between items-start mb-2">
-                      <div>
-                        <h3 className="font-bold text-xl uppercase tracking-wide">{product.name}</h3>
-                        <p className="text-tamtam-gray">{product.description}</p>
-                        
-                        {product.origin && (
-                          <p className="text-sm text-tamtam-green mt-2">
-                            <span className="font-medium">Origin:</span> {product.origin}
-                          </p>
-                        )}
-                        
-                        {product.preparation && (
-                          <p className="text-sm text-tamtam-orange mt-1">
-                            <span className="font-medium">Preparation:</span> {product.preparation}
-                          </p>
-                        )}
-                      </div>
-                      <span className="font-medium">{product.price}</span>
-                    </div>
-                    
-                    <NutritionInfo 
-                      calories={product.calories}
-                      protein={product.protein}
-                      fat={product.fat}
-                    />
-                  </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredProducts.map((item) => (
+                  <DishCard key={item.id} item={item} />
                 ))}
               </div>
             </TabsContent>
           </Tabs>
         </section>
       </main>
+      
       <Footer />
     </div>
   );
