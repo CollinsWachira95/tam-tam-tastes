@@ -11,12 +11,11 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { Search, ShoppingCart, Menu, X } from "lucide-react";
+import { ShoppingCart, Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -199,27 +198,6 @@ const Navbar = () => {
 
           {/* Right side actions */}
           <div className="flex items-center space-x-4">
-            {/* Search Bar */}
-            <div className={`${isSearchOpen ? 'flex' : 'hidden md:flex'} items-center transition-all duration-300`}>
-              <div className={`search-bar ${isScrolled ? 'bg-white/90' : 'bg-white/20 backdrop-blur-sm'}`}>
-                <Search className={`h-4 w-4 mr-2 ${isScrolled ? 'text-tamtam-gray-700' : 'text-white'}`} />
-                <input 
-                  type="text" 
-                  placeholder="Search for dishes..." 
-                  className={`${isScrolled ? 'text-tamtam-gray-700 placeholder:text-tamtam-gray-400' : 'text-white placeholder:text-white/70'}`}
-                />
-              </div>
-            </div>
-            
-            {/* Search Icon (Mobile) */}
-            <button 
-              className="md:hidden"
-              onClick={() => setIsSearchOpen(!isSearchOpen)}
-              aria-label="Toggle search"
-            >
-              <Search className={`h-5 w-5 ${isScrolled ? 'text-tamtam-gray-700' : 'text-white'}`} />
-            </button>
-            
             {/* Cart */}
             <Link to="/cart">
               <button className="relative" aria-label="View cart">
@@ -298,6 +276,12 @@ const Navbar = () => {
               className="text-xl font-playfair font-medium p-3 border-b border-gray-100"
             >
               Locations
+            </Link>
+            <Link
+              to="/cart"
+              className="text-xl font-playfair font-medium p-3 border-b border-gray-100"
+            >
+              Cart
             </Link>
             <Link
               to="/menu"
