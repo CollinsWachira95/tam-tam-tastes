@@ -1,4 +1,3 @@
-
 import HeroCarousel from "@/components/HeroCarousel";
 import FeaturedDishes from "@/components/FeaturedDishes";
 import VideoSection from "@/components/VideoSection";
@@ -11,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import PremiumCta from "@/components/PremiumCta";
 
-const Index = () => {
+const Home = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -149,4 +148,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Home;
