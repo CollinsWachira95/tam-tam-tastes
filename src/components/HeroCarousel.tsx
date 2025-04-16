@@ -67,7 +67,7 @@ const HeroCarousel = () => {
       {/* Background pattern */}
       <div className="absolute inset-0 african-pattern opacity-30"></div>
       
-      <Carousel className="h-full" value={currentIndex} onValueChange={setCurrentIndex}>
+      <Carousel className="h-full">
         <CarouselContent className="h-full">
           {heroSlides.map((slide, index) => (
             <CarouselItem key={index} className="h-full">

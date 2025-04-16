@@ -1,3 +1,4 @@
+
 import {
   Dialog,
   DialogContent,
@@ -35,7 +36,7 @@ export function DishDetailModal({ dish, children }: DishDetailModalProps) {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[80vh] overflow-hidden">
+      <DialogContent className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[80vh] overflow-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 h-full">
           {/* Image Section */}
           <div className="relative overflow-hidden">
@@ -62,20 +63,20 @@ export function DishDetailModal({ dish, children }: DishDetailModalProps) {
                   Price: ${dish.price.toFixed(2)}
                 </p>
                 {dish.badges && dish.badges.length > 0 && (
-                  <div className="flex gap-2">
+                  <div className="flex flex-wrap gap-2">
                     {dish.badges.map((badge) => (
-                      <Badge key={badge}>{badge}</Badge>
+                      <Badge key={badge} variant="outline">{badge}</Badge>
                     ))}
                   </div>
                 )}
                 {dish.calories && (
-                  <p>Calories: {dish.calories}</p>
+                  <p className="text-sm">Calories: {dish.calories}</p>
                 )}
                 {dish.protein && (
-                  <p>Protein: {dish.protein}g</p>
+                  <p className="text-sm">Protein: {dish.protein}g</p>
                 )}
-                {dish.carbs && <p>Carbs: {dish.carbs}g</p>}
-                {dish.fat && <p>Fat: {dish.fat}g</p>}
+                {dish.carbs && <p className="text-sm">Carbs: {dish.carbs}g</p>}
+                {dish.fat && <p className="text-sm">Fat: {dish.fat}g</p>}
               </div>
             </div>
             <Button className="w-full mt-6 bg-tamtam-orange-600 hover:bg-tamtam-orange-700 text-white">
