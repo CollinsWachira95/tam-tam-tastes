@@ -10,6 +10,7 @@ import { ErrorBoundary } from "@/components/ui/error-boundary";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Home from "@/pages/Home";
+import ChatBot from "@/components/ChatBot";
 
 // Lazy loaded pages for performance optimization
 const Menu = lazy(() => import("@/pages/Menu"));
@@ -18,6 +19,7 @@ const About = lazy(() => import("@/pages/About"));
 const Catering = lazy(() => import("@/pages/Catering"));
 const Locations = lazy(() => import("@/pages/Locations"));
 const Cart = lazy(() => import("@/pages/Cart"));
+const Privacy = lazy(() => import("@/pages/Privacy"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 // ScrollToTop component to fix page scroll position when navigating
@@ -48,9 +50,11 @@ function App() {
             <Route path="/catering" element={<Catering />} />
             <Route path="/locations" element={<Locations />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/privacy" element={<Privacy />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
+        <ChatBot />
         <Footer />
       </ErrorBoundary>
     </Router>
