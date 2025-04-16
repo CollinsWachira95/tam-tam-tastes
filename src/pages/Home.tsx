@@ -38,8 +38,8 @@ const Home = () => {
       <PremiumCta 
         title="Experience Authentic Kenyan Fine Dining"
         description="Join us for an unforgettable culinary journey through Kenya's rich food traditions. Our expert chefs blend time-honored recipes with contemporary techniques to create dishes that delight all senses."
-        buttonText="Reserve Your Table"
-        buttonLink="/reservations"
+        buttonText="Order Online"
+        buttonLink="/menu"
         accentColor="gold"
       />
       
@@ -67,26 +67,24 @@ const Home = () => {
               Premium Meats
             </EnhancedBadge>
             
-            <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Visit Our Butchery
             </h2>
             
             <div className="h-1 w-24 bg-tamtam-green rounded-full mb-6"></div>
             
-            <p className="text-tamtam-gray mb-8 text-lg leading-relaxed font-opensans">
+            <p className="text-tamtam-gray mb-8 text-lg leading-relaxed">
               At Tam Tam Butchery, we offer premium cuts of meat sourced from local farmers and prepared by expert butchers. Our selection includes beef, goat, lamb, chicken, and other specialty meats prepared in traditional Kenyan styles. Visit one of our five butchery locations across Kenya for the freshest meats and personalized service.
             </p>
             
             <Link to="/butchery">
               <Button 
-                variant="green" 
+                variant="outline"
                 size="lg"
-                rounded="full" 
-                withAnimation 
-                trailingIcon={<ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1 duration-300" />}
                 className="group"
               >
                 Explore Our Butchery
+                <ArrowRight className="h-5 w-5 ml-2 transition-transform group-hover:translate-x-1 duration-300" />
               </Button>
             </Link>
           </div>
@@ -107,7 +105,7 @@ const Home = () => {
               {/* Enhanced overlay with gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
                 <div className="p-6">
-                  <EnhancedBadge variant="white" size="sm" className="text-tamtam-black">
+                  <EnhancedBadge variant="outline" size="sm" className="text-white border-white">
                     5 locations across Kenya
                   </EnhancedBadge>
                 </div>
@@ -133,22 +131,20 @@ const Home = () => {
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-tamtam-orange-800/20 rounded-full blur-3xl"></div>
         
         <div className="container-custom text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-playfair font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Ready to Order?
           </h2>
-          <p className="text-white/90 max-w-2xl mx-auto mb-8 font-opensans">
+          <p className="text-white/90 max-w-2xl mx-auto mb-8">
             Skip the wait! Order online for pickup or delivery and enjoy authentic Kenyan cuisine from the comfort of your home.
           </p>
           <Link to="/menu">
             <Button 
-              variant="white" 
-              size="xl" 
-              rounded="full"
-              withAnimation 
-              trailingIcon={<ArrowRight className="transition-transform group-hover:translate-x-1 duration-300" />}
-              className="group"
+              variant="outline"
+              size="lg" 
+              className="bg-white text-tamtam-orange-600 border-white hover:bg-white/90 hover:text-tamtam-orange-700 group"
             >
               Order Now
+              <ArrowRight className="ml-2 transition-transform group-hover:translate-x-1 duration-300" />
             </Button>
           </Link>
         </div>

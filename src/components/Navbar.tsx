@@ -1,20 +1,13 @@
 
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ShoppingCart, User } from "lucide-react";
+import { Menu, X, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/contexts/AuthContext";
-import { 
-  Popover, 
-  PopoverContent, 
-  PopoverTrigger
-} from "@/components/ui/popover";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
-  const { isAuthenticated, user, logout } = useAuth();
 
   // Handle scroll event to add background to navbar when scrolled
   useEffect(() => {
@@ -45,7 +38,8 @@ const Navbar = () => {
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <span className="text-2xl font-bold text-tamtam-orange-600 font-playfair">
+            <img src="/logo.png" alt="Tam Tam" className="h-10 mr-2" />
+            <span className="text-2xl font-bold text-tamtam-orange-600">
               Tam Tam
             </span>
           </Link>
@@ -54,117 +48,56 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-6">
             <Link
               to="/"
-              className={`nav-link ${
-                location.pathname === "/" ? "text-tamtam-orange-600" : ""
+              className={`nav-link font-semibold ${
+                location.pathname === "/" ? "text-tamtam-orange-600" : "text-tamtam-black"
               }`}
             >
               Home
             </Link>
             <Link
               to="/menu"
-              className={`nav-link ${
-                location.pathname === "/menu" ? "text-tamtam-orange-600" : ""
+              className={`nav-link font-semibold ${
+                location.pathname === "/menu" ? "text-tamtam-orange-600" : "text-tamtam-black"
               }`}
             >
               Menu
             </Link>
             <Link
               to="/butchery"
-              className={`nav-link ${
-                location.pathname === "/butchery" ? "text-tamtam-orange-600" : ""
+              className={`nav-link font-semibold ${
+                location.pathname === "/butchery" ? "text-tamtam-orange-600" : "text-tamtam-black"
               }`}
             >
               Butchery
             </Link>
             <Link
               to="/about"
-              className={`nav-link ${
-                location.pathname === "/about" ? "text-tamtam-orange-600" : ""
+              className={`nav-link font-semibold ${
+                location.pathname === "/about" ? "text-tamtam-orange-600" : "text-tamtam-black"
               }`}
             >
               About
             </Link>
             <Link
               to="/catering"
-              className={`nav-link ${
-                location.pathname === "/catering" ? "text-tamtam-orange-600" : ""
+              className={`nav-link font-semibold ${
+                location.pathname === "/catering" ? "text-tamtam-orange-600" : "text-tamtam-black"
               }`}
             >
               Catering
             </Link>
             <Link
               to="/locations"
-              className={`nav-link ${
-                location.pathname === "/locations" ? "text-tamtam-orange-600" : ""
+              className={`nav-link font-semibold ${
+                location.pathname === "/locations" ? "text-tamtam-orange-600" : "text-tamtam-black"
               }`}
             >
               Locations
             </Link>
-            <Link
-              to="/reservations"
-              className={`nav-link ${
-                location.pathname === "/reservations" ? "text-tamtam-orange-600" : ""
-              }`}
-            >
-              Reservations
-            </Link>
           </div>
 
-          {/* Right Side - Auth and Cart */}
+          {/* Right Side - Cart */}
           <div className="hidden md:flex items-center space-x-4">
-            {isAuthenticated ? (
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant="outline" className="rounded-full w-10 h-10 p-0">
-                    <span className="font-semibold text-tamtam-orange-600">
-                      {user?.name?.charAt(0) || "U"}
-                    </span>
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-56" align="end">
-                  <div className="grid gap-4">
-                    <div className="font-medium">{user?.name}</div>
-                    <hr />
-                    <Link 
-                      to="/profile" 
-                      className="flex items-center gap-2 text-sm hover:text-tamtam-orange-600"
-                    >
-                      <User size={14} /> Your Profile
-                    </Link>
-                    <Link 
-                      to="/reservations" 
-                      className="flex items-center gap-2 text-sm hover:text-tamtam-orange-600"
-                    >
-                      Make a Reservation
-                    </Link>
-                    <hr />
-                    <button
-                      onClick={logout} 
-                      className="flex items-center gap-2 text-sm hover:text-tamtam-orange-600"
-                    >
-                      Sign Out
-                    </button>
-                  </div>
-                </PopoverContent>
-              </Popover>
-            ) : (
-              <div className="flex items-center space-x-2">
-                <Link to="/login">
-                  <Button variant="outline" size="sm">
-                    Sign In
-                  </Button>
-                </Link>
-                <Link to="/register">
-                  <Button 
-                    size="sm" 
-                    className="bg-tamtam-orange-600 hover:bg-tamtam-orange-700 text-white"
-                  >
-                    Sign Up
-                  </Button>
-                </Link>
-              </div>
-            )}
-            
             <Link to="/cart">
               <Button variant="ghost" className="relative p-2">
                 <ShoppingCart size={20} />
@@ -204,64 +137,24 @@ const Navbar = () => {
         }`}
       >
         <div className="container-custom mx-auto px-4 space-y-4 py-2">
-          <Link to="/" className="mobile-nav-link block">
+          <Link to="/" className="mobile-nav-link block font-semibold">
             Home
           </Link>
-          <Link to="/menu" className="mobile-nav-link block">
+          <Link to="/menu" className="mobile-nav-link block font-semibold">
             Menu
           </Link>
-          <Link to="/butchery" className="mobile-nav-link block">
+          <Link to="/butchery" className="mobile-nav-link block font-semibold">
             Butchery
           </Link>
-          <Link to="/about" className="mobile-nav-link block">
+          <Link to="/about" className="mobile-nav-link block font-semibold">
             About
           </Link>
-          <Link to="/catering" className="mobile-nav-link block">
+          <Link to="/catering" className="mobile-nav-link block font-semibold">
             Catering
           </Link>
-          <Link to="/locations" className="mobile-nav-link block">
+          <Link to="/locations" className="mobile-nav-link block font-semibold">
             Locations
           </Link>
-          <Link to="/reservations" className="mobile-nav-link block">
-            Reservations
-          </Link>
-          
-          <div className="pt-4 border-t border-gray-200">
-            {isAuthenticated ? (
-              <div className="space-y-3">
-                <div className="flex items-center">
-                  <div className="w-8 h-8 rounded-full bg-tamtam-orange-200 flex items-center justify-center mr-3">
-                    <span className="font-semibold text-tamtam-orange-600">
-                      {user?.name?.charAt(0) || "U"}
-                    </span>
-                  </div>
-                  <div className="font-medium">{user?.name}</div>
-                </div>
-                <Link to="/profile" className="mobile-nav-link block">
-                  Your Profile
-                </Link>
-                <button
-                  onClick={logout} 
-                  className="mobile-nav-link block w-full text-left"
-                >
-                  Sign Out
-                </button>
-              </div>
-            ) : (
-              <div className="flex flex-col space-y-2">
-                <Link to="/login">
-                  <Button variant="outline" className="w-full">
-                    Sign In
-                  </Button>
-                </Link>
-                <Link to="/register">
-                  <Button className="w-full bg-tamtam-orange-600 hover:bg-tamtam-orange-700 text-white">
-                    Sign Up
-                  </Button>
-                </Link>
-              </div>
-            )}
-          </div>
         </div>
       </div>
     </nav>

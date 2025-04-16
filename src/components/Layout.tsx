@@ -23,11 +23,9 @@ export default function Layout({
       withFullHeight && "min-h-screen flex flex-col",
       withPadding && "pt-16 md:pt-20" // Adjust based on your navbar height
     )}>
-      <Navbar />
       <main className="flex-grow">
         {children}
       </main>
-      <Footer />
     </div>
   );
 
@@ -136,19 +134,19 @@ export function PageHeader({
       className
     )}>
       {badge && (
-        <span className="inline-block px-4 py-1 bg-tamtam-orange/10 text-tamtam-orange rounded-full text-sm font-medium mb-5 font-neutra">
+        <span className="inline-block px-4 py-1 bg-tamtam-orange/10 text-tamtam-orange rounded-full text-sm font-medium mb-5">
           {badge}
         </span>
       )}
       
       {subtitle && (
-        <h2 className="text-xl md:text-2xl font-neutra text-tamtam-gray-800 mb-2">
+        <h2 className="text-xl md:text-2xl text-tamtam-gray-800 mb-2">
           {subtitle}
         </h2>
       )}
       
       <h1 className={cn(
-        "font-playfair font-bold mb-6 text-tamtam-black leading-tight tracking-tight",
+        "font-bold mb-6 text-tamtam-black leading-tight tracking-tight",
         titleSizeClasses[titleSize]
       )}>
         {title}
@@ -157,7 +155,7 @@ export function PageHeader({
       {description && (
         <>
           <div className="h-1 w-24 bg-tamtam-orange rounded-full my-6"></div>
-          <p className="text-tamtam-gray text-lg leading-relaxed font-opensans">
+          <p className="text-tamtam-gray text-lg leading-relaxed">
             {description}
           </p>
         </>

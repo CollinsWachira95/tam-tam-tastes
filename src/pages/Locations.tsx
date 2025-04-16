@@ -1,6 +1,6 @@
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Layout from "@/components/Layout";
+import { PageSection, PageHeader } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Phone, Clock, MapPin, Navigation } from "lucide-react";
@@ -89,99 +89,95 @@ const locations: Location[] = [
 
 const Locations = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
+    <Layout>
       <main className="flex-grow">
-        <div className="bg-tamtam-light py-16">
-          <div className="container-custom text-center">
-            <h1 className="text-4xl md:text-5xl font-neutra font-bold mb-6">Our Locations & Contact</h1>
-            <p className="text-tamtam-gray max-w-2xl mx-auto font-neutra">
-              Find a Tam Tam restaurant or butchery near you and experience authentic Kenyan cuisine.
-            </p>
-          </div>
-        </div>
+        <PageSection background="light" spacing="md">
+          <PageHeader
+            title="Our Locations & Contact"
+            description="Find a Tam Tam restaurant or butchery near you and experience authentic Kenyan cuisine."
+            align="center"
+          />
+        </PageSection>
 
-        <section className="section bg-white">
-          <div className="container-custom">
-            <div className="text-center mb-12">
-              <span className="inline-block px-4 py-1 bg-tamtam-orange/10 text-tamtam-orange rounded-full text-sm font-medium mb-4 font-neutra">
-                Find Us
-              </span>
-              <h2 className="text-3xl md:text-4xl font-neutra font-bold mb-2 relative inline-block">
-                Our Locations
-                <span className="absolute -right-6 top-0 text-tamtam-orange">•</span>
-              </h2>
-              <div className="mx-auto w-24 h-1 bg-tamtam-green/50 rounded-full my-6"></div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {locations.map((location) => (
-                <Card key={location.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                  <div className={`h-24 flex items-center justify-center ${
-                    location.type === "Restaurant" 
-                      ? "bg-gradient-to-br from-tamtam-orange/20 to-tamtam-green/20"
-                      : "bg-gradient-to-br from-tamtam-green/20 to-tamtam-orange/20"
-                  }`}>
-                    <span className="inline-block px-3 py-1 bg-white/80 rounded-full text-sm font-medium mb-2 font-neutra">
-                      {location.type}
-                    </span>
-                    <h3 className="font-neutra text-2xl text-tamtam-black ml-3">{location.name}</h3>
-                  </div>
-                  <CardContent className="p-6">
-                    <div className="space-y-4">
-                      <div className="flex items-start space-x-3">
-                        <MapPin className="text-tamtam-orange h-5 w-5 mt-1" />
-                        <p className="text-tamtam-gray font-neutra">{location.address}</p>
-                      </div>
-                      <div className="flex items-start space-x-3">
-                        <Phone className="text-tamtam-orange h-5 w-5 mt-1" />
-                        <p className="text-tamtam-gray font-neutra">{location.phone}</p>
-                      </div>
-                      <div className="flex items-start space-x-3">
-                        <Clock className="text-tamtam-orange h-5 w-5 mt-1" />
-                        <div>
-                          <p className="text-tamtam-gray font-neutra">Mon-Fri: {location.hours.weekdays}</p>
-                          <p className="text-tamtam-gray font-neutra">Sat-Sun: {location.hours.weekends}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="mt-6 flex gap-3">
-                      {location.type === "Restaurant" ? (
-                        <Button className="bg-tamtam-green hover:bg-tamtam-green/90 text-white flex-1 font-neutra">
-                          Order Online
-                        </Button>
-                      ) : (
-                        <Button className="bg-tamtam-green hover:bg-tamtam-green/90 text-white flex-1 font-neutra">
-                          Shop Online
-                        </Button>
-                      )}
-                      <Button variant="outline" className="border-tamtam-orange text-tamtam-orange hover:bg-tamtam-orange hover:text-white flex-1 font-neutra">
-                        <Navigation className="mr-2 h-4 w-4" /> Directions
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+        <PageSection background="white">
+          <div className="text-center mb-12">
+            <span className="inline-block px-4 py-1 bg-tamtam-orange/10 text-tamtam-orange rounded-full text-sm font-medium mb-4">
+              Find Us
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-2 relative inline-block">
+              Our Locations
+              <span className="absolute -right-6 top-0 text-tamtam-orange">•</span>
+            </h2>
+            <div className="mx-auto w-24 h-1 bg-tamtam-green/50 rounded-full my-6"></div>
           </div>
-        </section>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {locations.map((location) => (
+              <Card key={location.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <div className={`h-24 flex items-center justify-center ${
+                  location.type === "Restaurant" 
+                    ? "bg-gradient-to-br from-tamtam-orange/20 to-tamtam-green/20"
+                    : "bg-gradient-to-br from-tamtam-green/20 to-tamtam-orange/20"
+                }`}>
+                  <span className="inline-block px-3 py-1 bg-white/80 rounded-full text-sm font-medium mb-2">
+                    {location.type}
+                  </span>
+                  <h3 className="text-2xl text-tamtam-black ml-3 font-semibold">{location.name}</h3>
+                </div>
+                <CardContent className="p-6">
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                      <MapPin className="text-tamtam-orange h-5 w-5 mt-1" />
+                      <p className="text-tamtam-gray">{location.address}</p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <Phone className="text-tamtam-orange h-5 w-5 mt-1" />
+                      <p className="text-tamtam-gray">{location.phone}</p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <Clock className="text-tamtam-orange h-5 w-5 mt-1" />
+                      <div>
+                        <p className="text-tamtam-gray">Mon-Fri: {location.hours.weekdays}</p>
+                        <p className="text-tamtam-gray">Sat-Sun: {location.hours.weekends}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-6 flex gap-3">
+                    {location.type === "Restaurant" ? (
+                      <Button className="bg-tamtam-green hover:bg-tamtam-green/90 text-white flex-1">
+                        Order Online
+                      </Button>
+                    ) : (
+                      <Button className="bg-tamtam-green hover:bg-tamtam-green/90 text-white flex-1">
+                        Shop Online
+                      </Button>
+                    )}
+                    <Button variant="outline" className="border-tamtam-orange text-tamtam-orange hover:bg-tamtam-orange hover:text-white flex-1">
+                      <Navigation className="mr-2 h-4 w-4" /> Directions
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </PageSection>
         
         {/* Contact Form Section */}
-        <section className="section bg-tamtam-light relative">
+        <PageSection background="light" className="relative">
           {/* Decorative background pattern */}
           <div className="absolute inset-0 kenyan-texture opacity-50"></div>
           
-          <div className="container-custom relative z-10">
+          <div className="relative z-10">
             <div className="text-center mb-12">
-              <span className="inline-block px-4 py-1 bg-tamtam-orange/10 text-tamtam-orange rounded-full text-sm font-medium mb-4 font-neutra">
+              <span className="inline-block px-4 py-1 bg-tamtam-orange/10 text-tamtam-orange rounded-full text-sm font-medium mb-4">
                 Get In Touch
               </span>
-              <h2 className="text-3xl md:text-4xl font-neutra font-bold mb-2 relative inline-block">
+              <h2 className="text-3xl md:text-4xl font-bold mb-2 relative inline-block">
                 Contact Us
                 <span className="absolute -right-6 top-0 text-tamtam-orange">•</span>
               </h2>
               <div className="mx-auto w-24 h-1 bg-tamtam-green/50 rounded-full my-6"></div>
-              <p className="text-tamtam-gray max-w-2xl mx-auto font-neutra">
+              <p className="text-tamtam-gray max-w-2xl mx-auto">
                 Have questions or want to place a large order? Reach out to us and we'll get back to you as soon as possible.
               </p>
             </div>
@@ -196,8 +192,8 @@ const Locations = () => {
                       <Phone className="h-6 w-6 text-tamtam-orange" />
                     </div>
                     <div>
-                      <h3 className="font-neutra font-semibold text-tamtam-black mb-1">Call Us</h3>
-                      <p className="text-tamtam-gray font-neutra">+254 123 456 789</p>
+                      <h3 className="font-semibold text-tamtam-black mb-1">Call Us</h3>
+                      <p className="text-tamtam-gray">+254 123 456 789</p>
                     </div>
                   </div>
                 </div>
@@ -212,8 +208,8 @@ const Locations = () => {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-neutra font-semibold text-tamtam-black mb-1">Email Us</h3>
-                      <p className="text-tamtam-gray font-neutra">info@tamtam.com</p>
+                      <h3 className="font-semibold text-tamtam-black mb-1">Email Us</h3>
+                      <p className="text-tamtam-gray">info@tamtam.com</p>
                     </div>
                   </div>
                 </div>
@@ -225,9 +221,9 @@ const Locations = () => {
                       <Clock className="h-6 w-6 text-tamtam-orange" />
                     </div>
                     <div>
-                      <h3 className="font-neutra font-semibold text-tamtam-black mb-1">Opening Hours</h3>
-                      <p className="text-tamtam-gray font-neutra">Mon-Fri: 11:00 AM - 10:00 PM</p>
-                      <p className="text-tamtam-gray font-neutra">Sat-Sun: 10:00 AM - 11:00 PM</p>
+                      <h3 className="font-semibold text-tamtam-black mb-1">Opening Hours</h3>
+                      <p className="text-tamtam-gray">Mon-Fri: 11:00 AM - 10:00 PM</p>
+                      <p className="text-tamtam-gray">Sat-Sun: 10:00 AM - 11:00 PM</p>
                     </div>
                   </div>
                 </div>
@@ -236,7 +232,7 @@ const Locations = () => {
                 <div className="relative hidden md:block">
                   <div className="kenyan-pattern p-8 rounded-lg bg-white opacity-30"></div>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-4xl font-neutra text-tamtam-orange/70">Karibu!</span>
+                    <span className="text-4xl text-tamtam-orange/70">Karibu!</span>
                   </div>
                 </div>
               </div>
@@ -247,10 +243,9 @@ const Locations = () => {
               </div>
             </div>
           </div>
-        </section>
+        </PageSection>
       </main>
-      <Footer />
-    </div>
+    </Layout>
   );
 };
 

@@ -68,7 +68,7 @@
   }
 
   body {
-    @apply bg-tamtam-light text-tamtam-gray-700 font-opensans;
+    @apply bg-tamtam-light text-tamtam-gray-700;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -79,7 +79,7 @@
   
   /* Typography hierarchy */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-playfair font-bold tracking-tight text-tamtam-black;
+    @apply font-bold tracking-tight text-tamtam-black;
     letter-spacing: -0.025em;
   }
   
@@ -115,12 +115,12 @@
   
   /* Button text styling */
   button, .btn, .btn-premium, .btn-cta, .btn-outline-premium, [type="button"], [type="submit"] {
-    @apply font-montserrat font-bold;
+    @apply font-semibold;
   }
   
   /* Small text */
   .text-sm, small, .small-text {
-    @apply font-opensans;
+    @apply font-normal;
   }
   
   /* Refined underline for headings */
@@ -236,30 +236,30 @@
 
   /* Card styles */
   .card-premium {
-    @apply bg-white rounded-xl shadow-premium p-6 border border-gray-100/50 hover:shadow-hover transition-all duration-500;
+    @apply bg-white rounded-xl shadow-md p-6 border border-gray-100/50 hover:shadow-lg transition-all duration-300;
   }
 
   .card-elegant {
-    @apply bg-white rounded-xl shadow-elegant p-6 backdrop-blur-sm bg-white/95 border border-tamtam-orange-100 hover:shadow-hover transition-all duration-500;
+    @apply bg-white rounded-xl shadow-md p-6 backdrop-blur-sm bg-white/95 border border-tamtam-orange-100 hover:shadow-lg transition-all duration-300;
   }
 
   .card-featured {
-    @apply rounded-2xl shadow-elegant overflow-hidden transition-all duration-500;
+    @apply rounded-2xl shadow-md overflow-hidden transition-all duration-300;
     transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
   }
 
   .card-featured:hover {
-    @apply shadow-intense;
+    @apply shadow-lg;
     transform: perspective(1000px) rotateX(2deg) rotateY(0deg) scale3d(1.02, 1.02, 1.02);
   }
 
   /* Enhanced buttons */
   .btn-premium {
-    @apply relative overflow-hidden rounded-full bg-gradient-to-r from-tamtam-orange-600 to-tamtam-orange-700 text-white px-6 py-3 font-montserrat font-medium text-base transform transition-all duration-300 shadow-button;
+    @apply relative overflow-hidden rounded-full bg-gradient-to-r from-tamtam-orange-600 to-tamtam-orange-700 text-white px-6 py-3 font-medium text-base transform transition-all duration-300 shadow-md;
   }
 
   .btn-premium:hover {
-    @apply shadow-hover -translate-y-0.5 from-tamtam-orange-500 to-tamtam-orange-600;
+    @apply shadow-lg -translate-y-0.5 from-tamtam-orange-500 to-tamtam-orange-600;
   }
 
   .btn-premium::after {
@@ -272,7 +272,7 @@
   }
 
   .btn-outline-premium {
-    @apply relative overflow-hidden rounded-full bg-transparent text-tamtam-orange-600 px-6 py-3 font-montserrat font-medium text-base transform transition-all duration-300 border border-tamtam-orange-600;
+    @apply relative overflow-hidden rounded-full bg-transparent text-tamtam-orange-600 px-6 py-3 font-medium text-base transform transition-all duration-300 border border-tamtam-orange-600;
   }
 
   .btn-outline-premium:hover {
@@ -281,16 +281,16 @@
 
   /* CTA button */
   .btn-cta {
-    @apply relative overflow-hidden rounded-full bg-gradient-to-r from-tamtam-orange-600 to-tamtam-brown-600 text-white px-8 py-4 font-montserrat font-bold text-lg transform transition-all duration-500 shadow-button;
+    @apply relative overflow-hidden rounded-full bg-gradient-to-r from-tamtam-orange-600 to-tamtam-brown-600 text-white px-8 py-4 font-bold text-lg transform transition-all duration-300 shadow-md;
   }
 
   .btn-cta:hover {
-    @apply shadow-hover -translate-y-1 from-tamtam-orange-500 to-tamtam-brown-500;
+    @apply shadow-lg -translate-y-1 from-tamtam-orange-500 to-tamtam-brown-500;
   }
 
   .btn-cta::before {
     content: '';
-    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-1000;
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-300;
     background-size: 200% 100%;
   }
 
@@ -301,7 +301,7 @@
 
   /* Menu styling */
   .menu-category-tab {
-    @apply uppercase tracking-wide font-montserrat font-semibold px-6 py-3 border-b-2 border-transparent hover:text-tamtam-orange-600 transition-colors;
+    @apply uppercase tracking-wide font-semibold px-6 py-3 border-b-2 border-transparent hover:text-tamtam-orange-600 transition-colors;
   }
 
   .menu-category-tab.active {
@@ -315,14 +315,14 @@
 
   /* Badge styling */
   .fancy-badge {
-    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-montserrat font-medium;
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium;
     background: linear-gradient(to right, rgba(255, 111, 0, 0.1), rgba(255, 111, 0, 0.2));
     border: 1px solid rgba(255, 111, 0, 0.2);
   }
   
   /* Menu item badge */
   .menu-badge {
-    @apply inline-block px-2 py-0.5 bg-white/90 text-xs font-montserrat font-medium rounded-full shadow-sm;
+    @apply inline-block px-2 py-0.5 bg-white/90 text-xs font-medium rounded-full shadow-sm;
   }
   
   /* Navigation link */
@@ -393,5 +393,19 @@
   
   .show-on-mobile {
     @apply block md:hidden;
+  }
+  
+  /* Animation for "Order Now" button */
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .animate-bounce-slow {
+    animation: bounce-slow 3s ease-in-out infinite;
   }
 }

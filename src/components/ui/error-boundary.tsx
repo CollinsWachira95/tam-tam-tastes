@@ -1,98 +1,62 @@
 
 import React, { Component, ErrorInfo, ReactNode } from "react";
-import { AlertCircle, RefreshCw, ArrowLeft, Home } from "lucide-react";
+import { AlertTriangle, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-interface Props {
+interface ErrorBoundaryProps {
   children: ReactNode;
   fallback?: ReactNode;
-  onReset?: () => void;
-  withReturnHome?: boolean;
-  withBackButton?: boolean;
 }
 
-interface State {
+interface ErrorBoundaryState {
   hasError: boolean;
   error: Error | null;
-  errorInfo: ErrorInfo | null;
 }
 
-export class ErrorBoundary extends Component<Props, State> {
-  public state: State = {
-    hasError: false,
-    error: null,
-    errorInfo: null,
-  };
+export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
 
-  public static getDerivedStateFromError(error: Error): Partial<State> {
+  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
     return { hasError: true, error };
   }
 
-  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error("Uncaught error:", error, errorInfo);
-    this.setState({ errorInfo });
+  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+    console.error("Error caught by ErrorBoundary:", error, errorInfo);
   }
 
-  private handleReset = () => {
-    const { onReset } = this.props;
-    
-    this.setState({ 
-      hasError: false, 
-      error: null,
-      errorInfo: null 
-    });
-    
-    if (onReset) {
-      onReset();
-    }
-  };
-
-  public render() {
-    const { hasError, error } = this.state;
-    const { children, fallback, withReturnHome, withBackButton } = this.props;
-
-    if (hasError) {
-      if (fallback) {
-        return fallback;
+  render(): ReactNode {
+    if (this.state.hasError) {
+      if (this.props.fallback) {
+        return this.props.fallback;
       }
-      
+
       return (
-        <div className="flex flex-col items-center justify-center min-h-[300px] p-8 text-center rounded-lg border border-red-200 bg-red-50 animate-fade-in">
-          <AlertCircle className="h-12 w-12 text-red-500 mb-4" />
-          <h2 className="text-2xl font-bold text-red-700 mb-2">Something went wrong</h2>
-          <p className="text-red-600 mb-6 max-w-md">
-            {error?.message || "An unexpected error occurred while rendering this component."}
+        <div className="min-h-[400px] flex flex-col items-center justify-center p-6 text-center">
+          <div className="bg-red-50 p-4 rounded-full mb-6">
+            <AlertTriangle className="h-12 w-12 text-red-500" />
+          </div>
+          <h2 className="text-2xl font-semibold mb-2">Something went wrong</h2>
+          <p className="text-muted-foreground mb-6 max-w-md">
+            {this.state.error?.message || "An unexpected error occurred"}
           </p>
-          <div className="flex flex-wrap gap-3 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4">
             <Button 
-              variant="outline"
-              onClick={this.handleReset}
+              onClick={() => window.location.reload()}
               className="flex items-center gap-2"
             >
-              <RefreshCw className="h-4 w-4" /> Try Again
+              <RefreshCw className="h-4 w-4" /> Refresh page
             </Button>
-            
-            {withBackButton && (
-              <Button 
-                variant="outline"
-                onClick={() => window.history.back()}
-                className="flex items-center gap-2"
-              >
-                <ArrowLeft className="h-4 w-4" /> Go Back
-              </Button>
-            )}
-            
-            {withReturnHome && (
-              <Button 
-                as={Link}
-                to="/"
-                variant="outline"
-                className="flex items-center gap-2"
-              >
-                <Home className="h-4 w-4" /> Return Home
-              </Button>
-            )}
+            <Button 
+              variant="outline"
+              asChild
+              className="flex items-center gap-2"
+            >
+              <Link to="/">Return to home</Link>
+            </Button>
           </div>
         </div>
       );
@@ -102,69 +66,11 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 }
 
-export function ErrorFallback({ 
-  error, 
-  resetErrorBoundary, 
-  withReturnHome = true,
-  withBackButton = true,
-}: { 
-  error: Error;
-  resetErrorBoundary: () => void;
-  withReturnHome?: boolean;
-  withBackButton?: boolean;
-}) {
+export function InlineError({ message }: { message: string }) {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[300px] p-8 text-center rounded-lg border border-red-200 bg-red-50 animate-fade-in">
-      <AlertCircle className="h-12 w-12 text-red-500 mb-4" />
-      <h2 className="text-2xl font-bold text-red-700 mb-2">Something went wrong</h2>
-      <p className="text-red-600 mb-6 max-w-md">
-        {error?.message || "An unexpected error occurred while rendering this component."}
-      </p>
-      <div className="flex flex-wrap gap-3 justify-center">
-        <Button 
-          variant="outline"
-          onClick={resetErrorBoundary}
-          className="flex items-center gap-2"
-        >
-          <RefreshCw className="h-4 w-4" /> Try Again
-        </Button>
-        
-        {withBackButton && (
-          <Button 
-            variant="outline"
-            onClick={() => window.history.back()}
-            className="flex items-center gap-2"
-          >
-            <ArrowLeft className="h-4 w-4" /> Go Back
-          </Button>
-        )}
-        
-        {withReturnHome && (
-          <Link to="/">
-            <Button 
-              variant="outline"
-              className="flex items-center gap-2"
-            >
-              <Home className="h-4 w-4" /> Return Home
-            </Button>
-          </Link>
-        )}
-      </div>
-    </div>
-  );
-}
-
-// Component for inline error messages
-export function InlineError({ message, className }: { message: string; className?: string }) {
-  return (
-    <div className={cn("flex items-center gap-2 text-red-600 text-sm mt-1", className)}>
-      <AlertCircle className="h-4 w-4" /> 
+    <div className="text-red-500 text-sm mt-1 flex items-center gap-1">
+      <AlertTriangle className="h-3 w-3" />
       <span>{message}</span>
     </div>
   );
-}
-
-// Helper function to combine classNames
-function cn(...classes: (string | undefined)[]) {
-  return classes.filter(Boolean).join(" ");
 }

@@ -1,12 +1,10 @@
 
-import React, { useState } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import React from "react";
+import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import CateringHero from "@/components/CateringHero";
 import CateringPackages from "@/components/CateringPackages";
-import CateringGallery from "@/components/CateringGallery";
 import CateringForm from "@/components/CateringForm";
 
 interface CateringMenuItem {
@@ -105,21 +103,9 @@ const cateringItems: CateringMenuItem[] = [
   }
 ];
 
-const galleryImages = [
-  "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3",
-  "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3",
-  "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3",
-  "https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-4.0.3",
-  "https://images.unsplash.com/photo-1493962853295-0fd70327578a?ixlib=rb-4.0.3",
-  "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?ixlib=rb-4.0.3",
-  "https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-4.0.3",
-  "https://images.unsplash.com/photo-1603532648955-039310d9ed75?ixlib=rb-4.0.3"
-];
-
 const Catering = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
+    <Layout>
       <main className="flex-grow">
         {/* Hero Video Section */}
         <CateringHero />
@@ -127,23 +113,19 @@ const Catering = () => {
         {/* Catering Options */}
         <CateringPackages cateringItems={cateringItems} />
 
-        {/* Gallery Section */}
-        <CateringGallery galleryImages={galleryImages} />
-
         {/* Inquiry Form Section */}
         <CateringForm />
 
         {/* Floating Order Now Button */}
         <div className="fixed bottom-8 right-8 z-50 animate-bounce-slow">
           <Link to="/menu">
-            <Button className="bg-tamtam-orange hover:bg-tamtam-orange/90 text-white px-6 py-6 h-auto rounded-full font-neutra text-base shadow-premium-hover">
+            <Button className="bg-tamtam-orange hover:bg-tamtam-orange/90 text-white px-6 py-6 h-auto rounded-full font-semibold text-base shadow-lg">
               Order Now
             </Button>
           </Link>
         </div>
       </main>
-      <Footer />
-    </div>
+    </Layout>
   );
 };
 

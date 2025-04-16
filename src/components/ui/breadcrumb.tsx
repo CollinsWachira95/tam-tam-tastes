@@ -6,11 +6,11 @@ import { cn } from "@/lib/utils";
 
 export interface BreadcrumbItemProps extends React.HTMLAttributes<HTMLLIElement> {
   href?: string;
-  isCurrent?: boolean;
+  current?: boolean;
 }
 
 const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProps>(
-  ({ className, href, isCurrent = false, children, ...props }, ref) => {
+  ({ className, href, current = false, children, ...props }, ref) => {
     const Comp = href ? Link : "span";
     return (
       <li
@@ -23,7 +23,7 @@ const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProps>(
             to={href}
             className={cn(
               "text-sm font-medium hover:text-tamtam-orange-600 transition-colors",
-              isCurrent ? "text-tamtam-orange-600 font-semibold pointer-events-none" : "text-muted-foreground"
+              current ? "text-tamtam-orange-600 font-semibold pointer-events-none" : "text-muted-foreground"
             )}
           >
             {children}
@@ -32,7 +32,7 @@ const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProps>(
           <span
             className={cn(
               "text-sm font-medium",
-              isCurrent ? "text-tamtam-orange-600 font-semibold" : "text-muted-foreground"
+              current ? "text-tamtam-orange-600 font-semibold" : "text-muted-foreground"
             )}
           >
             {children}
@@ -55,7 +55,7 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
     const enhancedChildren = childrenArray.map((child, index) => {
       if (React.isValidElement(child) && child.type === BreadcrumbItem) {
         return React.cloneElement(child, {
-          isCurrent: index === childrenArray.length - 1,
+          current: index === childrenArray.length - 1,
           key: index,
         });
       }
