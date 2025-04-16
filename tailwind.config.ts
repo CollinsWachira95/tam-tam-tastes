@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -139,10 +140,11 @@ export default {
 				'2xl': '1.5rem',
 			},
 			fontFamily: {
-				// Updated font family definitions
+				// Updated font family definitions with Sweet Sans
+				'sweetsans': ['Sweet Sans', 'sans-serif'],
 				'playfair': ['Playfair Display', 'serif'],
 				'opensans': ['Open Sans', 'sans-serif'],
-				'montserrat': ['Montserrat', 'sans-serif'], // Added for CTAs and buttons
+				'montserrat': ['Montserrat', 'sans-serif'],
 				'neutra': ['Neutra Text', 'sans-serif'],
 			},
 			boxShadow: {

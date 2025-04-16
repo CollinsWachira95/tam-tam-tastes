@@ -58,7 +58,7 @@
   }
 
   * {
-    @apply border-border;
+    @apply border-border font-sweetsans;
   }
 
   html {
@@ -68,7 +68,7 @@
   }
 
   body {
-    @apply bg-tamtam-light text-tamtam-gray-700;
+    @apply bg-tamtam-light text-tamtam-gray-700 font-sweetsans;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -79,7 +79,7 @@
   
   /* Typography hierarchy */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tight text-tamtam-black;
+    @apply font-bold tracking-tight text-tamtam-black font-sweetsans;
     letter-spacing: -0.025em;
   }
   

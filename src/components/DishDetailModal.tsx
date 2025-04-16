@@ -48,7 +48,7 @@ export function DishDetailModal({ dish, children }: DishDetailModalProps) {
           </div>
 
           {/* Details Section */}
-          <div className="p-6 flex flex-col justify-between">
+          <div className="p-6 flex flex-col justify-between font-sweetsans">
             <div>
               <DialogHeader>
                 <DialogTitle className="text-2xl font-semibold">
@@ -89,3 +89,5 @@ export function DishDetailModal({ dish, children }: DishDetailModalProps) {
     </Dialog>
   );
 }
+
+export default DishDetailModal;

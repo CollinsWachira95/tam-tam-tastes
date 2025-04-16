@@ -30,7 +30,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled || isOpen ? "bg-white shadow-md" : "bg-transparent"
       }`}
     >
@@ -39,16 +39,16 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img src="/logo.png" alt="Tam Tam" className="h-10 mr-2" />
-            <span className="text-2xl font-bold text-tamtam-orange-600">
+            <span className="text-2xl font-bold text-tamtam-orange-600 font-sweetsans">
               Tam Tam
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-8">
             <Link
               to="/"
-              className={`nav-link font-semibold ${
+              className={`nav-link font-semibold font-sweetsans ${
                 location.pathname === "/" ? "text-tamtam-orange-600" : "text-tamtam-black"
               }`}
             >
@@ -56,7 +56,7 @@ const Navbar = () => {
             </Link>
             <Link
               to="/menu"
-              className={`nav-link font-semibold ${
+              className={`nav-link font-semibold font-sweetsans ${
                 location.pathname === "/menu" ? "text-tamtam-orange-600" : "text-tamtam-black"
               }`}
             >
@@ -64,7 +64,7 @@ const Navbar = () => {
             </Link>
             <Link
               to="/butchery"
-              className={`nav-link font-semibold ${
+              className={`nav-link font-semibold font-sweetsans ${
                 location.pathname === "/butchery" ? "text-tamtam-orange-600" : "text-tamtam-black"
               }`}
             >
@@ -72,7 +72,7 @@ const Navbar = () => {
             </Link>
             <Link
               to="/about"
-              className={`nav-link font-semibold ${
+              className={`nav-link font-semibold font-sweetsans ${
                 location.pathname === "/about" ? "text-tamtam-orange-600" : "text-tamtam-black"
               }`}
             >
@@ -80,7 +80,7 @@ const Navbar = () => {
             </Link>
             <Link
               to="/catering"
-              className={`nav-link font-semibold ${
+              className={`nav-link font-semibold font-sweetsans ${
                 location.pathname === "/catering" ? "text-tamtam-orange-600" : "text-tamtam-black"
               }`}
             >
@@ -88,7 +88,7 @@ const Navbar = () => {
             </Link>
             <Link
               to="/locations"
-              className={`nav-link font-semibold ${
+              className={`nav-link font-semibold font-sweetsans ${
                 location.pathname === "/locations" ? "text-tamtam-orange-600" : "text-tamtam-black"
               }`}
             >
@@ -137,22 +137,22 @@ const Navbar = () => {
         }`}
       >
         <div className="container-custom mx-auto px-4 space-y-4 py-2">
-          <Link to="/" className="mobile-nav-link block font-semibold">
+          <Link to="/" className="mobile-nav-link block font-semibold font-sweetsans">
             Home
           </Link>
-          <Link to="/menu" className="mobile-nav-link block font-semibold">
+          <Link to="/menu" className="mobile-nav-link block font-semibold font-sweetsans">
             Menu
           </Link>
-          <Link to="/butchery" className="mobile-nav-link block font-semibold">
+          <Link to="/butchery" className="mobile-nav-link block font-semibold font-sweetsans">
             Butchery
           </Link>
-          <Link to="/about" className="mobile-nav-link block font-semibold">
+          <Link to="/about" className="mobile-nav-link block font-semibold font-sweetsans">
             About
           </Link>
-          <Link to="/catering" className="mobile-nav-link block font-semibold">
+          <Link to="/catering" className="mobile-nav-link block font-semibold font-sweetsans">
             Catering
           </Link>
-          <Link to="/locations" className="mobile-nav-link block font-semibold">
+          <Link to="/locations" className="mobile-nav-link block font-semibold font-sweetsans">
             Locations
           </Link>
         </div>

@@ -3,8 +3,9 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
+  useLocation
 } from "react-router-dom";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -19,12 +20,26 @@ const Locations = lazy(() => import("@/pages/Locations"));
 const Cart = lazy(() => import("@/pages/Cart"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
+// ScrollToTop component to fix page scroll position when navigating
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  
+  return null;
+}
+
 function App() {
   return (
     <Router>
       <ErrorBoundary>
+        <ScrollToTop />
         <Navbar />
-        <Suspense fallback={<div className="min-h-screen"></div>}>
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-tamtam-orange-600"></div>
+        </div>}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/menu" element={<Menu />} />
