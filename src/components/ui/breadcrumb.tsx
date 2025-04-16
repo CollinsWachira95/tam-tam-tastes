@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 export interface BreadcrumbItemProps extends React.HTMLAttributes<HTMLLIElement> {
   href?: string;
-  isCurrent?: boolean;  // Ensure this is part of the interface
+  isCurrent?: boolean;
 }
 
 const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProps>(
@@ -56,6 +56,7 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
         return React.cloneElement(child, {
           isCurrent: index === childrenArray.length - 1,
           key: index,
+          children: child.props.children // Explicitly pass children
         });
       }
       return child;
@@ -93,3 +94,4 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
 Breadcrumb.displayName = "Breadcrumb";
 
 export { Breadcrumb, BreadcrumbItem };
+
