@@ -6,11 +6,11 @@ import { cn } from "@/lib/utils";
 
 export interface BreadcrumbItemProps extends React.HTMLAttributes<HTMLLIElement> {
   href?: string;
-  current?: boolean;
+  isCurrent?: boolean;
 }
 
 const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProps>(
-  ({ className, href, current = false, children, ...props }, ref) => {
+  ({ className, href, isCurrent = false, children, ...props }, ref) => {
     const Comp = href ? Link : "span";
     return (
       <li
@@ -23,7 +23,7 @@ const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProps>(
             to={href}
             className={cn(
               "text-sm font-medium hover:text-tamtam-orange-600 transition-colors",
-              current ? "text-tamtam-orange-600 font-semibold pointer-events-none" : "text-muted-foreground"
+              isCurrent ? "text-tamtam-orange-600 font-semibold pointer-events-none" : "text-muted-foreground"
             )}
           >
             {children}
@@ -32,7 +32,7 @@ const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProps>(
           <span
             className={cn(
               "text-sm font-medium",
-              current ? "text-tamtam-orange-600 font-semibold" : "text-muted-foreground"
+              isCurrent ? "text-tamtam-orange-600 font-semibold" : "text-muted-foreground"
             )}
           >
             {children}
@@ -53,9 +53,9 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
   ({ className, separator = <ChevronRight className="h-4 w-4 mx-2 text-muted-foreground/70" />, isRoot = false, children, ...props }, ref) => {
     const childrenArray = React.Children.toArray(children);
     const enhancedChildren = childrenArray.map((child, index) => {
-      if (React.isValidElement(child)) {
+      if (React.isValidElement(child) && child.type === BreadcrumbItem) {
         return React.cloneElement(child, {
-          current: index === childrenArray.length - 1,
+          isCurrent: index === childrenArray.length - 1,
           key: index,
         });
       }

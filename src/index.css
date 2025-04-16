@@ -1,30 +1,9 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Added African pattern - more authentic Kenyan-inspired design */
-.african-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23795548' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-
-/* Proper font declarations */
-@font-face {
-  font-family: 'Neutra Text';
-  src: url('https://fonts.cdnfonts.com/css/neutra-text-alt') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Neutra Text';
-  src: url('https://fonts.cdnfonts.com/css/neutra-text-alt') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Enhanced Kenyan patterns with more refined styling */
+/* Kenyan-inspired patterns */
 .kenyan-pattern {
   background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e67e22' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
@@ -37,7 +16,6 @@
   background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e67e22' fill-opacity='0.04' fill-rule='evenodd'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 20.83l2.83-2.83 1.41 1.41L1.41 22H0v-1.17zM0 3.07l2.83-2.83 1.41 1.41L1.41 4.24H0V3.07zm33.66-1.41l2.83 2.83L39.07 0H38.4l-4.74 4.74L32 3.07l4.24-4.24-2.58-2.58L38.4 0h.67v1.41zM40 18.66l-2.83 2.83-1.41-1.41L38.59 20H40v-1.34zm0 17.75l-2.83 2.83-1.41-1.41L38.59 38H40v-1.59zM20 0v1.41l2.83 2.83 1.41-1.41L21.41 0h-1.17zm0 18.66v1.32l1.41 1.41 1.41-1.41-1.41-1.32h-1.41zm19.07-9.74l-2.83 2.83-1.41-1.41 2.83-2.83L38.59 10l-2.83 2.83-1.41-1.41 2.83-2.83-1.41-1.41-2.83 2.82L31.09 8.59l2.83-2.83L32.5 4.34 29.67 7.17 27.84 5.34 30.67 2.5l-1.41-1.41L26.43 4.24l-1.41-1.41L27.85 0h.67l-.67.67 3.74 3.74L36.33 0z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-/* New tribal pattern for richer cultural elements */
 .tribal-pattern {
   background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a52a2a' fill-opacity='0.07'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
@@ -46,15 +24,10 @@
   background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.184 20c.357-.13.72-.264.888-.14.56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0 .56.41 1.12.41 1.68 0 .56-.41 1.12-.41 1.68 0' fill='%23b7713c' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 
-/* Added African pattern */
-.african-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23795548' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-
 @layer base {
   :root {
     --background: 36 30% 98%;
-    --foreground: 20 10% 20%; /* Darker text for better readability */
+    --foreground: 20 10% 20%;
 
     --card: 0 0% 100%;
     --card-foreground: 20 10% 20%;
@@ -62,7 +35,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 20 10% 20%;
 
-    --primary: 28 100% 50%; /* Updated orange shade */
+    --primary: 28 100% 50%;
     --primary-foreground: 60 9.1% 97.8%;
 
     --secondary: 142 60% 42%;
@@ -104,13 +77,13 @@
     letter-spacing: -0.01em;
   }
   
-  /* Enhanced typography hierarchy */
+  /* Typography hierarchy */
   h1, h2, h3, h4, h5, h6 {
     @apply font-playfair font-bold tracking-tight text-tamtam-black;
     letter-spacing: -0.025em;
   }
   
-  /* Enhanced typography with refined text shadow for elegance */
+  /* Enhanced typography with refined text shadow */
   h1, h2 {
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.03);
   }
@@ -136,7 +109,7 @@
   }
   
   p {
-    @apply text-base md:text-lg leading-relaxed text-left font-opensans;
+    @apply text-base md:text-lg leading-relaxed text-tamtam-gray-700;
     line-height: 1.6;
   }
   
@@ -161,7 +134,7 @@
     transform: translateY(6px);
   }
   
-  /* New decorative element */
+  /* Decorative accent */
   .kenyan-accent {
     @apply relative;
   }
@@ -172,7 +145,7 @@
     transform: translateY(-50%);
   }
   
-  /* Enhanced custom dividers */
+  /* Custom dividers */
   .kenyan-divider {
     height: 2px;
     background: linear-gradient(90deg, transparent, rgba(255, 111, 0, 0.6), transparent);
@@ -197,7 +170,7 @@
     @apply outline-2 outline-tamtam-orange-600 outline-offset-2;
   }
   
-  /* Enhanced image loading */
+  /* Image loading */
   img.lazy-load {
     @apply opacity-0 transition-opacity duration-700;
   }
@@ -206,7 +179,7 @@
     @apply opacity-100;
   }
 
-  /* Image overlays for better text contrast */
+  /* Image overlays */
   .img-overlay {
     @apply relative overflow-hidden;
   }
@@ -223,9 +196,9 @@
 }
 
 @layer components {
-  /* Extended utility classes */
+  /* Layout classes */
   .section {
-    @apply py-24 px-4 md:py-28 md:px-8 lg:py-32 lg:px-12 relative overflow-hidden; /* Increased spacing */
+    @apply py-16 px-4 md:py-24 md:px-6 lg:py-32 lg:px-8 relative overflow-hidden;
   }
 
   .section-light {
@@ -244,24 +217,24 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10;
   }
 
-  /* Added spacing classes */
+  /* Spacing */
   .spacing-y-sm {
-    @apply py-8 md:py-10; /* Increased */
+    @apply py-8 md:py-12;
   }
 
   .spacing-y-md {
-    @apply py-12 md:py-16; /* Increased */
+    @apply py-12 md:py-16;
   }
 
   .spacing-y-lg {
-    @apply py-20 md:py-24; /* Increased */
+    @apply py-16 md:py-24;
   }
 
   .spacing-y-xl {
-    @apply py-24 md:py-32; /* Increased */
+    @apply py-24 md:py-32;
   }
 
-  /* Premium and elegant card styles */
+  /* Card styles */
   .card-premium {
     @apply bg-white rounded-xl shadow-premium p-6 border border-gray-100/50 hover:shadow-hover transition-all duration-500;
   }
@@ -277,7 +250,7 @@
 
   .card-featured:hover {
     @apply shadow-intense;
-    transform: perspective(1000px) rotateX(2deg) rotateY(0deg) scale3d(1.02, 1.02, 1.02); /* Enhanced hover effect */
+    transform: perspective(1000px) rotateX(2deg) rotateY(0deg) scale3d(1.02, 1.02, 1.02);
   }
 
   /* Enhanced buttons */
@@ -286,7 +259,7 @@
   }
 
   .btn-premium:hover {
-    @apply shadow-hover -translate-y-0.5 from-tamtam-orange-500 to-tamtam-orange-600; /* Enhanced hover effect */
+    @apply shadow-hover -translate-y-0.5 from-tamtam-orange-500 to-tamtam-orange-600;
   }
 
   .btn-premium::after {
@@ -306,7 +279,7 @@
     @apply bg-tamtam-orange-600 text-white border-transparent;
   }
 
-  /* CTA button - more prominent */
+  /* CTA button */
   .btn-cta {
     @apply relative overflow-hidden rounded-full bg-gradient-to-r from-tamtam-orange-600 to-tamtam-brown-600 text-white px-8 py-4 font-montserrat font-bold text-lg transform transition-all duration-500 shadow-button;
   }
@@ -321,13 +294,12 @@
     background-size: 200% 100%;
   }
 
-  /* Adding hover effect for btn-cta::before */
   .btn-cta:hover::before {
     @apply opacity-100;
     animation: shimmer 2s infinite linear;
   }
 
-  /* Menu-specific styles */
+  /* Menu styling */
   .menu-category-tab {
     @apply uppercase tracking-wide font-montserrat font-semibold px-6 py-3 border-b-2 border-transparent hover:text-tamtam-orange-600 transition-colors;
   }
@@ -336,12 +308,12 @@
     @apply border-tamtam-orange-600 text-tamtam-orange-600;
   }
   
-  /* Dish card hover effect */
+  /* Dish card hover */
   .dish-card {
     @apply transition-all duration-300 hover:translate-y-[-4px];
   }
 
-  /* Fancy badge styling */
+  /* Badge styling */
   .fancy-badge {
     @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-montserrat font-medium;
     background: linear-gradient(to right, rgba(255, 111, 0, 0.1), rgba(255, 111, 0, 0.2));
@@ -352,14 +324,36 @@
   .menu-badge {
     @apply inline-block px-2 py-0.5 bg-white/90 text-xs font-montserrat font-medium rounded-full shadow-sm;
   }
+  
+  /* Navigation link */
+  .nav-link {
+    @apply relative text-tamtam-gray-700 hover:text-tamtam-orange-600 font-medium transition-colors duration-200;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-tamtam-orange-600 transition-all duration-300;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+
+  /* Mobile nav link */
+  .mobile-nav-link {
+    @apply py-2 text-tamtam-gray-700 hover:text-tamtam-orange-600 font-medium transition-colors duration-200;
+  }
 }
 
 @layer utilities {
-  .kenyan-texture {
-    background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e67e22' fill-opacity='0.04' fill-rule='evenodd'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 20.83l2.83-2.83 1.41 1.41L1.41 22H0v-1.17zM0 3.07l2.83-2.83 1.41 1.41L1.41 4.24H0V3.07zm33.66-1.41l2.83 2.83L39.07 0H38.4l-4.74 4.74L32 3.07l4.24-4.24-2.58-2.58L38.4 0h.67v1.41zM40 18.66l-2.83 2.83-1.41-1.41L38.59 20H40v-1.34zm0 17.75l-2.83 2.83-1.41-1.41L38.59 38H40v-1.59zM20 0v1.41l2.83 2.83 1.41-1.41L21.41 0h-1.17zm0 18.66v1.32l1.41 1.41 1.41-1.41-1.41-1.32h-1.41zm19.07-9.74l-2.83 2.83-1.41-1.41 2.83-2.83L38.59 10l-2.83 2.83-1.41-1.41 2.83-2.83-1.41-1.41-2.83 2.82L31.09 8.59l2.83-2.83L32.5 4.34 29.67 7.17 27.84 5.34 30.67 2.5l-1.41-1.41L26.43 4.24l-1.41-1.41L27.85 0h.67l-.67.67 3.74 3.74L36.33 0z'/%3E%3C/g%3E%3C/svg%3E");
+  /* Animations */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
   }
   
-  /* Image hover effect */
+  /* Image hover */
   .img-zoom-hover {
     @apply overflow-hidden;
   }
@@ -368,9 +362,36 @@
     @apply transition-transform duration-500 hover:scale-105;
   }
   
-  /* Animations */
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
+  /* Text effects */
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  
+  .text-shadow-md {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  /* Background blending */
+  .blend-multiply {
+    mix-blend-mode: multiply;
+  }
+  
+  .blend-overlay {
+    mix-blend-mode: overlay;
+  }
+  
+  /* Enhanced accessibility */
+  .visually-hidden {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+    clip: rect(0, 0, 0, 0);
+  }
+  
+  /* Responsive utilities */
+  .hide-on-mobile {
+    @apply hidden md:block;
+  }
+  
+  .show-on-mobile {
+    @apply block md:hidden;
   }
 }
