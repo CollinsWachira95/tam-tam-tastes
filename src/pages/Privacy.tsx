@@ -1,17 +1,11 @@
-
 import React from "react";
 import Layout from "@/components/Layout";
 import { PageSection, PageHeader } from "@/components/Layout";
-import { Breadcrumb, BreadcrumbItem } from "@/components/ui/breadcrumb";
 
 const Privacy = () => {
   return (
     <Layout>
       <PageSection background="light" spacing="sm">
-        <Breadcrumb isRoot>
-          <BreadcrumbItem href="/">Home</BreadcrumbItem>
-          <BreadcrumbItem>Privacy Policy</BreadcrumbItem>
-        </Breadcrumb>
         
         <PageHeader 
           title="Privacy Policy" 
