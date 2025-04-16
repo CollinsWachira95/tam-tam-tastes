@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 export interface BreadcrumbItemProps extends React.HTMLAttributes<HTMLLIElement> {
   href?: string;
-  isCurrent?: boolean;
+  isCurrent?: boolean;  // Ensure this is part of the interface
 }
 
 const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProps>(
