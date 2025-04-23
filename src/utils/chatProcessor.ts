@@ -19,49 +19,47 @@ export const processUserInput = (input: string): ChatResponse => {
   const orderItems = parseOrderFromInput(input);
   if (orderItems) {
     const itemNames = orderItems.map(item => `${item.quantity}x ${item.name}`).join(", ");
-    const completionPhrases = ['that\'s all', 'checkout', 'finish', 'complete order', 'done ordering', 'that will be all'];
+    const completionPhrases = ['checkout', 'finish', 'complete order', 'done ordering', 'thats all', "that's all"];
     const completeOrder = completionPhrases.some(phrase => text.includes(phrase));
     
     if (completeOrder) {
       return {
-        message: `I've added ${itemNames} to your order. Let's review everything!`,
+        message: `Perfect! I've added ${itemNames} to your order. Taking you to checkout now!`,
         orderItems,
         completeOrder: true,
-        suggestions: ["Checkout now", "Add more items", "Cancel order"]
+        action: "navigate",
+        path: "/checkout",
+        closeChatbot: true
       };
     } else {
       return {
-        message: `I've added ${itemNames} to your order. Would you like anything else or are you ready to checkout?`,
+        message: `I've added ${itemNames} to your order. Would you like anything else? You can say "checkout" when you're ready to complete your order.`,
         orderItems,
-        suggestions: ["That's all", "Add more items", "Cancel order", "Show menu"]
+        suggestions: ["Checkout", "Add more items", "Show menu", "Cancel order"]
       };
     }
   }
 
-  // Handle navigation and other requests
-  if (text.includes("order") || text.includes("buy") || text.includes("purchase") || text.includes("food")) {
-    return {
-      message: "I'd be happy to help you order! What would you like to eat today? You can say something like '2 portions of Nyama Choma and 1 Kenyan Chai' or ask to see our menu.",
-      suggestions: ["Show menu", "Popular items", "What do you recommend?", "Vegetarian options"]
-    };
-  }
-
-  // Navigation responses
+  // Handle menu and order requests
   if (text.includes("menu") || text.includes("show menu")) {
     return {
-      message: "Taking you to our complete menu page where you can browse all our delicious Kenyan specialties!",
+      message: "Here's our menu! Take a look at all our delicious Kenyan specialties.",
       action: "navigate",
       path: "/menu",
-      closeChatbot: false,
-      suggestions: ["Order from menu", "Back to chat", "Recommendations"]
+      suggestions: ["Order from menu", "Popular dishes", "Vegetarian options", "Back to chat"]
     };
   }
 
-  // ... Add more navigation handlers similar to the original ChatBot.tsx
+  if (text.includes("order") || text.includes("food") || text.includes("eat")) {
+    return {
+      message: "I'll help you order! Just tell me what you'd like. For example, you can say '2 Nyama Choma and 1 Kenyan Chai' or ask to see our menu.",
+      suggestions: ["Show menu", "Popular items", "Today's specials", "Vegetarian options"]
+    };
+  }
 
   // Default response
   return {
-    message: "I'm not sure I understand. Would you like to order food, see our menu, find a location, or learn more about Tam Tam?",
-    suggestions: ["Order food", "Show menu", "Find locations", "About Tam Tam"]
+    message: "Hello! I can help you order food or answer questions about Tam Tam. What would you like to do?",
+    suggestions: ["Order food", "Show menu", "View locations", "About Tam Tam"]
   };
 };

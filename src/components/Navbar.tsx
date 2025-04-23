@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ShoppingCart } from "lucide-react";
@@ -41,7 +40,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img src="/logo.png" alt="Tam Tam" className="h-12 mr-2" />
-            <span className={`text-2xl font-bold font-sweetsans ${
+            <span className={`text-2xl font-bold font-sweetsans tracking-tight ${
               isScrolled || isOpen ? "text-tamtam-orange-600" : "text-white"
             }`}>
               Tam Tam
@@ -50,66 +49,26 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link
-              to="/"
-              className={`nav-link font-medium font-sweetsans transition-colors duration-300 hover:text-tamtam-orange-400 ${
-                location.pathname === "/" 
-                  ? "text-tamtam-orange-600" 
-                  : isScrolled ? "text-tamtam-black" : "text-white"
-              }`}
-            >
-              Home
-            </Link>
-            <Link
-              to="/menu"
-              className={`nav-link font-medium font-sweetsans transition-colors duration-300 hover:text-tamtam-orange-400 ${
-                location.pathname === "/menu" 
-                  ? "text-tamtam-orange-600" 
-                  : isScrolled ? "text-tamtam-black" : "text-white"
-              }`}
-            >
-              Menu
-            </Link>
-            <Link
-              to="/butchery"
-              className={`nav-link font-medium font-sweetsans transition-colors duration-300 hover:text-tamtam-orange-400 ${
-                location.pathname === "/butchery" 
-                  ? "text-tamtam-orange-600" 
-                  : isScrolled ? "text-tamtam-black" : "text-white"
-              }`}
-            >
-              Butchery
-            </Link>
-            <Link
-              to="/about"
-              className={`nav-link font-medium font-sweetsans transition-colors duration-300 hover:text-tamtam-orange-400 ${
-                location.pathname === "/about" 
-                  ? "text-tamtam-orange-600" 
-                  : isScrolled ? "text-tamtam-black" : "text-white"
-              }`}
-            >
-              About
-            </Link>
-            <Link
-              to="/catering"
-              className={`nav-link font-medium font-sweetsans transition-colors duration-300 hover:text-tamtam-orange-400 ${
-                location.pathname === "/catering" 
-                  ? "text-tamtam-orange-600" 
-                  : isScrolled ? "text-tamtam-black" : "text-white"
-              }`}
-            >
-              Catering
-            </Link>
-            <Link
-              to="/locations"
-              className={`nav-link font-medium font-sweetsans transition-colors duration-300 hover:text-tamtam-orange-400 ${
-                location.pathname === "/locations" 
-                  ? "text-tamtam-orange-600" 
-                  : isScrolled ? "text-tamtam-black" : "text-white"
-              }`}
-            >
-              Locations
-            </Link>
+            {[
+              { path: "/", label: "Home" },
+              { path: "/menu", label: "Menu" },
+              { path: "/butchery", label: "Butchery" },
+              { path: "/about", label: "About" },
+              { path: "/catering", label: "Catering" },
+              { path: "/locations", label: "Locations" },
+            ].map(({ path, label }) => (
+              <Link
+                key={path}
+                to={path}
+                className={`nav-link font-medium font-sweetsans text-base tracking-wide transition-colors duration-300 hover:text-tamtam-orange-400 ${
+                  location.pathname === path 
+                    ? "text-tamtam-orange-600" 
+                    : isScrolled ? "text-tamtam-black" : "text-white"
+                }`}
+              >
+                {label}
+              </Link>
+            ))}
           </div>
 
           {/* Right Side - Cart */}
@@ -117,10 +76,12 @@ const Navbar = () => {
             <Link to="/cart">
               <Button 
                 variant={isScrolled ? "ghost" : "outline"} 
-                className={`relative p-2 ${!isScrolled && "border-white text-white hover:bg-white/20"}`}
+                className={`relative p-2 ${
+                  !isScrolled && "border-white text-white hover:bg-white/20"
+                }`}
               >
                 <ShoppingCart size={20} />
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-tamtam-orange-600 text-white text-xs flex items-center justify-center rounded-full">
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-tamtam-orange-600 text-white text-xs flex items-center justify-center rounded-full font-medium">
                   2
                 </span>
               </Button>
@@ -133,10 +94,12 @@ const Navbar = () => {
               <Button 
                 variant={isScrolled ? "ghost" : "outline"} 
                 size="sm" 
-                className={`relative p-1 ${!isScrolled && "border-white text-white hover:bg-white/20"}`}
+                className={`relative p-1 ${
+                  !isScrolled && "border-white text-white hover:bg-white/20"
+                }`}
               >
                 <ShoppingCart size={18} />
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-tamtam-orange-600 text-white text-[8px] flex items-center justify-center rounded-full">
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-tamtam-orange-600 text-white text-[8px] flex items-center justify-center rounded-full font-medium">
                   2
                 </span>
               </Button>
@@ -161,24 +124,22 @@ const Navbar = () => {
         }`}
       >
         <div className="container-custom mx-auto px-4 space-y-4 py-2">
-          <Link to="/" className="mobile-nav-link block py-2 font-medium border-b border-gray-100 font-sweetsans">
-            Home
-          </Link>
-          <Link to="/menu" className="mobile-nav-link block py-2 font-medium border-b border-gray-100 font-sweetsans">
-            Menu
-          </Link>
-          <Link to="/butchery" className="mobile-nav-link block py-2 font-medium border-b border-gray-100 font-sweetsans">
-            Butchery
-          </Link>
-          <Link to="/about" className="mobile-nav-link block py-2 font-medium border-b border-gray-100 font-sweetsans">
-            About
-          </Link>
-          <Link to="/catering" className="mobile-nav-link block py-2 font-medium border-b border-gray-100 font-sweetsans">
-            Catering
-          </Link>
-          <Link to="/locations" className="mobile-nav-link block py-2 font-medium border-b border-gray-100 font-sweetsans">
-            Locations
-          </Link>
+          {[
+            { path: "/", label: "Home" },
+            { path: "/menu", label: "Menu" },
+            { path: "/butchery", label: "Butchery" },
+            { path: "/about", label: "About" },
+            { path: "/catering", label: "Catering" },
+            { path: "/locations", label: "Locations" },
+          ].map(({ path, label }) => (
+            <Link
+              key={path}
+              to={path}
+              className="mobile-nav-link block py-2 font-medium border-b border-gray-100 font-sweetsans"
+            >
+              {label}
+            </Link>
+          ))}
         </div>
       </div>
     </nav>
