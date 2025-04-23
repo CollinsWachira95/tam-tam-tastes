@@ -17,7 +17,7 @@ const Home = () => {
       <HeroCarousel />
       
       <PageSection>
-        <FeaturedDishes />
+        <FeaturedDishes mobileLimit={2} />
       </PageSection>
       
       {/* Our Journey Section with Video */}

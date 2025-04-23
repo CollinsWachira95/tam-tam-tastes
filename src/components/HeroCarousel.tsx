@@ -1,15 +1,8 @@
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { 
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext
-} from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface HeroSlide {
   image: string;
@@ -52,85 +45,106 @@ const heroSlides: HeroSlide[] = [
 
 const HeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % heroSlides.length);
+  };
+  
+  const goToPrevious = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + heroSlides.length) % heroSlides.length);
+  };
+  
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+  };
 
-  // Auto-advance carousel
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % heroSlides.length);
-    }, 6000);
-    
-    return () => clearInterval(interval);
-  }, []);
+  // Get current slide
+  const currentSlide = heroSlides[currentIndex];
 
   return (
-    <div className="relative bg-tamtam-light overflow-hidden h-[650px]">
+    <div className="relative bg-tamtam-light overflow-hidden h-[650px] md:h-[700px]">
       {/* Background pattern */}
       <div className="absolute inset-0 african-pattern opacity-30"></div>
       
-      <Carousel className="h-full">
-        <CarouselContent className="h-full">
-          {heroSlides.map((slide, index) => (
-            <CarouselItem key={index} className="h-full">
-              <div className="relative h-full w-full overflow-hidden">
-                {/* Image */}
-                <img 
-                  src={slide.image} 
-                  alt={slide.title}
-                  className="w-full h-full object-cover"
-                />
-                
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-tamtam-black/70 via-tamtam-black/40 to-transparent"></div>
-                
-                <div className="absolute inset-0 flex items-center justify-start">
-                  <div className="container-custom">
-                    <Link to={slide.link}>
-                      <div className="max-w-2xl pl-6 md:pl-12 bg-black/40 backdrop-blur-[3px] p-8 rounded-lg border border-white/20 shadow-lg">
-                        <span className="inline-block bg-tamtam-orange-600/90 text-white px-4 py-1.5 rounded-full text-sm font-medium mb-4 tracking-wide">
-                          Authentic Kenyan Experience
-                        </span>
-                        
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight tracking-tight">
-                          {slide.title}
-                        </h1>
-                        
-                        <div className="h-0.5 w-28 bg-amber-400 my-6 rounded-full"></div>
-                        
-                        <p className="text-lg md:text-xl text-white/90 mb-4 tracking-tight">
-                          {slide.description}
-                        </p>
-                        
-                        {slide.subtext && (
-                          <p className="text-base italic text-white/80 mb-8">
-                            {slide.subtext}
-                          </p>
-                        )}
-                        
-                        <Button 
-                          className="mt-4 bg-tamtam-orange-600 hover:bg-tamtam-orange-700 text-white group transition-all duration-300 shadow-md"
-                        >
-                          Explore Now
-                          <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-                        </Button>
-                      </div>
-                    </Link>
+      {/* Slides */}
+      <div className="h-full relative">
+        {heroSlides.map((slide, index) => (
+          <div 
+            key={index} 
+            className={`absolute inset-0 transition-opacity duration-700 ${
+              index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
+          >
+            {/* Image */}
+            <img 
+              src={slide.image} 
+              alt={slide.title}
+              className="w-full h-full object-cover"
+            />
+            
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-tamtam-black/70 via-tamtam-black/40 to-transparent"></div>
+            
+            <div className="absolute inset-0 flex items-center justify-start">
+              <div className="container-custom">
+                <Link to={slide.link}>
+                  <div className="max-w-2xl pl-6 md:pl-12 bg-black/40 backdrop-blur-[3px] p-8 rounded-lg border border-white/20 shadow-lg">
+                    <span className="inline-block bg-tamtam-orange-600/90 text-white px-4 py-1.5 rounded-full text-sm font-medium mb-4 tracking-wide">
+                      Authentic Kenyan Experience
+                    </span>
+                    
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight tracking-tight">
+                      {slide.title}
+                    </h1>
+                    
+                    <div className="h-0.5 w-28 bg-amber-400 my-6 rounded-full"></div>
+                    
+                    <p className="text-lg md:text-xl text-white/90 mb-4 tracking-tight">
+                      {slide.description}
+                    </p>
+                    
+                    {slide.subtext && (
+                      <p className="text-base italic text-white/80 mb-8">
+                        {slide.subtext}
+                      </p>
+                    )}
+                    
+                    <Button 
+                      className="mt-4 bg-tamtam-orange-600 hover:bg-tamtam-orange-700 text-white group transition-all duration-300 shadow-md"
+                    >
+                      Explore Now
+                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    </Button>
                   </div>
-                </div>
+                </Link>
               </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
+            </div>
+          </div>
+        ))}
         
         {/* Navigation controls */}
-        <CarouselPrevious className="left-4 text-white bg-tamtam-black/40 hover:bg-tamtam-black/60 transition-colors duration-300 border-white/20" />
-        <CarouselNext className="right-4 text-white bg-tamtam-black/40 hover:bg-tamtam-black/60 transition-colors duration-300 border-white/20" />
+        <button 
+          onClick={goToPrevious}
+          className="absolute left-4 z-20 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-tamtam-black/40 hover:bg-tamtam-black/60 text-white border border-white/20 transition-colors duration-300"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="h-6 w-6" />
+        </button>
+        
+        <button 
+          onClick={goToNext}
+          className="absolute right-4 z-20 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-tamtam-black/40 hover:bg-tamtam-black/60 text-white border border-white/20 transition-colors duration-300"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="h-6 w-6" />
+        </button>
         
         {/* Carousel indicators */}
-        <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-2">
+        <div className="absolute bottom-8 left-0 right-0 z-20 flex justify-center gap-2">
           {heroSlides.map((_, index) => (
             <button
               key={index}
-              onClick={() => setCurrentIndex(index)}
+              onClick={() => goToSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 currentIndex === index 
                   ? 'bg-tamtam-orange-600 w-8' 
@@ -140,7 +154,7 @@ const HeroCarousel = () => {
             />
           ))}
         </div>
-      </Carousel>
+      </div>
     </div>
   );
 };

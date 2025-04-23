@@ -24,6 +24,33 @@ interface Message {
   timestamp: Date;
 }
 
+interface MenuItem {
+  id: number;
+  name: string;
+  price: number;
+}
+
+interface OrderItem {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
+// Simulated menu data
+const menuItems: MenuItem[] = [
+  { id: 1, name: "Nyama Choma", price: 18.99 },
+  { id: 2, name: "Ugali with Sukuma Wiki", price: 12.99 },
+  { id: 3, name: "Pilau Rice", price: 14.99 },
+  { id: 4, name: "Mandazi", price: 6.99 },
+  { id: 5, name: "Kenyan Chai", price: 3.99 },
+  { id: 6, name: "Samosa", price: 4.99 },
+  { id: 7, name: "Chapati", price: 2.99 },
+  { id: 8, name: "Mbuzi Fry", price: 19.99 },
+  { id: 9, name: "Kenyan BBQ Ribs", price: 21.99 },
+  { id: 10, name: "Coconut Rice", price: 9.99 }
+];
+
 const generateId = () => Math.random().toString(36).substr(2, 9);
 
 const ChatBot = () => {
@@ -32,7 +59,7 @@ const ChatBot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: generateId(),
-      text: "Hello! I'm Tammy, your Tam Tam assistant. I can help you navigate our website or place an order. What would you like to do today?",
+      text: "Hello! I'm Tammy, your Tam Tam assistant. I can help you navigate our website or place an order directly. What would you like to do today?",
       sender: "bot",
       timestamp: new Date(),
     },
@@ -45,6 +72,9 @@ const ChatBot = () => {
     "Catering services",
     "Butchery products"
   ]);
+  
+  const [orderInProgress, setOrderInProgress] = useState(false);
+  const [currentOrder, setCurrentOrder] = useState<OrderItem[]>([]);
   
   const navigate = useNavigate();
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -92,6 +122,43 @@ const ChatBot = () => {
       
       setMessages(prev => [...prev, botMessage]);
       
+      // Update order state if applicable
+      if (response.orderItems && response.orderItems.length > 0) {
+        setCurrentOrder(prev => {
+          const newOrder = [...prev];
+          
+          response.orderItems.forEach(item => {
+            const existingItemIndex = newOrder.findIndex(orderItem => orderItem.id === item.id);
+            
+            if (existingItemIndex >= 0) {
+              newOrder[existingItemIndex].quantity += item.quantity;
+            } else {
+              newOrder.push(item);
+            }
+          });
+          
+          return newOrder;
+        });
+        
+        setOrderInProgress(true);
+        
+        // Follow up with order summary if this completes the order
+        if (response.completeOrder) {
+          setTimeout(() => {
+            const orderSummary = generateOrderSummary();
+            
+            setMessages(prev => [...prev, {
+              id: generateId(),
+              text: orderSummary,
+              sender: "bot",
+              timestamp: new Date()
+            }]);
+            
+            setSuggestions(["Checkout now", "Add more items", "Cancel order"]);
+          }, 800);
+        }
+      }
+      
       // Handle navigation if needed
       if (response.action === "navigate" && response.path) {
         setTimeout(() => {
@@ -103,7 +170,9 @@ const ChatBot = () => {
       }
       
       // Update suggestions based on context
-      setSuggestions(response.suggestions || suggestions);
+      if (response.suggestions) {
+        setSuggestions(response.suggestions);
+      }
     }, 800);
   };
 
@@ -138,6 +207,49 @@ const ChatBot = () => {
       
       setMessages(prev => [...prev, botMessage]);
       
+      // Handle checkout flow
+      if (suggestion === "Checkout now" && currentOrder.length > 0) {
+        // Store the current order in sessionStorage for the cart page
+        sessionStorage.setItem('chatbotOrder', JSON.stringify(currentOrder));
+        
+        setTimeout(() => {
+          navigate("/cart");
+          setIsOpen(false);
+          setOrderInProgress(false);
+          setCurrentOrder([]);
+        }, 1000);
+        return;
+      }
+      
+      // Handle cancel order
+      if (suggestion === "Cancel order") {
+        setOrderInProgress(false);
+        setCurrentOrder([]);
+        
+        setTimeout(() => {
+          const cancelMessage: Message = {
+            id: generateId(),
+            text: "I've canceled your order. How else can I help you today?",
+            sender: "bot",
+            timestamp: new Date(),
+          };
+          
+          setMessages(prev => [...prev, cancelMessage]);
+          setSuggestions([
+            "Menu",
+            "Order food",
+            "Find locations",
+            "About Tam Tam"
+          ]);
+        }, 800);
+        return;
+      }
+      
+      // Update suggestions based on context
+      if (response.suggestions) {
+        setSuggestions(response.suggestions);
+      }
+      
       // Handle navigation if needed
       if (response.action === "navigate" && response.path) {
         setTimeout(() => {
@@ -147,10 +259,51 @@ const ChatBot = () => {
           }
         }, 1000);
       }
-      
-      // Update suggestions based on context
-      setSuggestions(response.suggestions || suggestions);
     }, 800);
+  };
+
+  // Generate a summary of the current order
+  const generateOrderSummary = () => {
+    if (currentOrder.length === 0) return "Your order is empty.";
+    
+    let total = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    
+    let summary = "Here's a summary of your order:\n\n";
+    
+    currentOrder.forEach(item => {
+      summary += `${item.quantity}x ${item.name} - $${(item.price * item.quantity).toFixed(2)}\n`;
+    });
+    
+    summary += `\nTotal: $${total.toFixed(2)}\n\nWould you like to proceed to checkout?`;
+    
+    return summary;
+  };
+
+  // Parse user input for food orders
+  const parseOrderFromInput = (input: string): OrderItem[] | null => {
+    const orderItems: OrderItem[] = [];
+    const lowerInput = input.toLowerCase();
+    
+    // Extract quantities and food items
+    menuItems.forEach(menuItem => {
+      const itemNameLower = menuItem.name.toLowerCase();
+      if (lowerInput.includes(itemNameLower)) {
+        // Try to find a quantity before the item name
+        const regex = new RegExp(`(\\d+)\\s*(?:x|of|portion|portions|serving|servings)?\\s*${itemNameLower}`, 'i');
+        const match = lowerInput.match(regex);
+        
+        const quantity = match ? parseInt(match[1]) : 1;
+        
+        orderItems.push({
+          id: menuItem.id,
+          name: menuItem.name,
+          price: menuItem.price,
+          quantity: quantity
+        });
+      }
+    });
+    
+    return orderItems.length > 0 ? orderItems : null;
   };
 
   const processUserInput = (text: string): { 
@@ -159,8 +312,71 @@ const ChatBot = () => {
     path?: string;
     closeChatbot?: boolean;
     suggestions?: string[];
+    orderItems?: OrderItem[];
+    completeOrder?: boolean;
   } => {
     const input = text.toLowerCase();
+    
+    // Check if this input contains a food order
+    const orderItems = parseOrderFromInput(input);
+    let completeOrder = false;
+    
+    // Handle direct orders
+    if (orderItems && orderItems.length > 0) {
+      const itemNames = orderItems.map(item => `${item.quantity}x ${item.name}`).join(", ");
+      
+      // Check if the order seems complete
+      const completionPhrases = ['that\'s all', 'checkout', 'finish', 'complete order', 'done ordering', 'that will be all'];
+      completeOrder = completionPhrases.some(phrase => input.includes(phrase));
+      
+      if (completeOrder) {
+        return {
+          message: `I've added ${itemNames} to your order. Let's review everything!`,
+          orderItems,
+          completeOrder: true,
+          suggestions: ["Checkout now", "Add more items", "Cancel order"]
+        };
+      } else {
+        return {
+          message: `I've added ${itemNames} to your order. Would you like anything else or are you ready to checkout?`,
+          orderItems,
+          suggestions: ["That's all", "Add more items", "Cancel order", "Show menu"]
+        };
+      }
+    }
+    
+    // If the user wants to start ordering
+    if (input.includes("order") || input.includes("buy") || input.includes("purchase") || input.includes("food")) {
+      return {
+        message: "I'd be happy to help you order! What would you like to eat today? You can say something like '2 portions of Nyama Choma and 1 Kenyan Chai' or ask to see our menu.",
+        suggestions: ["Show menu", "Popular items", "What do you recommend?", "Vegetarian options"]
+      };
+    }
+    
+    // If the user wants to see the menu
+    if (input.includes("menu") || input.includes("show menu") || input.includes("food list") || input.includes("what do you have") || input.includes("what do you serve")) {
+      let menuText = "Here are some items from our menu:\n\n";
+      menuItems.slice(0, 6).forEach(item => {
+        menuText += `• ${item.name} - $${item.price.toFixed(2)}\n`;
+      });
+      menuText += "\nYou can order by typing something like '2 Nyama Choma and 1 Kenyan Chai' or ask me about any dish.";
+      
+      return {
+        message: menuText,
+        suggestions: ["Order Nyama Choma", "Order Ugali", "Order Pilau Rice", "See full menu"]
+      };
+    }
+    
+    // Check for suggestion to see full menu
+    if (input.includes("see full menu") || input.includes("full menu")) {
+      return {
+        message: "I'll take you to our complete menu page where you can browse all our delicious Kenyan specialties!",
+        action: "navigate",
+        path: "/menu",
+        closeChatbot: false,
+        suggestions: ["Order from menu", "Back to chat", "Recommendations"]
+      };
+    }
     
     // Check for navigation requests
     if (input.includes("home") || input.includes("main page")) {
@@ -170,16 +386,6 @@ const ChatBot = () => {
         path: "/",
         closeChatbot: true,
         suggestions: ["Menu", "Order food", "Find locations", "About Tam Tam"]
-      };
-    }
-    
-    if (input.includes("menu") || input.includes("food") || input.includes("dishes") || input.includes("what do you serve")) {
-      return {
-        message: "I'll show you our delicious menu. You can browse all our Kenyan specialties there!",
-        action: "navigate",
-        path: "/menu",
-        closeChatbot: true,
-        suggestions: ["Recommended dishes", "Order food", "Dietary options", "Most popular item"]
       };
     }
     
@@ -223,23 +429,13 @@ const ChatBot = () => {
       };
     }
     
-    if (input.includes("cart") || input.includes("checkout") || input.includes("pay") || input.includes("order status")) {
+    if (input.includes("cart") || input.includes("checkout") || input.includes("pay")) {
       return {
         message: "Taking you to your cart where you can review your order and checkout.",
         action: "navigate",
         path: "/cart",
         closeChatbot: true,
         suggestions: ["Add more items", "Checkout", "Delivery options", "Estimated time"]
-      };
-    }
-    
-    if (input.includes("order") || input.includes("buy") || input.includes("purchase")) {
-      return {
-        message: "I'd be happy to help you place an order! You can browse our menu and select items to add to your cart.",
-        action: "navigate",
-        path: "/menu",
-        closeChatbot: false,
-        suggestions: ["Show specials", "Most popular items", "Vegetarian options", "See my cart"]
       };
     }
     
@@ -257,14 +453,14 @@ const ChatBot = () => {
     if (input.includes("hi") || input.includes("hello") || input.includes("hey")) {
       return {
         message: "Hello there! How can I assist you today with Tam Tam's authentic Kenyan cuisine?",
-        suggestions: ["Show me the menu", "Order food", "Find locations", "Tell me about Tam Tam"]
+        suggestions: ["Order food directly", "Show me the menu", "Find locations", "Tell me about Tam Tam"]
       };
     }
     
     if (input.includes("thank")) {
       return {
         message: "You're very welcome! Is there anything else I can help you with?",
-        suggestions: ["Menu", "Order food", "Locations", "No thanks"]
+        suggestions: ["Order food", "Menu", "Locations", "No thanks"]
       };
     }
     
@@ -277,8 +473,8 @@ const ChatBot = () => {
     
     // Default response if we don't understand
     return {
-      message: "I'm not sure I understand. Would you like to see our menu, find a location, or learn more about Tam Tam?",
-      suggestions: ["Menu", "Locations", "About Tam Tam", "Order online"]
+      message: "I'm not sure I understand. Would you like to order food, see our menu, find a location, or learn more about Tam Tam?",
+      suggestions: ["Order food", "Show menu", "Find locations", "About Tam Tam"]
     };
   };
 
@@ -329,7 +525,7 @@ const ChatBot = () => {
                           : "bg-gray-100 text-gray-800"
                       }`}
                     >
-                      <p className="text-sm">{message.text}</p>
+                      <p className="text-sm whitespace-pre-wrap">{message.text}</p>
                       <p className="text-xs opacity-70 text-right mt-1">
                         {formatTime(message.timestamp)}
                       </p>
@@ -338,6 +534,28 @@ const ChatBot = () => {
                 ))}
                 <div ref={messagesEndRef} />
               </div>
+              
+              {/* Order summary if there's an order in progress */}
+              {orderInProgress && currentOrder.length > 0 && (
+                <div className="mb-4 p-3 bg-tamtam-orange-50 border border-tamtam-orange-200 rounded-lg">
+                  <div className="font-medium text-tamtam-orange-700 mb-2 flex items-center">
+                    <ShoppingBag size={16} className="mr-2" />
+                    Current Order ({currentOrder.reduce((sum, item) => sum + item.quantity, 0)} items)
+                  </div>
+                  <div className="text-sm text-tamtam-gray-700">
+                    {currentOrder.map((item, index) => (
+                      <div key={index} className="flex justify-between items-center">
+                        <span>{item.quantity}x {item.name}</span>
+                        <span>${(item.price * item.quantity).toFixed(2)}</span>
+                      </div>
+                    ))}
+                    <div className="mt-2 pt-2 border-t border-tamtam-orange-200 font-medium flex justify-between">
+                      <span>Total:</span>
+                      <span>${currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
               
               {/* Suggestions */}
               {suggestions.length > 0 && (
@@ -420,7 +638,7 @@ const ChatBot = () => {
                       : "bg-gray-100 text-gray-800"
                   }`}
                 >
-                  <p className="text-sm font-sweetsans">{message.text}</p>
+                  <p className="text-sm font-sweetsans whitespace-pre-wrap">{message.text}</p>
                   <p className="text-xs opacity-70 text-right mt-1">
                     {formatTime(message.timestamp)}
                   </p>
@@ -429,6 +647,28 @@ const ChatBot = () => {
             ))}
             <div ref={messagesEndRef} />
           </div>
+          
+          {/* Order summary if there's an order in progress */}
+          {orderInProgress && currentOrder.length > 0 && (
+            <div className="mb-4 p-3 bg-tamtam-orange-50 border border-tamtam-orange-200 rounded-lg">
+              <div className="font-medium text-tamtam-orange-700 mb-2 flex items-center">
+                <ShoppingBag size={16} className="mr-2" />
+                Current Order ({currentOrder.reduce((sum, item) => sum + item.quantity, 0)} items)
+              </div>
+              <div className="text-sm text-tamtam-gray-700">
+                {currentOrder.map((item, index) => (
+                  <div key={index} className="flex justify-between items-center">
+                    <span>{item.quantity}x {item.name}</span>
+                    <span>${(item.price * item.quantity).toFixed(2)}</span>
+                  </div>
+                ))}
+                <div className="mt-2 pt-2 border-t border-tamtam-orange-200 font-medium flex justify-between">
+                  <span>Total:</span>
+                  <span>${currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)}</span>
+                </div>
+              </div>
+            </div>
+          )}
           
           {/* Suggestions */}
           {suggestions.length > 0 && (
