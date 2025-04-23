@@ -13,45 +13,53 @@ const FeaturedDishes: React.FC<FeaturedDishesProps> = ({ mobileLimit = 4 }) => {
       id: 1,
       name: "Nyama Choma",
       description: "Grilled meat seasoned with traditional Kenyan spices, served with kachumbari salad",
-      price: 18.99,
-      image: "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
-      rating: 4.9,
-      reviewCount: 128,
+      price: "$18.99",
       category: "Main Course",
-      tags: ["Popular", "Spicy"]
+      imagePath: "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
+      calories: 650,
+      protein: 45,
+      carbs: 15,
+      fat: 35,
+      badges: ["Popular", "Spicy"]
     },
     {
       id: 2,
       name: "Ugali with Sukuma Wiki",
       description: "Traditional cornmeal dish served with sautéed collard greens and caramelized onions",
-      price: 12.99,
-      image: "https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      rating: 4.7,
-      reviewCount: 86,
+      price: "$12.99",
       category: "Main Course",
-      tags: ["Vegetarian", "Traditional"]
+      imagePath: "https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      calories: 450,
+      protein: 12,
+      carbs: 65,
+      fat: 8,
+      badges: ["Vegetarian", "Traditional"]
     },
     {
       id: 3,
       name: "Pilau Rice",
       description: "Fragrant rice cooked with meat, aromatic spices, and served with kachumbari",
-      price: 14.99,
-      image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80",
-      rating: 4.8,
-      reviewCount: 104,
+      price: "$14.99",
       category: "Main Course",
-      tags: ["Popular", "Aromatic"]
+      imagePath: "https://images.unsplash.com/photo-1512058564366-18510be2db19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80",
+      calories: 580,
+      protein: 22,
+      carbs: 75,
+      fat: 18,
+      badges: ["Popular", "Aromatic"]
     },
     {
       id: 4,
       name: "Mandazi",
       description: "Sweet, fluffy African donuts with a hint of cardamom and coconut milk",
-      price: 6.99,
-      image: "https://images.unsplash.com/photo-1620921568790-c1cf8984624c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80",
-      rating: 4.6,
-      reviewCount: 72,
+      price: "$6.99",
       category: "Dessert",
-      tags: ["Sweet", "Breakfast"]
+      imagePath: "https://images.unsplash.com/photo-1620921568790-c1cf8984624c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80",
+      calories: 320,
+      protein: 5,
+      carbs: 42,
+      fat: 15,
+      badges: ["Sweet", "Breakfast"]
     }
   ];
 
@@ -75,7 +83,7 @@ const FeaturedDishes: React.FC<FeaturedDishesProps> = ({ mobileLimit = 4 }) => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {visibleDishes.map((dish) => (
-          <DishCard key={dish.id} dish={dish} />
+          <DishCard key={dish.id} item={dish} />
         ))}
       </div>
 
