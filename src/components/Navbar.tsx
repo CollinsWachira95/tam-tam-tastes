@@ -26,6 +26,8 @@ const Navbar = () => {
   // Close mobile menu when route changes
   useEffect(() => {
     setIsOpen(false);
+    // Scroll to top when navigation occurs
+    window.scrollTo(0, 0);
   }, [location.pathname]);
 
   return (
@@ -38,9 +40,8 @@ const Navbar = () => {
     >
       <div className="container-custom mx-auto">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Brand Name without logo */}
           <Link to="/" className="flex items-center">
-            <img src="/logo.png" alt="Tam Tam" className="h-14 mr-2" />
             <span className={`text-2xl font-extrabold font-playfair tracking-tight ${
               isScrolled || isOpen ? "text-tamtam-orange-600" : "text-white"
             }`}>

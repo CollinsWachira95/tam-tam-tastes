@@ -89,28 +89,28 @@ const HeroCarousel = () => {
               <div className="container-custom">
                 <Link to={slide.link}>
                   <div className="max-w-2xl pl-6 md:pl-12 bg-black/40 backdrop-blur-[3px] p-8 rounded-lg border border-white/20 shadow-lg">
-                    <span className="inline-block bg-tamtam-orange-600/90 text-white px-4 py-1.5 rounded-full text-sm font-medium mb-4 tracking-wide">
+                    <span className="inline-block bg-tamtam-orange-600/90 text-white px-4 py-1.5 rounded-full text-sm font-medium mb-4 tracking-wide font-playfair">
                       Authentic Kenyan Experience
                     </span>
                     
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight tracking-tight">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-playfair text-white mb-4 leading-tight tracking-tight">
                       {slide.title}
                     </h1>
                     
                     <div className="h-0.5 w-28 bg-amber-400 my-6 rounded-full"></div>
                     
-                    <p className="text-lg md:text-xl text-white/90 mb-4 tracking-tight">
+                    <p className="text-lg md:text-xl text-white/90 mb-4 tracking-tight font-playfair">
                       {slide.description}
                     </p>
                     
                     {slide.subtext && (
-                      <p className="text-base italic text-white/80 mb-8">
+                      <p className="text-base italic text-white/80 mb-8 font-playfair">
                         {slide.subtext}
                       </p>
                     )}
                     
                     <Button 
-                      className="mt-4 bg-tamtam-orange-600 hover:bg-tamtam-orange-700 text-white group transition-all duration-300 shadow-md"
+                      className="mt-4 bg-tamtam-orange-600 hover:bg-tamtam-orange-700 text-white group transition-all duration-300 shadow-md font-playfair"
                     >
                       Explore Now
                       <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />

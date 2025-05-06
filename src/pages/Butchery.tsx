@@ -232,15 +232,15 @@ const Butchery = () => {
     <div className="min-h-screen flex flex-col bg-tamtam-light">
       <Navbar />
       
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-b from-tamtam-orange-50 to-tamtam-light overflow-hidden">
+      {/* Hero Section - Updated with orange ombre background */}
+      <section className="relative py-20 bg-gradient-to-b from-tamtam-orange-400 via-tamtam-orange-200 to-tamtam-light overflow-hidden">
         <div className="absolute inset-0 kenyan-texture opacity-20"></div>
         <div className="container-custom text-center max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6 tracking-tight text-tamtam-black">
+          <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6 tracking-tight text-white">
             Premium Kenyan Meats
           </h1>
-          <div className="h-1 w-32 bg-tamtam-orange-600 mx-auto my-8 rounded-full"></div>
-          <p className="text-lg md:text-xl text-tamtam-gray-600 max-w-3xl mx-auto font-opensans">
+          <div className="h-1 w-32 bg-white mx-auto my-8 rounded-full"></div>
+          <p className="text-lg md:text-xl text-white max-w-3xl mx-auto font-playfair">
             Discover our selection of locally-sourced, ethically-raised meats, perfect for traditional Kenyan dishes.
           </p>
         </div>
@@ -248,7 +248,7 @@ const Butchery = () => {
       
       {/* Floating Order Button */}
       <div className="fixed right-6 bottom-12 z-50">
-        <Button className="bg-gradient-to-r from-tamtam-orange-600 to-tamtam-orange-700 hover:from-tamtam-orange-700 hover:to-tamtam-orange-800 text-white font-opensans font-medium rounded-full shadow-premium-hover transform transition-all hover:scale-105">
+        <Button className="bg-gradient-to-r from-tamtam-orange-600 to-tamtam-orange-700 hover:from-tamtam-orange-700 hover:to-tamtam-orange-800 text-white font-playfair font-medium rounded-full shadow-premium-hover transform transition-all hover:scale-105">
           <ShoppingBag className="mr-2 h-5 w-5" /> Order Now
         </Button>
       </div>
@@ -274,7 +274,7 @@ const Butchery = () => {
                   <TabsTrigger 
                     key={category}
                     value={category} 
-                    className="uppercase tracking-wide font-opensans font-semibold px-6 py-3 border-b-2 border-transparent data-[state=active]:border-tamtam-orange-600 data-[state=active]:bg-transparent data-[state=active]:text-tamtam-orange-600 text-tamtam-gray-500 rounded-none hover:text-tamtam-black transition-colors"
+                    className="uppercase tracking-wide font-playfair font-semibold px-6 py-3 border-b-2 border-transparent data-[state=active]:border-tamtam-orange-600 data-[state=active]:bg-transparent data-[state=active]:text-tamtam-orange-600 text-tamtam-gray-500 rounded-none hover:text-tamtam-black transition-colors"
                   >
                     {category === 'all' ? 'All Meats' : 
                      category === 'beef' ? 'Beef' :

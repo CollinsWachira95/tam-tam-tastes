@@ -49,7 +49,7 @@ const SustainabilityCarousel = () => {
     <section className="section bg-white py-16 md:py-24">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-1 bg-tamtam-green/10 text-tamtam-green rounded-full text-sm font-medium mb-4 font-neutra">
+          <span className="inline-block px-4 py-1 bg-tamtam-green/10 text-tamtam-green rounded-full text-sm font-medium mb-4 font-playfair">
             Our Commitment
           </span>
           <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-2 relative inline-block">
@@ -57,7 +57,7 @@ const SustainabilityCarousel = () => {
             <span className="absolute -right-6 top-0 text-tamtam-orange">•</span>
           </h2>
           <div className="mx-auto w-24 h-1 bg-tamtam-orange/30 rounded-full my-6"></div>
-          <p className="text-tamtam-gray max-w-2xl mx-auto font-neutra">
+          <p className="text-tamtam-gray max-w-2xl mx-auto font-playfair">
             Our commitment to sustainability guides everything we do, from sourcing ingredients to serving our guests.
           </p>
         </div>
@@ -83,7 +83,7 @@ const SustainabilityCarousel = () => {
                         <h3 className="text-2xl font-playfair font-bold text-tamtam-black mb-4">
                           {item.title}
                         </h3>
-                        <p className="text-tamtam-gray">
+                        <p className="text-tamtam-gray font-playfair">
                           {item.description}
                         </p>
                       </div>

@@ -69,47 +69,59 @@ const ChatBot = () => {
     setInput("");
     
     setTimeout(() => {
-      const response = processUserInput(input);
-      const botMessage: Message = {
-        id: generateId(),
-        text: response.message,
-        sender: "bot",
-        timestamp: new Date(),
-      };
-      
-      setMessages(prev => [...prev, botMessage]);
-      
-      if (response.orderItems && response.orderItems.length > 0) {
-        setCurrentOrder(prev => {
-          const newOrder = [...prev];
-          
-          response.orderItems?.forEach(item => {
-            const existingItemIndex = newOrder.findIndex(orderItem => orderItem.id === item.id);
+      try {
+        const response = processUserInput(input, currentOrder);
+        
+        const botMessage: Message = {
+          id: generateId(),
+          text: response.message,
+          sender: "bot",
+          timestamp: new Date(),
+        };
+        
+        setMessages(prev => [...prev, botMessage]);
+        
+        if (response.orderItems && response.orderItems.length > 0) {
+          setCurrentOrder(prev => {
+            const newOrder = [...prev];
             
-            if (existingItemIndex >= 0) {
-              newOrder[existingItemIndex].quantity += item.quantity;
-            } else {
-              newOrder.push(item);
-            }
+            response.orderItems?.forEach(item => {
+              const existingItemIndex = newOrder.findIndex(orderItem => orderItem.id === item.id);
+              
+              if (existingItemIndex >= 0) {
+                newOrder[existingItemIndex].quantity += item.quantity;
+              } else {
+                newOrder.push(item);
+              }
+            });
+            
+            return newOrder;
           });
           
-          return newOrder;
-        });
+          setOrderInProgress(true);
+        }
         
-        setOrderInProgress(true);
-      }
-      
-      if (response.action === "navigate" && response.path) {
-        setTimeout(() => {
-          navigate(response.path);
-          if (response.closeChatbot) {
-            setIsOpen(false);
-          }
-        }, 1000);
-      }
-      
-      if (response.suggestions) {
-        setSuggestions(response.suggestions);
+        if (response.action === "navigate" && response.path) {
+          setTimeout(() => {
+            navigate(response.path);
+            if (response.closeChatbot) {
+              setIsOpen(false);
+            }
+          }, 1000);
+        }
+        
+        if (response.suggestions) {
+          setSuggestions(response.suggestions);
+        }
+      } catch (error) {
+        console.error("Error processing input:", error);
+        const errorMessage: Message = {
+          id: generateId(),
+          text: "I'm sorry, I encountered an error processing your request. Can you please try again?",
+          sender: "bot",
+          timestamp: new Date(),
+        };
+        setMessages(prev => [...prev, errorMessage]);
       }
     }, 800);
   };

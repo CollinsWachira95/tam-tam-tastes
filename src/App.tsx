@@ -2,14 +2,27 @@
 import {
   BrowserRouter as Router,
   Route,
-  Routes
+  Routes,
+  useLocation,
+  ScrollRestoration
 } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Home from "@/pages/Home";
 import ChatBot from "@/components/ChatBot";
+
+// Custom ScrollToTop component
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  
+  return null;
+};
 
 // Lazy loaded pages for performance optimization but with minimal loading state
 const Menu = lazy(() => import("@/pages/Menu"));
@@ -25,6 +38,7 @@ function App() {
   return (
     <Router>
       <ErrorBoundary>
+        <ScrollToTop />
         <Navbar />
         <Suspense fallback={<div className="h-1 w-full bg-tamtam-orange-200">
           <div className="h-1 bg-tamtam-orange-600 animate-[shimmer_1s_infinite_linear]" style={{width: '30%'}}></div>
