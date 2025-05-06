@@ -60,18 +60,18 @@ const Hero = () => {
                 </span>
               </h1>
               <div className="h-1 w-24 bg-gradient-to-r from-tamtam-green-400 to-tamtam-green-600 my-6 rounded-full"></div>
-              <p className="text-lg md:text-xl text-tamtam-gray-600 mb-8 font-opensans max-w-xl">
+              <p className="text-lg md:text-xl text-tamtam-gray-600 mb-8 font-playfair max-w-xl">
                 Fresh ingredients, bold spices, and traditional recipes served with a modern twist. Experience the vibrant flavors that celebrate our heritage and transport you to the heart of Kenya.
               </p>
               <div className="flex flex-wrap gap-6">
                 <Link to="/menu">
-                  <Button className="btn-premium group shadow-premium-hover">
+                  <Button className="btn-premium group shadow-premium-hover font-playfair">
                     View Our Menu
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                   </Button>
                 </Link>
                 <Link to="/locations">
-                  <Button variant="outline" className="btn-outline-premium group">
+                  <Button variant="outline" className="btn-outline-premium group font-playfair">
                     Find Location
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                   </Button>
@@ -101,7 +101,7 @@ const Hero = () => {
                     </div>
                   </div>
                   
-                  <div className="text-xl text-tamtam-black/90 relative font-opensans mt-6">
+                  <div className="text-xl text-tamtam-black/90 relative font-playfair mt-6">
                     <span className="relative inline-block after:content-[''] after:absolute after:h-1 after:w-full after:bottom-0 after:left-0 after:bg-tamtam-green-500/40 after:rounded-full">
                       Authentic Kenyan Cuisine
                     </span>

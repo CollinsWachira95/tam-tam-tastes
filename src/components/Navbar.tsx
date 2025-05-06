@@ -41,7 +41,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img src="/logo.png" alt="Tam Tam" className="h-14 mr-2" />
-            <span className={`text-2xl font-extrabold font-sweetsans tracking-tight ${
+            <span className={`text-2xl font-extrabold font-playfair tracking-tight ${
               isScrolled || isOpen ? "text-tamtam-orange-600" : "text-white"
             }`}>
               Tam Tam
@@ -61,7 +61,7 @@ const Navbar = () => {
               <Link
                 key={path}
                 to={path}
-                className={`nav-link font-medium font-sweetsans text-base tracking-wide transition-colors duration-300 hover:text-tamtam-orange-500 ${
+                className={`nav-link font-playfair text-base tracking-wide transition-colors duration-300 hover:text-tamtam-orange-500 ${
                   location.pathname === path 
                     ? "text-tamtam-orange-600 font-semibold" 
                     : isScrolled ? "text-tamtam-black" : "text-white"
@@ -77,7 +77,7 @@ const Navbar = () => {
             <Link to="/cart">
               <Button 
                 variant={isScrolled ? "ghost" : "outline"} 
-                className={`relative p-2 ${
+                className={`relative p-2 font-playfair ${
                   !isScrolled && "border-white text-white hover:bg-white/20"
                 }`}
               >
@@ -95,7 +95,7 @@ const Navbar = () => {
               <Button 
                 variant={isScrolled ? "ghost" : "outline"} 
                 size="sm" 
-                className={`relative p-1 ${
+                className={`relative p-1 font-playfair ${
                   !isScrolled && "border-white text-white hover:bg-white/20"
                 }`}
               >
@@ -110,7 +110,7 @@ const Navbar = () => {
               size="sm"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
-              className={!isScrolled && "border-white text-white hover:bg-white/20"}
+              className={`font-playfair ${!isScrolled && "border-white text-white hover:bg-white/20"}`}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </Button>
@@ -136,7 +136,7 @@ const Navbar = () => {
             <Link
               key={path}
               to={path}
-              className={`mobile-nav-link block py-3 font-medium border-b border-gray-100 font-sweetsans text-lg ${
+              className={`mobile-nav-link block py-3 font-playfair border-b border-gray-100 text-lg ${
                 location.pathname === path ? "text-tamtam-orange-600" : ""
               }`}
             >
