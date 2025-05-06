@@ -15,7 +15,7 @@ interface Dish {
   id: number;
   name: string;
   description: string;
-  price: string;
+  price: string | number;
   imagePath: string;
   category: string;
   calories?: number;
@@ -31,6 +31,9 @@ interface DishDetailModalProps {
 }
 
 export function DishDetailModal({ dish, children }: DishDetailModalProps) {
+  // Convert price to string if it's a number
+  const priceDisplay = typeof dish.price === 'number' ? `$${dish.price.toFixed(2)}` : dish.price;
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -67,7 +70,7 @@ export function DishDetailModal({ dish, children }: DishDetailModalProps) {
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <p className="text-2xl font-bold text-tamtam-orange-600">
-                    {dish.price}
+                    {priceDisplay}
                   </p>
                   <div className="flex items-center text-sm text-gray-500">
                     <Clock className="w-4 h-4 mr-1" />

@@ -83,7 +83,7 @@ const ChatBot = () => {
         setCurrentOrder(prev => {
           const newOrder = [...prev];
           
-          response.orderItems.forEach(item => {
+          response.orderItems?.forEach(item => {
             const existingItemIndex = newOrder.findIndex(orderItem => orderItem.id === item.id);
             
             if (existingItemIndex >= 0) {
@@ -116,7 +116,7 @@ const ChatBot = () => {
 
   const handleSuggestionClick = (suggestion: string) => {
     setInput(suggestion);
-    handleSend();
+    setTimeout(() => handleSend(), 100);
   };
 
   return (
@@ -133,8 +133,8 @@ const ChatBot = () => {
       <div className="md:hidden">
         <Drawer open={isOpen} onOpenChange={setIsOpen}>
           <DrawerContent className="h-[85vh]">
-            <DrawerHeader className="border-b">
-              <DrawerTitle className="flex items-center text-tamtam-orange-600 font-sweetsans">
+            <DrawerHeader className="p-0">
+              <DrawerTitle className="block">
                 <ChatHeader onClose={() => setIsOpen(false)} />
               </DrawerTitle>
               <DrawerClose />

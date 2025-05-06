@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 import Home from "@/pages/Home";
 import ChatBot from "@/components/ChatBot";
 
-// Lazy loaded pages for performance optimization
+// Lazy loaded pages for performance optimization but with minimal loading state
 const Menu = lazy(() => import("@/pages/Menu"));
 const Butchery = lazy(() => import("@/pages/Butchery"));
 const About = lazy(() => import("@/pages/About"));
@@ -26,8 +26,8 @@ function App() {
     <Router>
       <ErrorBoundary>
         <Navbar />
-        <Suspense fallback={<div className="min-h-screen flex items-center justify-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-tamtam-orange-600"></div>
+        <Suspense fallback={<div className="h-1 w-full bg-tamtam-orange-200">
+          <div className="h-1 bg-tamtam-orange-600 animate-[shimmer_1s_infinite_linear]" style={{width: '30%'}}></div>
         </div>}>
           <Routes>
             <Route path="/" element={<Home />} />
