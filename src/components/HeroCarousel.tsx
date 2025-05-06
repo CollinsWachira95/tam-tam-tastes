@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -62,7 +61,7 @@ const HeroCarousel = () => {
   const currentSlide = heroSlides[currentIndex];
 
   return (
-    <div className="relative bg-tamtam-light overflow-hidden h-[650px] md:h-[700px]">
+    <div className="relative bg-tamtam-light overflow-hidden h-[650px] md:h-[700px] -mt-[80px]">
       {/* Background pattern */}
       <div className="absolute inset-0 african-pattern opacity-30"></div>
       
@@ -85,7 +84,7 @@ const HeroCarousel = () => {
             {/* Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-tamtam-black/70 via-tamtam-black/40 to-transparent"></div>
             
-            <div className="absolute inset-0 flex items-center justify-start">
+            <div className="absolute inset-0 flex items-center justify-start pt-20">
               <div className="container-custom">
                 <Link to={slide.link}>
                   <div className="max-w-2xl pl-6 md:pl-12 bg-black/40 backdrop-blur-[3px] p-8 rounded-lg border border-white/20 shadow-lg">

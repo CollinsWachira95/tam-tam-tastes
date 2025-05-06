@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ShoppingCart } from "lucide-react";
@@ -40,12 +39,12 @@ const Navbar = () => {
     >
       <div className="container-custom mx-auto">
         <div className="flex items-center justify-between">
-          {/* Brand Name without logo */}
+          {/* Brand Name without logo - now capitalized */}
           <Link to="/" className="flex items-center">
             <span className={`text-2xl font-extrabold font-playfair tracking-tight ${
               isScrolled || isOpen ? "text-tamtam-orange-600" : "text-white"
             }`}>
-              Tam Tam
+              TAM TAM
             </span>
           </Link>
 
