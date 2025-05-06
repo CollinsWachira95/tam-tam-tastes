@@ -39,7 +39,7 @@ const DishCard = ({ item }: DishCardProps) => {
     name: item.name,
     description: item.description,
     price: parseFloat(item.price.replace('$', '')),
-    image: item.imagePath || '',
+    image: item.imagePath || '', // Changed from 'image' to match DishDetailModal's interface
     category: item.category,
     calories: item.calories,
     protein: item.protein,

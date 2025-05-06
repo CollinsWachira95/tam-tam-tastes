@@ -16,7 +16,7 @@ interface Dish {
   name: string;
   description: string;
   price: string | number;
-  imagePath: string;
+  image: string;  // Changed from imagePath to image to match what DishCard is sending
   category: string;
   calories?: number;
   protein?: number;
@@ -44,7 +44,7 @@ export function DishDetailModal({ dish, children }: DishDetailModalProps) {
           {/* Image Section */}
           <div className="relative h-[300px] md:h-full overflow-hidden">
             <img
-              src={dish.imagePath}
+              src={dish.image}  // Updated to use image instead of imagePath
               alt={dish.name}
               className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
             />
