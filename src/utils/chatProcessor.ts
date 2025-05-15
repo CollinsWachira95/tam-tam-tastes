@@ -12,7 +12,7 @@ interface ChatResponse {
   completeOrder?: boolean;
 }
 
-export const processUserInput = (input: string): ChatResponse => {
+export const processUserInput = (input: string, currentOrder: OrderItem[] = []): ChatResponse => {
   const text = input.toLowerCase();
   
   // Check if this input contains a food order
