@@ -63,6 +63,7 @@ export const useChatbot = () => {
     
     setTimeout(() => {
       try {
+        // Using the updated processUserInput that accepts currentOrder
         const response = processUserInput(input, currentOrder);
         
         const botMessage: Message = {
