@@ -1,15 +1,15 @@
-import {useEffect, useState} from 'react'
-import {useStripe, useElements} from "@stripe/react-stripe-js";
-import {PaymentElement} from "@stripe/react-stripe-js";
-import {toast} from "sonner";
-import {useCartStore} from "@/stores/cartStore.ts";
-import {Button} from "@/components/ui/button.tsx";
+
+import { useState } from 'react';
+import { useStripe, useElements, PaymentElement } from "@stripe/react-stripe-js";
+import { toast } from "sonner";
+import { useCartStore } from "@/stores/cartStore";
+import { Button } from "@/components/ui/button";
 
 const StripePaymentForm = () => {
     const stripe = useStripe();
-    const { clearCart } = useCartStore();
     const elements = useElements();
-    const [message, setMessage] = useState(null);
+    const { clearCart } = useCartStore();
+    const [message, setMessage] = useState<string | null>(null);
     const [isProcessing, setIsProcessing] = useState(false);
 
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
@@ -21,37 +21,47 @@ const StripePaymentForm = () => {
 
         setIsProcessing(true);
 
-        const {error } = await stripe.confirmPayment({
+        const { error, paymentIntent } = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                return_url:`${window.location.origin}/order-success`,
-            }
-        })
-        if (error.type === "card_error" || error.type === "validation_error") {
-            setMessage(error.message);
-        } else {
-            setMessage("An unexpected error occurred.");
-        }
-        setIsProcessing(false);
-            toast.success("Order placed successfully!");
-            clearCart();
+                return_url: `${window.location.origin}/order-success`,
+            },
+            redirect: 'if_required'
+        });
 
-    }
+        if (error) {
+            if (error.type === "card_error" || error.type === "validation_error") {
+                setMessage(error.message || "An unexpected error occurred.");
+            } else {
+                setMessage("An unexpected error occurred.");
+            }
+            setIsProcessing(false);
+        } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+            toast.success("Payment successful! Your order is confirmed.");
+            clearCart();
+            window.location.href = '/order-success';
+        } else {
+            setMessage("Something went wrong with your payment. Please try again.");
+            setIsProcessing(false);
+        }
+    };
+
     return (
         <form onSubmit={handleSubmit}>
-            <PaymentElement/>
-                <Button
-                    disabled={isProcessing}
-                    type="submit"
-                    className="w-full bg-kenya-blue hover:bg-kenya-blue-dark font-medium"
-                >
+            <PaymentElement className="mb-6" />
+            <Button
+                disabled={isProcessing || !stripe || !elements}
+                type="submit"
+                className="w-full bg-kenya-blue hover:bg-kenya-blue-dark font-medium"
+            >
                 <span>
                     {isProcessing ? 'Processing...' : 'Pay Now'}
                 </span>
             </Button>
 
-            {message && <div>{message}</div>}
+            {message && <div className="mt-4 text-red-500 text-sm">{message}</div>}
         </form>
-    )
-}
-export default StripePaymentForm
+    );
+};
+
+export default StripePaymentForm;

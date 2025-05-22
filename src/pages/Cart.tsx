@@ -11,6 +11,7 @@ const Cart = () => {
   const { isSignedIn } = useUser();
 
   if (items.length === 0) {
+    
     return (
       <div className="min-h-screen">
         <Navbar />
@@ -39,6 +40,7 @@ const Cart = () => {
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
+            
             <div className="bg-white rounded-lg shadow overflow-hidden">
               <div className="divide-y divide-gray-200">
                 {items.map((item) => (
@@ -127,11 +129,11 @@ const Cart = () => {
                   </Button>
                 </Link>
               ) : (
-                <SignInButton>
+                <Link to="/checkout">
                   <Button className="w-full bg-kenya-blue hover:bg-kenya-blue-dark font-medium">
-                    Before we proceed, please sign in.
+                    Proceed to Checkout
                   </Button>
-                </SignInButton>
+                </Link>
               )}
             </div>
           </div>

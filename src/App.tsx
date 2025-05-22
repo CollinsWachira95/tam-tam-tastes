@@ -4,7 +4,6 @@ import {
   Route,
   Routes,
   useLocation,
-  ScrollRestoration
 } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
@@ -31,6 +30,8 @@ const About = lazy(() => import("@/pages/About"));
 const Catering = lazy(() => import("@/pages/Catering"));
 const Locations = lazy(() => import("@/pages/Locations"));
 const Cart = lazy(() => import("@/pages/Cart"));
+const Checkout = lazy(() => import("@/pages/Checkout"));
+const OrderSuccess = lazy(() => import("@/pages/OrderSuccess"));
 const Privacy = lazy(() => import("@/pages/Privacy"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
@@ -51,6 +52,8 @@ function App() {
             <Route path="/catering" element={<Catering />} />
             <Route path="/locations" element={<Locations />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/order-success" element={<OrderSuccess />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
