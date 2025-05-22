@@ -8,47 +8,41 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
-  // Handle scroll event to add background to navbar when scrolled
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 20);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsOpen(false);
-    // Scroll to top when navigation occurs
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled || isOpen 
-          ? "bg-white shadow-md py-3" 
+        isScrolled || isOpen
+          ? "bg-white shadow-md py-3"
           : "bg-gradient-to-b from-black/60 to-transparent py-5"
       }`}
     >
       <div className="container-custom mx-auto">
         <div className="flex items-center justify-between">
-          {/* Brand Name without logo - now capitalized */}
+          {/* Brand */}
           <Link to="/" className="flex items-center">
-            <span className={`text-2xl font-extrabold font-playfair tracking-tight ${
-              isScrolled || isOpen ? "text-tamtam-orange-600" : "text-white"
-            }`}>
+            <span
+              className={`text-2xl font-extrabold font-playfair tracking-tight ${
+                isScrolled || isOpen ? "text-tamtam-orange-600" : "text-white"
+              }`}
+            >
               TAM TAM
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-10">
             {[
               { path: "/", label: "Home" },
@@ -62,9 +56,11 @@ const Navbar = () => {
                 key={path}
                 to={path}
                 className={`nav-link font-playfair text-base tracking-wide transition-colors duration-300 hover:text-tamtam-orange-500 ${
-                  location.pathname === path 
-                    ? "text-tamtam-orange-600 font-semibold" 
-                    : isScrolled ? "text-tamtam-black" : "text-white"
+                  location.pathname === path
+                    ? "text-tamtam-orange-600 font-semibold"
+                    : isScrolled
+                    ? "text-tamtam-black"
+                    : "text-white"
                 }`}
               >
                 {label}
@@ -72,11 +68,12 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Right Side - Cart */}
+          {/* Right-side buttons */}
           <div className="hidden md:flex items-center space-x-4">
+            {/* Cart */}
             <Link to="/cart">
-              <Button 
-                variant={isScrolled ? "ghost" : "outline"} 
+              <Button
+                variant={isScrolled ? "ghost" : "outline"}
                 className={`relative p-2 font-playfair ${
                   !isScrolled && "border-white text-white hover:bg-white/20"
                 }`}
@@ -87,14 +84,25 @@ const Navbar = () => {
                 </span>
               </Button>
             </Link>
+            {/* Sign In */}
+            <Link to="/signin">
+              <Button
+                variant={isScrolled ? "ghost" : "outline"}
+                className={`font-playfair px-4 ${
+                  !isScrolled && "border-white text-white hover:bg-white/20"
+                }`}
+              >
+                Sign In
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center md:hidden">
             <Link to="/cart" className="mr-4">
-              <Button 
-                variant={isScrolled ? "ghost" : "outline"} 
-                size="sm" 
+              <Button
+                variant={isScrolled ? "ghost" : "outline"}
+                size="sm"
                 className={`relative p-1 font-playfair ${
                   !isScrolled && "border-white text-white hover:bg-white/20"
                 }`}
@@ -110,7 +118,9 @@ const Navbar = () => {
               size="sm"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
-              className={`font-playfair ${!isScrolled && "border-white text-white hover:bg-white/20"}`}
+              className={`font-playfair ${
+                !isScrolled && "border-white text-white hover:bg-white/20"
+              }`}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </Button>
@@ -132,6 +142,7 @@ const Navbar = () => {
             { path: "/about", label: "About" },
             { path: "/catering", label: "Catering" },
             { path: "/locations", label: "Locations" },
+            { path: "/signin", label: "Sign In" }, // 👈 Added Sign In here too
           ].map(({ path, label }) => (
             <Link
               key={path}
