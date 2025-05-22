@@ -1,240 +1,171 @@
+import React, { useState } from "react";
+import { useCart } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-import { useState } from "react";
-import { useCartStore } from "@/stores/cartStore";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Spinner } from "@/components/ui/spinner";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import StripePaymentForm from "@/pages/StripePaymentForm";
+interface CheckoutFormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  location: string;
+  paymentMethod: "card" | "mpesa";
+}
 
-// Initialize Stripe with your publishable key
-// In production, this would be your live key
-const stripePromise = loadStripe("pk_test_51NzlkVCyUnvJqTrzRQNngnl8OkpbGlKJ0EBXd0wSXbElqE1eQebje4obvO9SLT8mOXXGWMbsVz3ZnPEyZp0KuNZB008jDdlbyP");
-
-const Checkout = () => {
-  const { items, getTotalPrice } = useCartStore();
-  const [isLoading, setIsLoading] = useState(false);
-  const [clientSecret, setClientSecret] = useState("");
-  const [formData, setFormData] = useState({
+export default function CheckoutForm() {
+  const [formData, setFormData] = useState<CheckoutFormData>({
     firstName: "",
     lastName: "",
     email: "",
-    address: "",
-    city: "",
-    postalCode: "",
     phone: "",
+    location: "",
+    paymentMethod: "card",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [loading, setLoading] = useState(false);
+  const { cartItems, clearCart, getTotalPrice } = useCart();
+  const navigate = useNavigate();
+
+  const user = null; // Replace with your user state/context if applicable
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleInitiateCheckout = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (items.length === 0) return;
-    
-    setIsLoading(true);
-    
-    try {
-      // Fetch payment intent from your backend (this would be a real API endpoint in production)
-      // In a real implementation, you would send the cart items and customer details to create the payment intent
-      const response = await fetch("https://api.example.com/create-payment-intent", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          items, 
-          customer: formData,
-          amount: getTotalPrice() + 250 // Total price plus shipping
-        }),
-      });
-      
-      const data = await response.json();
-      
-      if (data.clientSecret) {
-        setClientSecret(data.clientSecret);
-      }
-    } catch (error) {
-      console.error("Error creating payment intent:", error);
-    } finally {
-      setIsLoading(false);
+    setLoading(true);
+
+    // Basic validation example
+    if (
+      !formData.firstName.trim() ||
+      !formData.lastName.trim() ||
+      !formData.email.trim() ||
+      !formData.phone.trim() ||
+      !formData.location.trim()
+    ) {
+      alert("Please fill in all the fields");
+      setLoading(false);
+      return;
     }
+
+    // M-Pesa payment flow
+    if (formData.paymentMethod === "mpesa") {
+      const mpesaPaymentForm = {
+        mpesa_number: formData.phone.trim(),
+        name: user?.firstName || formData.firstName.trim(),
+        amount: getTotalPrice() + 250, // Assuming 250 is delivery fee
+      };
+
+      // Kenyan phone number validation regex
+      const kenyanPhoneNumberRegex =
+        /^(07\d{8}|01\d{8}|2547\d{8}|2541\d{8}|\+2547\d{8}|\+2541\d{8})$/;
+
+      if (!kenyanPhoneNumberRegex.test(mpesaPaymentForm.mpesa_number)) {
+        setLoading(false);
+        return alert("Invalid phone number");
+      }
+
+      try {
+        const response = await axios.post(
+          "https://mpesa-backend-2.vercel.app/api/stkpush",
+          mpesaPaymentForm
+        );
+
+        const checkoutRequestId = response.data.data.CheckoutRequestID;
+        console.log("CheckoutRequestID:", checkoutRequestId);
+        alert("STK push sent successfully");
+
+        toast.success("Order placed successfully!");
+        clearCart();
+        navigate("/order-success");
+
+        setLoading(false);
+        return; // stop further execution
+      } catch (error: any) {
+        setLoading(false);
+        alert("Error: " + (error.message || "Something went wrong"));
+        return;
+      }
+    }
+
+    // For other payment methods (e.g. card), you can add logic here
+    // Placeholder success flow:
+    toast.success("Order placed successfully!");
+    clearCart();
+    navigate("/order-success");
+    setLoading(false);
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container-custom mx-auto py-12 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl font-bold mb-8">Checkout</h1>
-          
-          {items.length === 0 ? (
-            <div className="text-center py-12 bg-white rounded-lg shadow">
-              <h2 className="text-xl font-medium mb-4">Your cart is empty</h2>
-              <p className="text-gray-500 mb-6">Add some items to your cart before checking out.</p>
-              <Link to="/products">
-                <Button>Continue Shopping</Button>
-              </Link>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Order Summary */}
-              <div className="md:col-span-1 bg-white p-6 rounded-lg shadow">
-                <h2 className="text-xl font-bold mb-4">Order Summary</h2>
-                <div className="space-y-4 mb-6">
-                  {items.map((item) => (
-                    <div key={item.product.id} className="flex justify-between items-center">
-                      <div className="flex items-center">
-                        <img 
-                          src={item.product.image} 
-                          alt={item.product.name} 
-                          className="w-12 h-12 object-cover rounded mr-3" 
-                        />
-                        <div>
-                          <p className="font-medium">{item.product.name}</p>
-                          <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
-                        </div>
-                      </div>
-                      <p className="font-medium">{item.product.price}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className="border-t border-gray-200 pt-4 space-y-2">
-                  <div className="flex justify-between">
-                    <span>Subtotal</span>
-                    <span>KSh {getTotalPrice().toLocaleString()}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Shipping</span>
-                    <span>KSh 250</span>
-                  </div>
-                  <div className="flex justify-between font-bold text-lg border-t border-gray-200 pt-2 mt-2">
-                    <span>Total</span>
-                    <span>KSh {(getTotalPrice() + 250).toLocaleString()}</span>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Customer Information & Payment */}
-              <div className="md:col-span-2">
-                {!clientSecret ? (
-                  <div className="bg-white p-6 rounded-lg shadow mb-6">
-                    <h2 className="text-xl font-bold mb-4">Customer Information</h2>
-                    <Form onSubmit={handleInitiateCheckout}>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                        <div>
-                          <Label htmlFor="firstName">First Name</Label>
-                          <Input 
-                            id="firstName"
-                            name="firstName" 
-                            value={formData.firstName}
-                            onChange={handleChange}
-                            required
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="lastName">Last Name</Label>
-                          <Input 
-                            id="lastName"
-                            name="lastName" 
-                            value={formData.lastName}
-                            onChange={handleChange}
-                            required
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="email">Email</Label>
-                          <Input 
-                            id="email"
-                            name="email" 
-                            type="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="phone">Phone</Label>
-                          <Input 
-                            id="phone"
-                            name="phone" 
-                            value={formData.phone}
-                            onChange={handleChange}
-                            required
-                          />
-                        </div>
-                      </div>
-                      
-                      <h3 className="font-bold mb-4">Shipping Address</h3>
-                      <div className="space-y-4 mb-6">
-                        <div>
-                          <Label htmlFor="address">Address</Label>
-                          <Input 
-                            id="address"
-                            name="address" 
-                            value={formData.address}
-                            onChange={handleChange}
-                            required
-                          />
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div>
-                            <Label htmlFor="city">City</Label>
-                            <Input 
-                              id="city"
-                              name="city" 
-                              value={formData.city}
-                              onChange={handleChange}
-                              required
-                            />
-                          </div>
-                          <div>
-                            <Label htmlFor="postalCode">Postal Code</Label>
-                            <Input 
-                              id="postalCode"
-                              name="postalCode" 
-                              value={formData.postalCode}
-                              onChange={handleChange}
-                              required
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <Button 
-                        type="submit" 
-                        className="w-full bg-kenya-blue hover:bg-kenya-blue-dark"
-                        disabled={isLoading}
-                      >
-                        {isLoading ? (
-                          <>
-                            <Spinner size="xs" className="mr-2" /> Processing...
-                          </>
-                        ) : (
-                          "Proceed to Payment"
-                        )}
-                      </Button>
-                    </Form>
-                  </div>
-                ) : (
-                  <div className="bg-white p-6 rounded-lg shadow">
-                    <h2 className="text-xl font-bold mb-4">Payment</h2>
-                    <Elements stripe={stripePromise} options={{ clientSecret }}>
-                      <StripePaymentForm />
-                    </Elements>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
+    <form onSubmit={handleSubmit} className="checkout-form">
+      <input
+        type="text"
+        name="firstName"
+        placeholder="First Name"
+        value={formData.firstName}
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="text"
+        name="lastName"
+        placeholder="Last Name"
+        value={formData.lastName}
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Email Address"
+        value={formData.email}
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="tel"
+        name="phone"
+        placeholder="Phone Number"
+        value={formData.phone}
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="text"
+        name="location"
+        placeholder="Delivery Location"
+        value={formData.location}
+        onChange={handleChange}
+        required
+      />
 
-export default Checkout;
+      <label>
+        <input
+          type="radio"
+          name="paymentMethod"
+          value="card"
+          checked={formData.paymentMethod === "card"}
+          onChange={handleChange}
+        />
+        Card
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="paymentMethod"
+          value="mpesa"
+          checked={formData.paymentMethod === "mpesa"}
+          onChange={handleChange}
+        />
+        M-Pesa
+      </label>
+
+      <button type="submit" disabled={loading}>
+        {loading ? "Processing..." : "Place Order"}
+      </button>
+    </form>
+  );
+}
